@@ -1,0 +1,53 @@
+{
+  "name": "FinMaster – Quản Lý Tài Chính",
+  "short_name": "FinMaster",
+  "description": "Ứng dụng Quản lý Tài chính Cá nhân Quiet Luxury – Hoạt động Offline 100% như App thật",
+  "start_url": "./index.html",
+  "scope": "./",
+  "id": "finmaster-pwa",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "window-controls-overlay"],
+  "orientation": "portrait-primary",
+  "background_color": "#0E3834",
+  "theme_color": "#0E3834",
+  "categories": ["finance", "productivity", "utilities"],
+  "lang": "vi",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Thêm giao dịch",
+      "short_name": "+ Chi tiêu",
+      "description": "Mở nhanh trình tạo giao dịch mới",
+      "url": "./index.html?action=add",
+      "icons": [{ "src": "./icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Báo cáo phân tích",
+      "short_name": "Báo cáo",
+      "description": "Xem phân tích tài chính",
+      "url": "./index.html?tab=analytics",
+      "icons": [{ "src": "./icon.svg", "sizes": "any" }]
+    }
+  ]
+}
+

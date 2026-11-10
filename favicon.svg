@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="favBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#051917"/>
+      <stop offset="100%" stop-color="#144D46"/>
+    </linearGradient>
+    <linearGradient id="favMint" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A7F3D0"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="favGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE68A"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#favBg)"/>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="none" stroke="#6EE7B7" stroke-width="1.5" stroke-opacity="0.3"/>
+  <path d="M16 16 H22 V48 H16 Z" fill="url(#favMint)" rx="1.5"/>
+  <path d="M22 16 H44 C46 16 47 18 46 20 L44 24 H22 V16 Z" fill="url(#favMint)"/>
+  <path d="M22 28 H38 C40 28 41 30 40 32 L39 35 H22 V28 Z" fill="url(#favMint)"/>
+  <path d="M42 26 H48 V48 H42 Z" fill="url(#favMint)" rx="1.5"/>
+  <path d="M28 20 L35 34 C36 36 38 36 39 34 L46 20 H42 L37 30 L32 20 Z" fill="#E8F7F0"/>
+  <path d="M18 44 L28 38 L36 41 L50 31" fill="none" stroke="url(#favGold)" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
+
