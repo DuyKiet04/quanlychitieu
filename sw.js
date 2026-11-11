@@ -3,7 +3,7 @@
    Enables 100% Offline Capability, Instant Loading & App Shell Caching
    ========================================================================== */
 
-const CACHE_NAME = 'finmaster-v3-cache';
+const CACHE_NAME = 'finmaster-v4.0-cache';
 
 // Core Application Shell & CDN Dependencies
 const APP_SHELL_ASSETS = [
@@ -121,7 +121,13 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Strategy C: Other requests (Default Network with Cache Fallback)
+  // For external third-party APIs (Nominatim, BigDataCloud, Geocoding, etc.):
+  // DO NOT INTERCEPT with respondWith! Let the browser execute normal fetch directly.
+  if (url.origin !== self.location.origin) {
+    return;
+  }
+
+  // Strategy C: Same-origin requests (Default Network with Cache Fallback)
   event.respondWith(
     fetch(req)
       .then((networkRes) => {
@@ -131,7 +137,11 @@ self.addEventListener('fetch', (event) => {
         }
         return networkRes;
       })
-      .catch(() => caches.match(req))
+      .catch(async () => {
+        const cached = await caches.match(req);
+        if (cached) return cached;
+        return new Response('', { status: 503, statusText: 'Offline' });
+      })
   );
 });
 

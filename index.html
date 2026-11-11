@@ -186,6 +186,94 @@
       --hero-subtle-glow: rgba(251, 191, 36, 0.3);
     }
 
+    /* Theme 5: Ruby Crimson (Đỏ Hồng Ngọc Quý Tộc) */
+    [data-color-theme="ruby"] {
+      --primary: #991B1B;
+      --primary-rgb: 153, 27, 27;
+      --primary-light: #FEF2F2;
+      --mint: #E11D48;
+      --mint-light: #FFE4E6;
+      --mint-accent: #FDA4AF;
+      --hero-gradient: linear-gradient(145deg, #450A0A 0%, #991B1B 60%, #BE123C 100%);
+      --hero-subtle-glow: rgba(244, 63, 94, 0.35);
+    }
+    [data-theme="dark"][data-color-theme="ruby"] {
+      --primary: #FB7185;
+      --primary-rgb: 251, 113, 133;
+      --primary-light: #3A0C16;
+      --mint: #FB7185;
+      --mint-light: #4C101F;
+      --mint-accent: #FDA4AF;
+      --hero-gradient: linear-gradient(145deg, #240509 0%, #540D1E 60%, #7E152F 100%);
+      --hero-subtle-glow: rgba(251, 113, 133, 0.3);
+    }
+
+    /* Theme 6: Nordic Slate (Xám Băng Bắc Âu) */
+    [data-color-theme="nordic"] {
+      --primary: #1E293B;
+      --primary-rgb: 30, 41, 59;
+      --primary-light: #F1F5F9;
+      --mint: #0EA5E9;
+      --mint-light: #E0F2FE;
+      --mint-accent: #38BDF8;
+      --hero-gradient: linear-gradient(145deg, #0F172A 0%, #1E293B 60%, #334155 100%);
+      --hero-subtle-glow: rgba(14, 165, 233, 0.35);
+    }
+    [data-theme="dark"][data-color-theme="nordic"] {
+      --primary: #38BDF8;
+      --primary-rgb: 56, 189, 248;
+      --primary-light: #0F172A;
+      --mint: #38BDF8;
+      --mint-light: #1E293B;
+      --mint-accent: #7DD3FC;
+      --hero-gradient: linear-gradient(145deg, #050912 0%, #0F172A 60%, #1E293B 100%);
+      --hero-subtle-glow: rgba(56, 189, 248, 0.3);
+    }
+
+    /* Theme 7: Rose Gold (Vàng Hồng Hoàng Gia) */
+    [data-color-theme="rose"] {
+      --primary: #831843;
+      --primary-rgb: 131, 24, 67;
+      --primary-light: #FDF2F8;
+      --mint: #DB2777;
+      --mint-light: #FCE7F3;
+      --mint-accent: #F472B6;
+      --hero-gradient: linear-gradient(145deg, #4A0422 0%, #831843 60%, #BE185D 100%);
+      --hero-subtle-glow: rgba(244, 114, 182, 0.35);
+    }
+    [data-theme="dark"][data-color-theme="rose"] {
+      --primary: #F472B6;
+      --primary-rgb: 244, 114, 182;
+      --primary-light: #38081B;
+      --mint: #F472B6;
+      --mint-light: #4D0C27;
+      --mint-accent: #FBCFE8;
+      --hero-gradient: linear-gradient(145deg, #22030E 0%, #500A29 60%, #76123F 100%);
+      --hero-subtle-glow: rgba(244, 114, 182, 0.3);
+    }
+
+    /* Theme 8: Cyber Night (Dạ Quang Thượng Hải) */
+    [data-color-theme="cyber"] {
+      --primary: #042F2E;
+      --primary-rgb: 4, 47, 46;
+      --primary-light: #F0FDFA;
+      --mint: #14B8A6;
+      --mint-light: #CCFBF1;
+      --mint-accent: #5EEAD4;
+      --hero-gradient: linear-gradient(145deg, #021C1C 0%, #042F2E 60%, #0F766E 100%);
+      --hero-subtle-glow: rgba(94, 234, 212, 0.35);
+    }
+    [data-theme="dark"][data-color-theme="cyber"] {
+      --primary: #2DD4BF;
+      --primary-rgb: 45, 212, 191;
+      --primary-light: #042221;
+      --mint: #2DD4BF;
+      --mint-light: #0A3735;
+      --mint-accent: #99F6E4;
+      --hero-gradient: linear-gradient(145deg, #010F0F 0%, #032524 60%, #064E4B 100%);
+      --hero-subtle-glow: rgba(45, 212, 191, 0.3);
+    }
+
     [data-theme="dark"] {
       --bg-body: #0B1211;
       --bg-card: #141F1D;
@@ -233,6 +321,14 @@
       user-select: none;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+
+    *::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
     }
 
     input,
@@ -283,24 +379,25 @@
       }
     }
 
-    /* iOS Sticky Glass Header */
+    /* iOS Sticky Glass Header with Brand Theme Gradient */
     .app-header {
       position: sticky;
       top: 0;
       z-index: 40;
       padding: calc(var(--safe-top) + 8px) 16px 8px;
-      background: rgba(245, 247, 246, 0.88);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: var(--hero-gradient);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
       transition: background 0.25s ease, border-color 0.25s ease;
+      color: #FFFFFF;
     }
 
     [data-theme="dark"] .app-header {
-      background: rgba(11, 18, 17, 0.88);
+      background: var(--hero-gradient);
+      border-bottom-color: rgba(255, 255, 255, 0.1);
     }
 
     .header-user {
@@ -313,35 +410,46 @@
       width: 36px;
       height: 36px;
       border-radius: var(--radius-full);
-      background: linear-gradient(135deg, #0E3834, #2DA87B);
+      background: rgba(255, 255, 255, 0.2);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.85rem;
       color: #FFFFFF;
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
       letter-spacing: -0.02em;
     }
 
     .header-meta h1 {
       font-size: 0.88rem;
       font-weight: 800;
-      color: var(--text-primary);
+      color: #FFFFFF !important;
       letter-spacing: -0.025em;
       line-height: 1.2;
     }
 
     .header-meta p {
       font-size: 0.65rem;
-      color: var(--text-secondary);
-      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8) !important;
+      font-weight: 600;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
       gap: 6px;
+    }
+
+    .header-actions .btn-icon-subtle {
+      background: rgba(255, 255, 255, 0.15) !important;
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      color: #FFFFFF !important;
+    }
+
+    .header-actions .btn-icon-subtle:active {
+      background: rgba(255, 255, 255, 0.3) !important;
     }
 
     .btn-icon-subtle {
@@ -1369,9 +1477,12 @@
       z-index: 100;
       display: none;
       flex-direction: column;
-      max-width: 440px;
+      width: 100% !important;
+      max-width: 440px !important;
       margin: 0 auto;
-      overflow: hidden;
+      overflow: hidden !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box !important;
     }
 
     .wizard-overlay.active {
@@ -1387,6 +1498,8 @@
       border-bottom: 1px solid var(--border-subtle);
       flex-shrink: 0;
       z-index: 20;
+      width: 100% !important;
+      box-sizing: border-box !important;
     }
 
     .wizard-step-title-badge {
@@ -1423,11 +1536,17 @@
 
     .wizard-body {
       flex: 1;
-      overflow-y: auto;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
       padding: 14px 16px calc(var(--safe-bottom) + 16px);
       display: flex;
       flex-direction: column;
       position: relative;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      touch-action: pan-y !important;
+      -webkit-overflow-scrolling: touch;
     }
 
     .wizard-body.step1-body {
@@ -1439,7 +1558,10 @@
       display: none;
       flex-direction: column;
       flex: 1;
-      width: 100%;
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box !important;
     }
 
     .wizard-step-view.active {
@@ -1812,7 +1934,7 @@
       box-shadow: 0 4px 18px rgba(40, 167, 107, 0.12);
     }
 
-    /* STEP 3 COMPACT REFINED STYLES */
+    /* STEP 3 COMPACT REFINED STYLES (FIXED VIEWPORT 100% WIDTH, ZERO HORIZONTAL SPILL) */
     .step3-amount-box {
       background: var(--bg-card);
       border-radius: var(--radius-md);
@@ -1821,6 +1943,10 @@
       text-align: center;
       margin-bottom: 10px;
       box-shadow: var(--shadow-sm);
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      overflow: hidden;
     }
 
     .step3-amount-val {
@@ -1830,22 +1956,41 @@
       letter-spacing: -0.02em;
       line-height: 1.1;
       color: var(--text-primary);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .step3-chip-bar {
       display: flex;
       gap: 6px;
       overflow-x: auto;
-      justify-content: center;
+      justify-content: flex-start;
       scrollbar-width: none;
-      padding: 2px 0;
+      -webkit-overflow-scrolling: touch;
+      padding: 2px 2px 4px;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    .step3-chip-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .step3-chip-bar .chip-btn {
+      flex-shrink: 0;
+      white-space: nowrap;
     }
 
     .step3-numpad {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 6px;
       margin-bottom: 10px;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
     }
 
     .step3-numpad-btn {
@@ -1862,6 +2007,8 @@
       cursor: pointer;
       box-shadow: var(--shadow-xs);
       transition: transform 0.12s ease, background 0.12s ease;
+      min-width: 0;
+      box-sizing: border-box;
     }
 
     .step3-numpad-btn:active {
@@ -2203,8 +2350,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid var(--border-subtle);
-      background: var(--bg-card);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      background: var(--hero-gradient);
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
     }
 
     .sidebar-brand {
@@ -2230,7 +2379,7 @@
     .sidebar-brand-info h2 {
       font-size: 0.98rem;
       font-weight: 800;
-      color: var(--text-primary);
+      color: #FFFFFF !important;
       margin: 0;
       letter-spacing: -0.02em;
     }
@@ -2238,7 +2387,7 @@
     .sidebar-brand-info p {
       font-size: 0.68rem;
       font-weight: 700;
-      color: var(--mint);
+      color: var(--mint-accent, #7FE0B8) !important;
       margin: 2px 0 0;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -2248,9 +2397,9 @@
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      background: var(--bg-card-subtle);
-      border: 1px solid var(--border-card);
-      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -2260,12 +2409,16 @@
 
     .sidebar-close-btn:active {
       transform: scale(0.92);
-      background: var(--border-card);
+      background: rgba(255, 255, 255, 0.3);
     }
 
     .sidebar-body {
       flex: 1;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+      overscroll-behavior-y: contain;
+      min-height: 0;
       padding: 14px 12px;
       display: flex;
       flex-direction: column;
@@ -2753,6 +2906,9 @@
 
     .form-input {
       width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
       height: 44px;
       background: var(--bg-card);
       border: 1px solid var(--border-card);
@@ -2766,6 +2922,21 @@
 
     .form-input:focus {
       border-color: var(--border-focus);
+    }
+
+    /* iOS Safari & WebKit Date Input & Select Resets */
+    input[type="date"].form-input,
+    select.form-input {
+      min-width: 0 !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input[type="date"]::-webkit-date-and-time-value {
+      text-align: left;
+      min-height: 1.2em;
     }
 
     /* TOGGLE SWITCH */
@@ -2815,47 +2986,72 @@
       transform: translateX(20px);
     }
 
-    /* TOAST PILL */
+    /* TOAST PILL - HORIZONTAL SLIDE FROM RIGHT TO LEFT, SLIDE OUT TO RIGHT */
     .toast-container {
       position: fixed;
-      top: calc(var(--safe-top) + 20px);
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 200;
+      top: calc(var(--safe-top) + 16px);
+      right: 16px;
+      left: auto;
+      transform: none;
+      z-index: 9999;
       display: flex;
       flex-direction: column;
       gap: 8px;
       pointer-events: none;
+      align-items: flex-end;
+      max-width: calc(100% - 32px);
     }
 
     .toast-pill {
-      background: rgba(14, 56, 52, 0.95);
+      background: rgba(14, 56, 52, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       color: #FFFFFF;
-      padding: 10px 18px;
+      padding: 9px 15px;
       border-radius: var(--radius-full);
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(12px);
-      display: flex;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      display: inline-flex;
       align-items: center;
       gap: 8px;
-      animation: toastIn 0.3s var(--ease-spring);
+      pointer-events: auto;
+      max-width: 320px;
+      white-space: normal;
+      line-height: 1.35;
+      animation: toastSlideInRight 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: transform, opacity;
     }
 
     .toast-pill.error {
-      background: rgba(231, 90, 77, 0.95);
+      background: rgba(231, 90, 77, 0.96);
+      border-color: rgba(255, 255, 255, 0.2);
     }
 
-    @keyframes toastIn {
+    .toast-pill.dismissing {
+      animation: toastSlideOutRight 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes toastSlideInRight {
       from {
         opacity: 0;
-        transform: translateY(-16px) scale(0.95);
+        transform: translateX(110%);
       }
-
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes toastSlideOutRight {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateX(115%);
       }
     }
 
@@ -3930,6 +4126,24 @@
     }
 
     /* QUICK NOTE PRESET CHIPS (BƯỚC 3 NHẬP LIỆU) */
+    .quick-note-chips-bar {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      justify-content: flex-start;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 2px 0 6px;
+      margin-bottom: 8px;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    .quick-note-chips-bar::-webkit-scrollbar {
+      display: none;
+    }
+
     .quick-note-chip {
       padding: 4px 10px;
       border-radius: var(--radius-full);
@@ -4177,10 +4391,553 @@
       border-color: var(--primary);
       transform: scale(1.05);
     }
+
+    /* ==========================================================================
+       SPLASH SCREEN (2s AUTO FADE-OUT WITH PULSING LUXURY LOGO)
+       ========================================================================== */
+    #appSplashScreen {
+      position: fixed;
+      inset: 0;
+      z-index: 100000;
+      background: var(--hero-gradient, linear-gradient(145deg, #092825 0%, #0E3834 60%, #17544E 100%));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s ease;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    #appSplashScreen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .splash-logo-wrap {
+      position: relative;
+      width: 88px;
+      height: 88px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .splash-pulse-ring {
+      position: absolute;
+      inset: -12px;
+      border-radius: 28px;
+      border: 2px solid rgba(45, 168, 123, 0.4);
+      animation: splashPulse 2.2s infinite ease-in-out;
+    }
+
+    @keyframes splashPulse {
+      0%, 100% { transform: scale(0.96); opacity: 0.3; }
+      50% { transform: scale(1.08); opacity: 0.85; filter: drop-shadow(0 0 16px rgba(45, 168, 123, 0.6)); }
+    }
+
+    .splash-logo-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 22px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+      position: relative;
+      z-index: 2;
+    }
+
+    .splash-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+      color: #FFFFFF;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .splash-subtitle {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--mint-accent, #7FE0B8);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    /* ==========================================================================
+       IPHONE PIN PASSCODE LOCK SCREEN
+       ========================================================================== */
+    #passcodeLockOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 99990;
+      background: var(--bg-body);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: calc(var(--safe-top) + 40px) 24px calc(var(--safe-bottom) + 30px);
+      user-select: none;
+      -webkit-user-select: none;
+      transition: opacity 0.3s ease;
+    }
+
+    #passcodeLockOverlay.active {
+      display: flex;
+    }
+
+    .passcode-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .passcode-lock-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .passcode-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+
+    .passcode-desc {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .passcode-dots-row {
+      display: flex;
+      gap: 16px;
+      margin: 28px 0;
+    }
+
+    .passcode-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1.5px solid var(--text-secondary);
+      background: transparent;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .passcode-dot.filled {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: scale(1.15);
+      box-shadow: 0 0 10px rgba(14, 56, 52, 0.35);
+    }
+
+    [data-theme="dark"] .passcode-dot.filled {
+      background: var(--mint);
+      border-color: var(--mint);
+      box-shadow: 0 0 10px rgba(45, 168, 123, 0.5);
+    }
+
+    .passcode-keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 72px);
+      gap: 16px 22px;
+      margin-bottom: 20px;
+    }
+
+    .passcode-key {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-primary);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.12s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .passcode-key:active {
+      transform: scale(0.92);
+      background: var(--border-card);
+    }
+
+    .passcode-key-num {
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .passcode-key-sub {
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .shake-anim {
+      animation: shakeAnim 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+
+    @keyframes shakeAnim {
+      10%, 90% { transform: translate3d(-3px, 0, 0); }
+      20%, 80% { transform: translate3d(5px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+      40%, 60% { transform: translate3d(6px, 0, 0); }
+    }
+
+    /* ==========================================================================
+       FLYING COIN & MONEY PARTICLES ANIMATION
+       ========================================================================== */
+    .flying-coin-element {
+      position: fixed;
+      pointer-events: none;
+      z-index: 99999;
+      font-size: 22px;
+      line-height: 1;
+      filter: drop-shadow(0 4px 10px rgba(234, 179, 8, 0.45));
+      will-change: transform, opacity;
+    }
+
+    /* ==========================================================================
+       MAP CLUSTERING & QUIET LUXURY POPUP
+       ========================================================================== */
+    .luxury-cluster-pin {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.28));
+      transition: transform 0.2s var(--ease-spring);
+    }
+
+    .luxury-cluster-pin:hover,
+    .luxury-cluster-pin.active {
+      transform: scale(1.12);
+      z-index: 1000 !important;
+    }
+
+    .cluster-counter-badge {
+      position: absolute;
+      top: -10px;
+      right: -8px;
+      background: #E11D48;
+      color: #FFFFFF;
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 1.5px 6px;
+      border-radius: 99px;
+      border: 1.5px solid #FFFFFF;
+      box-shadow: 0 2px 6px rgba(225, 29, 72, 0.45);
+      white-space: nowrap;
+      z-index: 10;
+    }
+
+    .quiet-luxury-popup .leaflet-popup-content-wrapper {
+      background: var(--bg-card) !important;
+      color: var(--text-primary) !important;
+      border-radius: 20px !important;
+      box-shadow: 0 16px 40px rgba(10, 46, 43, 0.22), 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+      border: 1px solid var(--border-card) !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .quiet-luxury-popup .leaflet-popup-content {
+      margin: 12px 14px !important;
+      line-height: 1.35 !important;
+      font-family: inherit !important;
+    }
+
+    .quiet-luxury-popup .leaflet-popup-tip {
+      background: var(--bg-card) !important;
+      box-shadow: none !important;
+    }
+
+    .map-popup-thumb-img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      border: 1px solid var(--border-card);
+      display: block;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       CALENDAR CELL ENHANCEMENTS (AMOUNTS & RECEIPT BADGE)
+       ========================================================================== */
+    .cal-day-cell {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 3px 1px;
+      min-height: 52px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      font-size: 0.72rem;
+    }
+
+    .cal-day-cell:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .cal-day-cell.active-selected {
+      border-color: var(--primary) !important;
+      box-shadow: 0 0 0 1.5px var(--primary) inset !important;
+    }
+
+    .cal-day-cell.is-today {
+      background: var(--primary-light);
+      font-weight: 800;
+    }
+
+    .cal-day-num-wrap {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .cal-day-photo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mint);
+      font-size: 9px;
+    }
+
+    .cal-day-amt-badge {
+      font-size: 8px;
+      font-weight: 800;
+      line-height: 1.1;
+      padding: 1px 3px;
+      border-radius: 3px;
+      white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cal-day-amt-badge.income {
+      color: var(--income);
+      background: rgba(40, 167, 107, 0.12);
+    }
+
+    .cal-day-amt-badge.expense {
+      color: var(--expense);
+      background: rgba(231, 90, 77, 0.12);
+    }
+
+    /* ==========================================================================
+       FINANCIAL JOURNAL & SAVINGS GOALS STYLES
+       ========================================================================== */
+    .journal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s var(--ease-spring), box-shadow 0.2s ease;
+    }
+
+    .journal-card:active {
+      transform: scale(0.99);
+    }
+
+    .mood-chip-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 12px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-card);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.18s var(--ease-spring);
+    }
+
+    .mood-chip-btn:active,
+    .mood-chip-btn.active {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(14, 56, 52, 0.25);
+    }
+
+    .savings-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .savings-progress-track {
+      height: 8px;
+      background: var(--bg-card-subtle);
+      border-radius: 99px;
+      overflow: hidden;
+      margin: 10px 0 8px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .savings-progress-bar {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, #2DA87B 0%, #10B981 100%);
+      transition: width 0.6s var(--ease-spring);
+    }
+
+    /* Quality Chip Selector in Settings */
+    .quality-chip {
+      flex: 1;
+      height: 38px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s var(--ease-spring);
+    }
+
+    .quality-chip.active {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- App Initial Splash Screen (2s with Luxury Centered Logo) -->
+  <div id="appSplashScreen">
+    <div class="splash-logo-wrap">
+      <div class="splash-pulse-ring"></div>
+      <img src="./icon.svg" alt="FinMaster Pro" class="splash-logo-img">
+    </div>
+    <div class="splash-title">FinMaster Pro</div>
+    <div class="splash-subtitle">Quiet Luxury Personal Finance</div>
+    <div style="margin-top: 24px; display: flex; align-items: center; gap: 8px; font-size: 0.7rem; color: rgba(255,255,255,0.7);">
+      <span class="spin" style="width: 12px; height: 12px; border: 2px solid #fff; border-top-color: transparent; border-radius: 50%;"></span>
+      <span>Đang khởi động không gian tài chính...</span>
+    </div>
+  </div>
+
+  <!-- iOS-Style Passcode PIN Lock Screen -->
+  <div id="passcodeLockOverlay">
+    <div class="passcode-header">
+      <div class="passcode-lock-icon">
+        <i data-lucide="lock" style="width: 24px; height: 24px;"></i>
+      </div>
+      <h2 class="passcode-title" id="passcodeScreenTitle">Nhập mật mã</h2>
+      <p class="passcode-desc" id="passcodeScreenDesc">Bảo mật tài chính cá nhân</p>
+      <div class="passcode-dots-row" id="passcodeDotsRow">
+        <div class="passcode-dot" id="pdot-0"></div>
+        <div class="passcode-dot" id="pdot-1"></div>
+        <div class="passcode-dot" id="pdot-2"></div>
+        <div class="passcode-dot" id="pdot-3"></div>
+      </div>
+    </div>
+
+    <!-- 3x4 iOS Numeric Keypad -->
+    <div class="passcode-keypad" id="passcodeKeypad">
+      <button type="button" class="passcode-key" data-key="1">
+        <span class="passcode-key-num">1</span>
+        <span class="passcode-key-sub">&nbsp;</span>
+      </button>
+      <button type="button" class="passcode-key" data-key="2">
+        <span class="passcode-key-num">2</span>
+        <span class="passcode-key-sub">ABC</span>
+      </button>
+      <button type="button" class="passcode-key" data-key="3">
+        <span class="passcode-key-num">3</span>
+        <span class="passcode-key-sub">DEF</span>
+      </button>
+      <button type="button" class="passcode-key" data-key="4">
+        <span class="passcode-key-num">4</span>
+        <span class="passcode-key-sub">GHI</span>
+      </button>
+      <button type="button" class="passcode-key" data-key="5">
+        <span class="passcode-key-num">5</span>
+        <span class="passcode-key-sub">JKL</span>
+      </button>
+      <button type="button" class="passcode-key" data-key="6">
+        <span class="passcode-key-num">6</span>
+        <span class="passcode-key-sub">MNO</span>
+      </button>
+      <button type="button" class="passcode-key" data-key="7">
+        <span class="passcode-key-num">7</span>
+        <span class="passcode-key-sub">PQRS</span>
+      </button>
+      <button type="button" class="passcode-key" data-key="8">
+        <span class="passcode-key-num">8</span>
+        <span class="passcode-key-sub">TUV</span>
+      </button>
+      <button type="button" class="passcode-key" data-key="9">
+        <span class="passcode-key-num">9</span>
+        <span class="passcode-key-sub">WXYZ</span>
+      </button>
+      <button type="button" class="passcode-key" id="passcodeCancelBtn" style="border: none; background: transparent; box-shadow: none;">
+        <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary);">Hủy</span>
+      </button>
+      <button type="button" class="passcode-key" data-key="0">
+        <span class="passcode-key-num">0</span>
+        <span class="passcode-key-sub">+</span>
+      </button>
+      <button type="button" class="passcode-key" id="passcodeDeleteBtn" style="border: none; background: transparent; box-shadow: none;">
+        <i data-lucide="delete" style="width: 24px; height: 24px; color: var(--text-secondary);"></i>
+      </button>
+    </div>
+
+    <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">
+      FinMaster Pro Security Core
+    </div>
+  </div>
 
   <!-- Confetti Canvas -->
   <canvas id="confettiCanvas"></canvas>
@@ -4341,7 +5098,35 @@
           <i data-lucide="chevron-right" style="width: 16px; height: 16px; color: var(--text-muted);"></i>
         </button>
 
-        <!-- 10. Settings & Profile -->
+        <div class="sidebar-section-title" style="margin-top: 6px;">Tài chính & Đời sống</div>
+
+        <!-- 10. Financial Journal -->
+        <button class="sidebar-nav-item" data-snav="journal">
+          <div class="sidebar-item-left">
+            <div class="sidebar-item-icon" style="background: rgba(168, 85, 247, 0.15); color: #9333EA;">
+              <i data-lucide="book-open" style="width: 18px; height: 18px;"></i>
+            </div>
+            <div>
+              <div class="sidebar-item-label">Nhật ký tài chính</div>
+            </div>
+          </div>
+          <span class="sidebar-item-badge" style="color: #9333EA;">Tâm lý</span>
+        </button>
+
+        <!-- 11. Savings Goals -->
+        <button class="sidebar-nav-item" data-snav="savings">
+          <div class="sidebar-item-left">
+            <div class="sidebar-item-icon" style="background: rgba(236, 72, 153, 0.15); color: #DB2777;">
+              <i data-lucide="piggy-bank" style="width: 18px; height: 18px;"></i>
+            </div>
+            <div>
+              <div class="sidebar-item-label">Mục tiêu tiết kiệm</div>
+            </div>
+          </div>
+          <span class="sidebar-item-badge" style="color: #DB2777;">Mục tiêu</span>
+        </button>
+
+        <!-- 12. Settings & Profile -->
         <button class="sidebar-nav-item" data-snav="settings">
           <div class="sidebar-item-left">
             <div class="sidebar-item-icon" style="background: rgba(100, 116, 139, 0.15); color: #475569;">
@@ -5016,6 +5801,22 @@
           </div>
         </div>
 
+        <!-- Work Visual Monthly Calendar (Direct Salary & Photo Badge) -->
+        <div class="editorial-card" style="margin-bottom: 12px; padding: 12px 14px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <h3 class="section-title" style="margin: 0;">
+              <i data-lucide="calendar" style="width: 14px; height: 14px; color: var(--work);"></i>
+              Lịch đi làm & Lương
+            </h3>
+            <div style="font-size: 0.72rem; font-weight: 700; color: var(--text-secondary);" id="workCalendarMonthTitle">Tháng ...</div>
+          </div>
+          
+          <div class="calendar-weekdays" style="display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 0.65rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px;">
+            <div>T2</div><div>T3</div><div>T4</div><div>T5</div><div>T6</div><div>T7</div><div>CN</div>
+          </div>
+          <div class="calendar-days-grid" id="workCalendarDaysGrid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;"></div>
+        </div>
+
         <!-- Work Breakdown by Category -->
         <div class="editorial-card" style="margin-bottom: 12px; padding: 12px 14px;">
           <h3 class="section-title" style="margin-bottom: 10px;">
@@ -5168,24 +5969,119 @@
           <div style="padding: 12px 14px; border-bottom: 1px solid var(--border-subtle);">
             <div style="margin-bottom: 8px;">
               <div style="font-size: 0.84rem; font-weight: 700;">Chủ đề màu sắc</div>
-              <div style="font-size: 0.65rem; color: var(--text-secondary);">4 phong cách FinTech cao cấp</div>
+              <div style="font-size: 0.65rem; color: var(--text-secondary);">8 phong cách Quiet Luxury FinTech cao cấp</div>
             </div>
-            <div class="theme-preset-grid" style="padding: 0;">
+            <div class="theme-preset-grid" style="padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
               <div class="theme-preset-chip active" data-colortheme="emerald" onclick="setColorTheme('emerald')">
                 <span class="theme-color-dot" style="background: linear-gradient(135deg, #0E3834, #2DA87B);"></span>
-                <span style="font-size: 0.66rem; font-weight: 700;">Emerald</span>
+                <span style="font-size: 0.64rem; font-weight: 700;">Emerald</span>
               </div>
               <div class="theme-preset-chip" data-colortheme="ocean" onclick="setColorTheme('ocean')">
                 <span class="theme-color-dot" style="background: linear-gradient(135deg, #1E3A8A, #38BDF8);"></span>
-                <span style="font-size: 0.66rem; font-weight: 700;">Ocean</span>
+                <span style="font-size: 0.64rem; font-weight: 700;">Ocean</span>
               </div>
               <div class="theme-preset-chip" data-colortheme="amethyst" onclick="setColorTheme('amethyst')">
                 <span class="theme-color-dot" style="background: linear-gradient(135deg, #581C87, #A78BFA);"></span>
-                <span style="font-size: 0.66rem; font-weight: 700;">Amethyst</span>
+                <span style="font-size: 0.64rem; font-weight: 700;">Amethyst</span>
               </div>
               <div class="theme-preset-chip" data-colortheme="sunset" onclick="setColorTheme('sunset')">
                 <span class="theme-color-dot" style="background: linear-gradient(135deg, #7C2D12, #FBBF24);"></span>
-                <span style="font-size: 0.66rem; font-weight: 700;">Sunset</span>
+                <span style="font-size: 0.64rem; font-weight: 700;">Sunset</span>
+              </div>
+              <div class="theme-preset-chip" data-colortheme="ruby" onclick="setColorTheme('ruby')">
+                <span class="theme-color-dot" style="background: linear-gradient(135deg, #991B1B, #E11D48);"></span>
+                <span style="font-size: 0.64rem; font-weight: 700;">Ruby</span>
+              </div>
+              <div class="theme-preset-chip" data-colortheme="nordic" onclick="setColorTheme('nordic')">
+                <span class="theme-color-dot" style="background: linear-gradient(135deg, #1E293B, #0EA5E9);"></span>
+                <span style="font-size: 0.64rem; font-weight: 700;">Nordic</span>
+              </div>
+              <div class="theme-preset-chip" data-colortheme="rose" onclick="setColorTheme('rose')">
+                <span class="theme-color-dot" style="background: linear-gradient(135deg, #831843, #DB2777);"></span>
+                <span style="font-size: 0.64rem; font-weight: 700;">Rose Gold</span>
+              </div>
+              <div class="theme-preset-chip" data-colortheme="cyber" onclick="setColorTheme('cyber')">
+                <span class="theme-color-dot" style="background: linear-gradient(135deg, #042F2E, #14B8A6);"></span>
+                <span style="font-size: 0.64rem; font-weight: 700;">Cyber</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chất lượng ảnh giao dịch (Nén ảnh <50KB, <100KB, <200KB) -->
+          <div style="padding: 12px 14px; border-bottom: 1px solid var(--border-subtle);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <div>
+                <div style="font-size: 0.84rem; font-weight: 700;">Chất lượng ảnh giao dịch</div>
+                <div style="font-size: 0.65rem; color: var(--text-secondary);">Tối ưu dung lượng hóa đơn lưu trữ</div>
+              </div>
+              <span id="imageQualityBadge" style="font-size: 0.68rem; font-weight: 800; color: var(--mint); background: var(--bg-card-subtle); padding: 2px 8px; border-radius: 99px; border: 1px solid var(--border-card);">&lt; 200KB</span>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <div class="quality-chip" id="qualityChipLow" onclick="setImageQualitySetting('low')">
+                Thấp (&lt;50KB)
+              </div>
+              <div class="quality-chip" id="qualityChipMedium" onclick="setImageQualitySetting('medium')">
+                TB (&lt;100KB)
+              </div>
+              <div class="quality-chip active" id="qualityChipHigh" onclick="setImageQualitySetting('high')">
+                Cao (&lt;200KB)
+              </div>
+            </div>
+          </div>
+
+          <!-- Mật khẩu số (PIN iPhone) -->
+          <div style="padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle);">
+            <div>
+              <div style="font-size: 0.84rem; font-weight: 700;">Mật khẩu số (PIN iPhone)</div>
+              <div style="font-size: 0.65rem; color: var(--text-secondary);" id="pinLockStatusText">Khóa bảo mật khi vào ứng dụng</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button type="button" id="changePinBtn" onclick="openSetPasscodeModal()" style="display: none; padding: 4px 10px; border-radius: 99px; background: var(--bg-card-subtle); border: 1px solid var(--border-card); font-size: 0.7rem; font-weight: 700; color: var(--text-primary); cursor: pointer;">
+                Đổi PIN
+              </button>
+              <label class="switch">
+                <input type="checkbox" id="pinLockToggleSwitch" onchange="togglePinLockSetting(this.checked)">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Âm thanh hệ thống (Web Audio API) -->
+          <div style="padding: 12px 14px; border-bottom: 1px solid var(--border-subtle);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <div>
+                <div style="font-size: 0.84rem; font-weight: 700;">Hiệu ứng âm thanh</div>
+                <div style="font-size: 0.65rem; color: var(--text-secondary);">Phản hồi thính giác cao cấp khi thao tác</div>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="soundMasterSwitch" checked onchange="toggleSoundMaster(this.checked)">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <!-- Volume Slider -->
+            <div id="soundSubControls" style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--border-subtle);">
+              <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.74rem;">
+                <span style="font-weight: 600; color: var(--text-secondary); display: flex; align-items: center; gap: 4px;">
+                  <i data-lucide="volume-2" style="width: 14px; height: 14px;"></i> Âm lượng:
+                </span>
+                <span id="soundVolumeLabel" style="font-weight: 800; color: var(--primary);">80%</span>
+              </div>
+              <input type="range" id="soundVolumeSlider" min="0" max="100" value="80" oninput="onSoundVolumeChange(this.value)" style="width: 100%; accent-color: var(--mint);">
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px;">
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.74rem; font-weight: 600; color: var(--text-secondary); cursor: pointer;">
+                  <input type="checkbox" id="soundClickToggle" checked onchange="saveSoundToggles()"> Nút bấm
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.74rem; font-weight: 600; color: var(--text-secondary); cursor: pointer;">
+                  <input type="checkbox" id="soundNotifyToggle" checked onchange="saveSoundToggles()"> Thông báo
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.74rem; font-weight: 600; color: var(--text-secondary); cursor: pointer;">
+                  <input type="checkbox" id="soundSuccessToggle" checked onchange="saveSoundToggles()"> Hoàn tất
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.74rem; font-weight: 600; color: var(--text-secondary); cursor: pointer;">
+                  <input type="checkbox" id="soundDeleteToggle" checked onchange="saveSoundToggles()"> Xóa
+                </label>
               </div>
             </div>
           </div>
@@ -5659,6 +6555,95 @@
 
 
 
+      <!-- ======================================================================
+           TAB: NHẬT KÝ TÀI CHÍNH & PHẢN TƯ CHI TIÊU (#screen-journal)
+           ====================================================================== -->
+      <section class="screen-view" id="screen-journal">
+        <!-- Top Header with Back to Settings button -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+          <button class="btn-icon-subtle" onclick="switchActiveScreen('overview')" title="Quay lại" style="display: inline-flex; align-items: center; gap: 5px; padding: 0 12px; width: auto; height: 34px; border-radius: var(--radius-full); font-size: 0.76rem; font-weight: 700; background: var(--bg-card); border: 1px solid var(--border-card); color: var(--text-primary); cursor: pointer;">
+            <i data-lucide="chevron-left" style="width: 16px; height: 16px;"></i> Trang chủ
+          </button>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 0.78rem; font-weight: 800; color: #9333EA; text-transform: uppercase; letter-spacing: 0.04em;">Nhật ký tài chính</span>
+          </div>
+        </div>
+
+        <!-- Hero Journal Card -->
+        <div class="hero-balance-card" style="background: linear-gradient(145deg, #3B0764 0%, #6B21A8 60%, #9333EA 100%); margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+              <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.8);">Tâm lý & Phản tư</div>
+              <div style="font-size: 1.55rem; font-weight: 800; margin-top: 2px;">Nhật ký chi tiêu</div>
+            </div>
+            <button type="button" onclick="openNewJournalModal()" style="display: inline-flex; align-items: center; gap: 5px; padding: 6px 14px; border-radius: 99px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 0.72rem; font-weight: 700; cursor: pointer; backdrop-filter: blur(8px);">
+              <i data-lucide="plus" style="width: 13px; height: 13px;"></i> Viết nhật ký
+            </button>
+          </div>
+          <div style="display: flex; gap: 12px; margin-top: 12px; font-size: 0.72rem; color: rgba(255,255,255,0.85);">
+            <div>Tổng ghi chép: <b style="color: #fff;" id="journalTotalEntriesCount">0</b></div>
+            <div>•</div>
+            <div>Tự kiểm soát: <b style="color: #FDE047;" id="journalAvgRatingScore">5.0 ★</b></div>
+          </div>
+        </div>
+
+        <!-- Mood Stats Filter Bar -->
+        <div class="editorial-card" style="margin-bottom: 12px; padding: 10px 12px;">
+          <div style="font-size: 0.7rem; font-weight: 800; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 8px;">Tâm trạng hôm nay của bạn:</div>
+          <div style="display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px;" id="journalQuickMoodChips">
+            <button type="button" class="mood-chip-btn active" data-mood="all" onclick="filterJournalByMood('all')">Tất cả</button>
+            <button type="button" class="mood-chip-btn" data-mood="confident" onclick="filterJournalByMood('confident')">🌟 Tự tin</button>
+            <button type="button" class="mood-chip-btn" data-mood="happy" onclick="filterJournalByMood('happy')">😊 Hài lòng</button>
+            <button type="button" class="mood-chip-btn" data-mood="thinking" onclick="filterJournalByMood('thinking')">🤔 Đắn đo</button>
+            <button type="button" class="mood-chip-btn" data-mood="overspent" onclick="filterJournalByMood('overspent')">⚠️ Hơi quá</button>
+            <button type="button" class="mood-chip-btn" data-mood="regret" onclick="filterJournalByMood('regret')">😰 Tiếc nuối</button>
+          </div>
+        </div>
+
+        <!-- Journal Entries Timeline List -->
+        <div id="journalEntriesContainer" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px;"></div>
+      </section>
+
+      <!-- ======================================================================
+           TAB: MỤC TIÊU TIẾT KIỆM & HŨ TÀI CHÍNH (#screen-savings)
+           ====================================================================== -->
+      <section class="screen-view" id="screen-savings">
+        <!-- Top Header with Back to Settings button -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+          <button class="btn-icon-subtle" onclick="switchActiveScreen('overview')" title="Quay lại" style="display: inline-flex; align-items: center; gap: 5px; padding: 0 12px; width: auto; height: 34px; border-radius: var(--radius-full); font-size: 0.76rem; font-weight: 700; background: var(--bg-card); border: 1px solid var(--border-card); color: var(--text-primary); cursor: pointer;">
+            <i data-lucide="chevron-left" style="width: 16px; height: 16px;"></i> Trang chủ
+          </button>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 0.78rem; font-weight: 800; color: #DB2777; text-transform: uppercase; letter-spacing: 0.04em;">Mục tiêu tiết kiệm</span>
+          </div>
+        </div>
+
+        <!-- Hero Savings Card -->
+        <div class="hero-balance-card" style="background: linear-gradient(145deg, #500724 0%, #831843 60%, #BE185D 100%); margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+              <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.8);">Tổng quỹ đã tích lũy</div>
+              <div id="savingsHeroTotalAccumulated" style="font-size: 1.65rem; font-weight: 800; margin-top: 2px;">0 ₫</div>
+            </div>
+            <button type="button" onclick="openCreateSavingsGoalModal()" style="display: inline-flex; align-items: center; gap: 5px; padding: 6px 14px; border-radius: 99px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 0.72rem; font-weight: 700; cursor: pointer; backdrop-filter: blur(8px);">
+              <i data-lucide="plus" style="width: 13px; height: 13px;"></i> Mục tiêu mới
+            </button>
+          </div>
+
+          <!-- Overall Savings Progress -->
+          <div class="savings-progress-track" style="margin-top: 14px; background: rgba(255,255,255,0.2);">
+            <div id="savingsHeroOverallBar" class="savings-progress-bar" style="width: 0%; background: #F472B6;"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: rgba(255,255,255,0.9);">
+            <span id="savingsHeroOverallTargetText">Mục tiêu: 0 ₫</span>
+            <span id="savingsHeroOverallPctText">0%</span>
+          </div>
+        </div>
+
+        <!-- Savings Goals List Container -->
+        <div id="savingsGoalsListContainer" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;"></div>
+      </section>
+
     </main>
 
     <!-- Floating Bottom Navigation (Exact Design from Reference) -->
@@ -5805,15 +6790,26 @@
               <i data-lucide="camera-off" style="width: 28px; height: 28px;"></i>
             </div>
             <div style="font-size: 0.95rem; font-weight: 800; color: #FFFFFF; margin-bottom: 6px;">Cần quyền Camera</div>
-            <p id="cameraFallbackMsg" style="font-size: 0.78rem; color: rgba(255,255,255,0.7); max-width: 280px; line-height: 1.4; margin-bottom: 16px;">
+            <p id="cameraFallbackMsg" style="font-size: 0.78rem; color: rgba(255,255,255,0.7); max-width: 290px; line-height: 1.4; margin-bottom: 16px;">
               Vui lòng cấp quyền mở camera cho trình duyệt để quét hóa đơn, hoặc tải ảnh từ máy.
             </p>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
-              <button type="button" id="retryCameraBtn" style="padding: 8px 16px; border-radius: 99px; background: #2DA87B; color: #FFFFFF; font-size: 0.76rem; font-weight: 700; border: none; cursor: pointer; display: flex; align-items: center; gap: 5px;">
-                <i data-lucide="camera" style="width: 14px; height: 14px;"></i> Mở lại camera
+            <div style="display: flex; gap: 8px; flex-direction: column; align-items: center; width: 100%; max-width: 260px;">
+              <button type="button" id="fallbackCaptureBtn" style="width: 100%; padding: 10px 16px; border-radius: 99px; background: #2DA87B; color: #FFFFFF; font-size: 0.78rem; font-weight: 800; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(45, 168, 123, 0.35);">
+                <i data-lucide="camera" style="width: 15px; height: 15px;"></i> Chụp ảnh trực tiếp
               </button>
-              <button type="button" id="fallbackGalleryBtn" style="padding: 8px 16px; border-radius: 99px; background: rgba(255,255,255,0.15); color: #FFFFFF; font-size: 0.76rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.25); cursor: pointer; display: flex; align-items: center; gap: 5px;">
-                <i data-lucide="image" style="width: 14px; height: 14px;"></i> Chọn từ thư viện
+              <div style="display: flex; gap: 8px; width: 100%;">
+                <button type="button" id="retryCameraBtn" style="flex: 1; padding: 8px 12px; border-radius: 99px; background: rgba(255,255,255,0.14); color: #FFFFFF; font-size: 0.74rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.22); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                  <i data-lucide="refresh-cw" style="width: 13px; height: 13px;"></i> Thử lại
+                </button>
+                <button type="button" id="fallbackGalleryBtn" style="flex: 1; padding: 8px 12px; border-radius: 99px; background: rgba(255,255,255,0.14); color: #FFFFFF; font-size: 0.74rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.22); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                  <i data-lucide="image" style="width: 13px; height: 13px;"></i> Thư viện
+                </button>
+              </div>
+              <button type="button" id="switchLocalhostBtn" style="width: 100%; padding: 7px 12px; border-radius: 99px; background: rgba(56, 189, 248, 0.12); color: #38BDF8; font-size: 0.72rem; font-weight: 700; border: 1px solid rgba(56, 189, 248, 0.25); cursor: pointer; display: none; align-items: center; justify-content: center; gap: 4px;">
+                <i data-lucide="external-link" style="width: 12px; height: 12px;"></i> Mở qua localhost để hỏi lại quyền
+              </button>
+              <button type="button" id="fallbackSkipBtn" style="width: 100%; padding: 8px 16px; border-radius: 99px; background: transparent; color: rgba(255,255,255,0.85); font-size: 0.74rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.15); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                Bỏ qua bước này &rarr;
               </button>
             </div>
           </div>
@@ -5981,50 +6977,50 @@
         </div>
 
         <!-- Category Grid -->
-        <div style="margin-bottom: 10px;">
+        <div style="margin-bottom: 10px; width: 100%; max-width: 100%; box-sizing: border-box;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
             <label class="form-label" style="margin-bottom: 0; font-size: 0.76rem;">Danh mục (<span id="wizardCatTypeLabel">Chi tiêu</span>)</label>
             <span style="font-size: 0.72rem; font-weight: 700; color: var(--mint); cursor: pointer;" id="wizardAddCatBtn">+ Thêm mới</span>
           </div>
-          <div id="wizardCategoryGrid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; max-height: 120px; overflow-y: auto; padding: 1px;"></div>
+          <div id="wizardCategoryGrid" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; max-height: 120px; overflow-y: auto; overflow-x: hidden; padding: 1px; width: 100%; max-width: 100%; box-sizing: border-box;"></div>
         </div>
 
         <!-- 2-column Compact Meta Row (Ví & Ngày) -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
-          <div class="form-group" style="margin-bottom: 0;">
+        <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; margin-bottom: 8px; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
+          <div class="form-group" style="margin-bottom: 0; min-width: 0; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
             <label class="form-label" style="font-size: 0.72rem; margin-bottom: 3px;">Ví tài khoản</label>
-            <select class="form-input" id="wizardWalletSelect" style="height: 38px; font-size: 0.78rem; padding: 0 10px;"></select>
+            <select class="form-input" id="wizardWalletSelect" style="height: 38px; font-size: 0.75rem; padding: 0 8px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"></select>
           </div>
-          <div class="form-group" style="margin-bottom: 0;">
+          <div class="form-group" style="margin-bottom: 0; min-width: 0; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
             <label class="form-label" style="font-size: 0.72rem; margin-bottom: 3px;">Ngày giao dịch</label>
-            <input type="date" class="form-input" id="wizardDateInput" style="height: 38px; font-size: 0.78rem; padding: 0 10px;">
+            <input type="date" class="form-input" id="wizardDateInput" style="height: 38px; font-size: 0.75rem; padding: 0 6px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box;">
           </div>
         </div>
 
         <!-- Location GPS Detection Row -->
-        <div style="margin-bottom: 8px;">
-          <div style="position: relative; display: flex; align-items: center;">
-            <i data-lucide="map-pin" style="position: absolute; left: 10px; width: 14px; height: 14px; color: var(--mint);"></i>
-            <input type="text" class="form-input" id="wizardLocationInput" placeholder="Vị trí (Tên đường, Phường)" style="height: 38px; padding-left: 32px; padding-right: 76px; font-size: 0.78rem;">
-            <button type="button" id="detectLocationBtn" style="position: absolute; right: 5px; height: 28px; padding: 0 9px; border-radius: var(--radius-full); background: var(--primary-light); color: var(--primary); border: 1px solid var(--border-card); font-size: 0.68rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 3px;">
+        <div style="margin-bottom: 8px; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
+          <div style="position: relative; display: flex; align-items: center; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
+            <i data-lucide="map-pin" style="position: absolute; left: 10px; width: 14px; height: 14px; color: var(--mint); pointer-events: none; z-index: 2;"></i>
+            <input type="text" class="form-input" id="wizardLocationInput" placeholder="Vị trí (Tên đường, Phường)" style="height: 38px; padding-left: 30px; padding-right: 68px; font-size: 0.76rem; width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+            <button type="button" id="detectLocationBtn" style="position: absolute; right: 5px; height: 28px; padding: 0 8px; border-radius: var(--radius-full); background: var(--primary-light); color: var(--primary); border: 1px solid var(--border-card); font-size: 0.68rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 3px; z-index: 3; flex-shrink: 0; white-space: nowrap;">
               <i data-lucide="crosshair" style="width: 10px; height: 10px;"></i> GPS
             </button>
-            <button type="button" id="clearLocationBtn" style="display: none; position: absolute; right: 84px; background: transparent; border: none; cursor: pointer; color: var(--text-secondary); padding: 4px;" title="Xóa">
+            <button type="button" id="clearLocationBtn" style="display: none; position: absolute; right: 60px; background: transparent; border: none; cursor: pointer; color: var(--text-secondary); padding: 4px; z-index: 3;" title="Xóa">
               <i data-lucide="x" style="width: 12px; height: 12px;"></i>
             </button>
           </div>
-          <div id="locationStatusText" style="font-size: 0.67rem; color: var(--text-secondary); margin-top: 3px;">
+          <div id="locationStatusText" style="font-size: 0.67rem; color: var(--text-secondary); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;">
             <span>Nhấn "GPS" để nhận diện tên đường & phường</span>
           </div>
         </div>
 
         <!-- Note Input with Quick Note Presets -->
-        <div class="form-group" style="margin-bottom: 6px;">
-          <input type="text" class="form-input" id="wizardNoteInput" placeholder="Ghi chú (Ví dụ: Ăn trưa, Đi siêu thị...)" style="height: 38px; font-size: 0.78rem; padding: 0 10px;">
+        <div class="form-group" style="margin-bottom: 6px; width: 100%; max-width: 100%; box-sizing: border-box;">
+          <input type="text" class="form-input" id="wizardNoteInput" placeholder="Ghi chú (Ví dụ: Ăn trưa, Đi siêu thị...)" style="height: 38px; font-size: 0.78rem; padding: 0 10px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box;">
         </div>
 
         <!-- Quick Note Preset Chips -->
-        <div class="quick-note-chips-bar" id="wizardQuickNoteChips" style="display: flex; gap: 5px; overflow-x: auto; padding: 2px 0 6px; margin-bottom: 8px; scrollbar-width: none;">
+        <div class="quick-note-chips-bar" id="wizardQuickNoteChips" style="display: flex; gap: 5px; overflow-x: auto; padding: 2px 0 6px; margin-bottom: 8px; scrollbar-width: none; width: 100%; max-width: 100%; box-sizing: border-box; -webkit-overflow-scrolling: touch;">
           <button type="button" class="quick-note-chip" onclick="setWizardQuickNote('Ăn trưa')">Ăn trưa</button>
           <button type="button" class="quick-note-chip" onclick="setWizardQuickNote('Cà phê')">Cà phê</button>
           <button type="button" class="quick-note-chip" onclick="setWizardQuickNote('Ăn tối')">Ăn tối</button>
@@ -6037,26 +7033,26 @@
         </div>
 
         <!-- Work Finance Toggle + Mini Receipt Row -->
-        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+        <div style="display: flex; gap: 8px; margin-bottom: 12px; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
           <!-- Work Toggle -->
-          <div style="flex: 1; background: var(--work-bg); border-radius: var(--radius-sm); padding: 6px 10px; display: flex; align-items: center; justify-content: space-between;">
-            <div style="display: flex; align-items: center; gap: 6px;">
-              <i data-lucide="briefcase" style="width: 14px; height: 14px; color: var(--work);"></i>
-              <span style="font-size: 0.74rem; font-weight: 700; color: var(--work);">Công việc</span>
+          <div style="flex: 1; min-width: 0; background: var(--work-bg); border-radius: var(--radius-sm); padding: 6px 10px; display: flex; align-items: center; justify-content: space-between; box-sizing: border-box;">
+            <div style="display: flex; align-items: center; gap: 6px; min-width: 0; overflow: hidden;">
+              <i data-lucide="briefcase" style="width: 14px; height: 14px; color: var(--work); flex-shrink: 0;"></i>
+              <span style="font-size: 0.74rem; font-weight: 700; color: var(--work); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Công việc</span>
             </div>
-            <label class="switch" style="transform: scale(0.85); transform-origin: right center;">
+            <label class="switch" style="transform: scale(0.85); transform-origin: right center; flex-shrink: 0;">
               <input type="checkbox" id="wizardIsWorkToggle">
               <span class="slider"></span>
             </label>
           </div>
 
           <!-- Mini Receipt Indicator -->
-          <div id="step3ReceiptMiniRow" style="flex: 1; padding: 6px 10px; border-radius: var(--radius-sm); background: var(--bg-card-subtle); border: 1px dashed var(--border-card); display: flex; align-items: center; justify-content: space-between;">
-            <div style="display: flex; align-items: center; gap: 5px; min-width: 0;">
+          <div id="step3ReceiptMiniRow" style="flex: 1; min-width: 0; padding: 6px 10px; border-radius: var(--radius-sm); background: var(--bg-card-subtle); border: 1px dashed var(--border-card); display: flex; align-items: center; justify-content: space-between; box-sizing: border-box;">
+            <div style="display: flex; align-items: center; gap: 5px; min-width: 0; overflow: hidden;">
               <i data-lucide="paperclip" style="width: 13px; height: 13px; color: var(--mint); flex-shrink: 0;"></i>
               <span id="step3ReceiptStatusText" style="font-size: 0.72rem; font-weight: 600; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Chưa có ảnh</span>
             </div>
-            <button type="button" id="step3EditReceiptBtn" style="background: none; border: none; font-size: 0.72rem; font-weight: 800; color: var(--primary); cursor: pointer; text-decoration: underline; flex-shrink: 0;">
+            <button type="button" id="step3EditReceiptBtn" style="background: none; border: none; font-size: 0.72rem; font-weight: 800; color: var(--primary); cursor: pointer; text-decoration: underline; flex-shrink: 0; white-space: nowrap;">
               Đổi
             </button>
           </div>
@@ -6532,9 +7528,9 @@
         <input type="text" inputmode="numeric" class="form-input" id="initialBalanceInput" placeholder="0"
           style="font-size: 1.15rem; font-weight: 800;">
       </div>
-      <div class="form-group">
+      <div class="form-group" style="width: 100%; box-sizing: border-box;">
         <label class="form-label">Ngày hiệu lực</label>
-        <input type="date" class="form-input" id="initialBalanceDateInput">
+        <input type="date" class="form-input" id="initialBalanceDateInput" style="width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
       </div>
       <div style="display: flex; gap: 10px; margin-top: 16px;">
         <button id="cancelInitialBalanceBtn"
@@ -6708,16 +7704,16 @@
         </div>
 
         <!-- Form nhập khoảng ngày tùy chọn -->
-        <div style="margin-bottom: 14px;">
+        <div style="margin-bottom: 14px; width: 100%; box-sizing: border-box;">
           <label class="form-label">Hoặc chọn khoảng ngày cụ thể</label>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <div>
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; width: 100%; box-sizing: border-box; overflow: hidden;">
+            <div style="min-width: 0; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
               <span style="font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 4px; display: block; font-weight: 600;">Từ ngày:</span>
-              <input type="date" class="form-input" id="modalFilterStartDate" onchange="onModalCustomDateChange()">
+              <input type="date" class="form-input" id="modalFilterStartDate" onchange="onModalCustomDateChange()" style="width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
             </div>
-            <div>
+            <div style="min-width: 0; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
               <span style="font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 4px; display: block; font-weight: 600;">Đến ngày:</span>
-              <input type="date" class="form-input" id="modalFilterEndDate" onchange="onModalCustomDateChange()">
+              <input type="date" class="form-input" id="modalFilterEndDate" onchange="onModalCustomDateChange()" style="width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
             </div>
           </div>
         </div>
@@ -6825,16 +7821,16 @@
         </div>
 
         <!-- Form nhập khoảng ngày tùy chọn -->
-        <div style="margin-bottom: 16px;">
+        <div style="margin-bottom: 16px; width: 100%; box-sizing: border-box;">
           <label class="form-label" style="margin-bottom: 8px;">Hoặc chọn khoảng ngày cụ thể</label>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <div>
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; width: 100%; box-sizing: border-box; overflow: hidden;">
+            <div style="min-width: 0; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
               <span style="font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 4px; display: block; font-weight: 600;">Từ ngày:</span>
-              <input type="date" class="form-input" id="analyticsModalStartDate" onchange="onAnalyticsModalCustomDateChange()">
+              <input type="date" class="form-input" id="analyticsModalStartDate" onchange="onAnalyticsModalCustomDateChange()" style="width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
             </div>
-            <div>
+            <div style="min-width: 0; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
               <span style="font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 4px; display: block; font-weight: 600;">Đến ngày:</span>
-              <input type="date" class="form-input" id="analyticsModalEndDate" onchange="onAnalyticsModalCustomDateChange()">
+              <input type="date" class="form-input" id="analyticsModalEndDate" onchange="onAnalyticsModalCustomDateChange()" style="width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
             </div>
           </div>
         </div>
@@ -6914,16 +7910,16 @@
         </div>
 
         <!-- Form nhập khoảng ngày tùy chọn -->
-        <div style="margin-bottom: 16px;">
+        <div style="margin-bottom: 16px; width: 100%; box-sizing: border-box;">
           <label class="form-label" style="margin-bottom: 8px;">Hoặc chọn khoảng ngày cụ thể</label>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <div>
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; width: 100%; box-sizing: border-box; overflow: hidden;">
+            <div style="min-width: 0; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
               <span style="font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 4px; display: block; font-weight: 600;">Từ ngày:</span>
-              <input type="date" class="form-input" id="workModalStartDate" onchange="onWorkModalCustomDateChange()">
+              <input type="date" class="form-input" id="workModalStartDate" onchange="onWorkModalCustomDateChange()" style="width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
             </div>
-            <div>
+            <div style="min-width: 0; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
               <span style="font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 4px; display: block; font-weight: 600;">Đến ngày:</span>
-              <input type="date" class="form-input" id="workModalEndDate" onchange="onWorkModalCustomDateChange()">
+              <input type="date" class="form-input" id="workModalEndDate" onchange="onWorkModalCustomDateChange()" style="width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
             </div>
           </div>
         </div>
@@ -7054,14 +8050,14 @@
             <button type="button" class="modal-period-pill-btn" data-txperiod="this_month" onclick="setTxFilterPeriod('this_month')">Tháng này</button>
             <button type="button" class="modal-period-pill-btn" data-txperiod="last_month" onclick="setTxFilterPeriod('last_month')">Tháng trước</button>
           </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-            <div>
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; width: 100%; box-sizing: border-box; overflow: hidden;">
+            <div style="min-width: 0; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
               <span style="font-size: 0.68rem; color: var(--text-secondary); margin-bottom: 2px; display: block; font-weight: 600;">Từ ngày:</span>
-              <input type="date" class="form-input" id="modalTxFilterStartDate" onchange="onTxFilterCustomDateChange()">
+              <input type="date" class="form-input" id="modalTxFilterStartDate" onchange="onTxFilterCustomDateChange()" style="width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
             </div>
-            <div>
+            <div style="min-width: 0; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
               <span style="font-size: 0.68rem; color: var(--text-secondary); margin-bottom: 2px; display: block; font-weight: 600;">Đến ngày:</span>
-              <input type="date" class="form-input" id="modalTxFilterEndDate" onchange="onTxFilterCustomDateChange()">
+              <input type="date" class="form-input" id="modalTxFilterEndDate" onchange="onTxFilterCustomDateChange()" style="width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
             </div>
           </div>
         </div>
@@ -7069,9 +8065,9 @@
         <!-- 6. KHOẢNG SỐ TIỀN (MIN - MAX) -->
         <div class="form-group">
           <label class="form-label">Khoảng số tiền (VNĐ)</label>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px;">
-            <input type="number" class="form-input" id="modalTxFilterMinAmount" placeholder="Tối thiểu: 0 ₫" oninput="onTxFilterChangeLiveCount()">
-            <input type="number" class="form-input" id="modalTxFilterMaxAmount" placeholder="Tối đa: Không giới hạn" oninput="onTxFilterChangeLiveCount()">
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; margin-bottom: 6px; width: 100%; box-sizing: border-box; overflow: hidden;">
+            <input type="number" class="form-input" id="modalTxFilterMinAmount" placeholder="Tối thiểu: 0 ₫" oninput="onTxFilterChangeLiveCount()" style="width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
+            <input type="number" class="form-input" id="modalTxFilterMaxAmount" placeholder="Tối đa: Không giới hạn" oninput="onTxFilterChangeLiveCount()" style="width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box;">
           </div>
           <div class="filter-chip-scroll" style="gap: 5px;">
             <button type="button" class="filter-pill-chip" style="font-size: 0.7rem; height: 28px; padding: 0 8px;" onclick="setTxAmountShortcut(0, 100000)">&lt; 100k</button>
@@ -7112,15 +8108,213 @@
       </div>
     </div>
   </div>
+  <!-- MODAL: VIẾT NHẬT KÝ TÀI CHÍNH -->
+  <div class="modal-overlay" id="journalEntryModal">
+    <div class="bottom-sheet" style="max-height: 90vh;">
+      <div class="sheet-handle-bar"></div>
+      <div class="sheet-header">
+        <div class="sheet-title" style="display: flex; align-items: center; gap: 6px;">
+          <i data-lucide="book-open" style="width: 18px; height: 18px; color: #9333EA;"></i>
+          <span id="journalModalTitle">Viết nhật ký chi tiêu</span>
+        </div>
+        <button class="btn-icon-subtle" onclick="closeJournalModal()">
+          <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+        </button>
+      </div>
+      <div class="sheet-body">
+        <form id="journalEntryForm" onsubmit="event.preventDefault(); saveJournalEntry();">
+          <input type="hidden" id="journalEntryId">
+
+          <!-- Ngày ghi chép -->
+          <div class="form-group" style="width: 100%; box-sizing: border-box;">
+            <label class="form-label">Ngày ghi chép</label>
+            <input type="date" class="form-input" id="journalEntryDate" style="width: 100%; min-width: 0; box-sizing: border-box;" required>
+          </div>
+
+          <!-- Tâm trạng chi tiêu hôm nay -->
+          <div class="form-group">
+            <label class="form-label">Tâm trạng chi tiêu hôm nay</label>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;" id="journalModalMoodSelector">
+              <button type="button" class="mood-chip-btn active" data-jmood="confident" onclick="selectJournalMood('confident')">🌟 Tự tin</button>
+              <button type="button" class="mood-chip-btn" data-jmood="happy" onclick="selectJournalMood('happy')">😊 Hài lòng</button>
+              <button type="button" class="mood-chip-btn" data-jmood="thinking" onclick="selectJournalMood('thinking')">🤔 Đắn đo</button>
+              <button type="button" class="mood-chip-btn" data-jmood="overspent" onclick="selectJournalMood('overspent')">⚠️ Hơi quá tay</button>
+              <button type="button" class="mood-chip-btn" data-jmood="regret" onclick="selectJournalMood('regret')">😰 Tiếc nuối</button>
+            </div>
+            <input type="hidden" id="journalEntryMood" value="confident">
+          </div>
+
+          <!-- Đánh giá mức độ kỷ luật tài chính (1-5 sao) -->
+          <div class="form-group">
+            <label class="form-label">Mức độ kỷ luật / Kiểm soát tài chính</label>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div id="journalStarSelector" style="display: flex; gap: 6px; font-size: 1.5rem; cursor: pointer; color: #F59E0B;">
+                <span onclick="setJournalStars(1)">★</span>
+                <span onclick="setJournalStars(2)">★</span>
+                <span onclick="setJournalStars(3)">★</span>
+                <span onclick="setJournalStars(4)">★</span>
+                <span onclick="setJournalStars(5)">★</span>
+              </div>
+              <span id="journalStarsLabel" style="font-size: 0.82rem; font-weight: 800; color: #D97706;">5/5 - Xuất sắc</span>
+            </div>
+            <input type="hidden" id="journalEntryRating" value="5">
+          </div>
+
+          <!-- Tiêu đề & Ghi chép phản tư -->
+          <div class="form-group">
+            <label class="form-label">Tiêu đề nhật ký</label>
+            <input type="text" class="form-input" id="journalEntrySubject" placeholder="Ví dụ: Một ngày kiểm soát tốt, Hạn chế ăn ngoài..." required style="font-weight: 700;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Ghi chép & Bài học rút ra</label>
+            <textarea class="form-input" id="journalEntryContent" rows="3" placeholder="Hôm nay bạn thấy thế nào về các khoản chi tiêu? Có khoản nào cảm thấy lãng phí hoặc đáng tự hào không?..." style="height: auto; padding: 10px 12px; resize: vertical;"></textarea>
+          </div>
+
+          <!-- Thẻ Hashtag -->
+          <div class="form-group">
+            <label class="form-label">Thẻ cảm xúc / Mục tiêu</label>
+            <input type="text" class="form-input" id="journalEntryTags" placeholder="#TiếtKiệm, #ĂnUống, #ĐầuTư, #HọcTập">
+          </div>
+
+          <button type="submit" style="width: 100%; height: 44px; border-radius: var(--radius-full); background: #9333EA; color: #fff; border: none; font-weight: 800; font-size: 0.88rem; cursor: pointer; margin-top: 6px; box-shadow: 0 4px 14px rgba(147, 51, 234, 0.3);">
+            Lưu nhật ký
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: TẠO / SỬA MỤC TIÊU TIẾT KIỆM -->
+  <div class="modal-overlay" id="savingsGoalModal">
+    <div class="bottom-sheet" style="max-height: 90vh;">
+      <div class="sheet-handle-bar"></div>
+      <div class="sheet-header">
+        <div class="sheet-title" style="display: flex; align-items: center; gap: 6px;">
+          <i data-lucide="piggy-bank" style="width: 18px; height: 18px; color: #DB2777;"></i>
+          <span id="savingsGoalModalTitle">Mục tiêu tiết kiệm mới</span>
+        </div>
+        <button class="btn-icon-subtle" onclick="closeSavingsGoalModal()">
+          <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+        </button>
+      </div>
+      <div class="sheet-body">
+        <form id="savingsGoalForm" onsubmit="event.preventDefault(); saveSavingsGoal();">
+          <input type="hidden" id="savingsGoalId">
+
+          <div class="form-group">
+            <label class="form-label">Tên mục tiêu / Quỹ</label>
+            <input type="text" class="form-input" id="savingsGoalName" placeholder="Ví dụ: Mua iPhone mới, Quỹ khẩn cấp, Du lịch Đà Lạt..." required style="font-weight: 700;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Số tiền mục tiêu (₫)</label>
+            <input type="text" inputmode="numeric" class="form-input" id="savingsGoalTargetAmount" placeholder="30.000.000" required style="font-size: 1.15rem; font-weight: 800; color: #DB2777;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Số tiền đã tích lũy hiện tại (₫)</label>
+            <input type="text" inputmode="numeric" class="form-input" id="savingsGoalCurrentAmount" placeholder="5.000.000" style="font-size: 1.05rem; font-weight: 700;">
+          </div>
+
+          <div class="form-group" style="width: 100%; box-sizing: border-box;">
+            <label class="form-label">Hạn chót mục tiêu (Deadline)</label>
+            <input type="date" class="form-input" id="savingsGoalDeadline" style="width: 100%; min-width: 0; box-sizing: border-box;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Biểu tượng & Màu sắc</label>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <select class="form-input" id="savingsGoalIcon" style="font-weight: 600;">
+                <option value="piggy-bank">🐷 Heo đất / Tiết kiệm</option>
+                <option value="laptop">💻 MacBook / Thiết bị</option>
+                <option value="plane">✈️ Du lịch / Nghỉ dưỡng</option>
+                <option value="car">🚗 Mua xe / Phương tiện</option>
+                <option value="home">🏠 Mua nhà / Nội thất</option>
+                <option value="shield-check">🛡️ Quỹ khẩn cấp</option>
+                <option value="heart">❤️ Sức khỏe & Gia đình</option>
+                <option value="gem">💎 Đầu tư / Tích sản</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" style="width: 100%; height: 44px; border-radius: var(--radius-full); background: #DB2777; color: #fff; border: none; font-weight: 800; font-size: 0.88rem; cursor: pointer; margin-top: 8px; box-shadow: 0 4px 14px rgba(219, 39, 119, 0.3);">
+            Lưu mục tiêu
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: NẠP TIỀN VÀO MỤC TIÊU TIẾT KIỆM -->
+  <div class="modal-overlay" id="depositSavingsModal">
+    <div class="bottom-sheet" style="max-height: 85vh;">
+      <div class="sheet-handle-bar"></div>
+      <div class="sheet-header">
+        <div class="sheet-title" style="display: flex; align-items: center; gap: 6px;">
+          <i data-lucide="plus-circle" style="width: 18px; height: 18px; color: var(--income);"></i>
+          <span>Nạp tiền vào quỹ tiết kiệm</span>
+        </div>
+        <button class="btn-icon-subtle" onclick="closeDepositSavingsModal()">
+          <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+        </button>
+      </div>
+      <div class="sheet-body">
+        <form id="depositSavingsForm" onsubmit="event.preventDefault(); submitDepositSavings();">
+          <input type="hidden" id="depositGoalId">
+          <div style="background: var(--bg-card-subtle); padding: 12px; border-radius: 12px; border: 1px solid var(--border-card); margin-bottom: 14px;">
+            <div style="font-size: 0.72rem; color: var(--text-secondary); font-weight: 700; text-transform: uppercase;">Mục tiêu</div>
+            <div id="depositGoalNameText" style="font-size: 1rem; font-weight: 800; color: var(--text-primary); margin-top: 2px;">Tên mục tiêu</div>
+            <div id="depositGoalCurrentProgressText" style="font-size: 0.74rem; color: var(--mint); font-weight: 700; margin-top: 2px;">Hiện có: 0 ₫</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Số tiền nạp thêm (₫)</label>
+            <input type="text" inputmode="numeric" class="form-input" id="depositAmountInput" placeholder="500.000" required style="font-size: 1.25rem; font-weight: 800; color: var(--income);">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Trích từ Ví tài khoản</label>
+            <select class="form-input" id="depositWalletSelect" style="font-weight: 700;"></select>
+          </div>
+
+          <button type="submit" style="width: 100%; height: 44px; border-radius: var(--radius-full); background: var(--income); color: #fff; border: none; font-weight: 800; font-size: 0.88rem; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 14px rgba(40, 167, 107, 0.3);">
+            Xác nhận nạp tiền
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: THIẾT LẬP / ĐỔI MẬT KHẨU SỐ (PIN) -->
+  <div class="modal-overlay" id="passcodeSettingsModal" style="align-items: center;">
+    <div class="editorial-card" style="width: 90%; max-width: 360px; padding: 22px; text-align: center;">
+      <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+        <i data-lucide="key-round" style="width: 24px; height: 24px;"></i>
+      </div>
+      <h3 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 4px;" id="passcodeSettingModalTitle">Thiết lập mã PIN</h3>
+      <p style="font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 16px;" id="passcodeSettingModalDesc">Nhập 4 chữ số để làm mật khẩu mở ứng dụng</p>
+
+      <div class="form-group" style="margin-bottom: 16px;">
+        <input type="password" inputmode="numeric" maxlength="4" class="form-input" id="newPasscodeInput" placeholder="••••" style="font-size: 1.8rem; font-weight: 800; text-align: center; letter-spacing: 0.3em; width: 140px; margin: 0 auto;">
+      </div>
+
+      <div style="display: flex; gap: 8px;">
+        <button type="button" onclick="closePasscodeSettingsModal()" style="flex: 1; height: 40px; border-radius: var(--radius-full); background: var(--bg-card-subtle); border: 1px solid var(--border-card); font-weight: 700; font-size: 0.8rem; cursor: pointer;">Hủy</button>
+        <button type="button" onclick="submitNewPasscode()" style="flex: 1; height: 40px; border-radius: var(--radius-full); background: var(--primary); color: #fff; border: none; font-weight: 700; font-size: 0.8rem; cursor: pointer;">Lưu PIN</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ======================================================================
        JAVASCRIPT: APPLICATION ENGINE & DATA ARCHITECTURE
        ====================================================================== -->
   <script>
     /* ==========================================================================
-       1. DATABASE LAYER: INDEXEDDB (FinMasterDB - Version 3)
+       1. DATABASE LAYER: INDEXEDDB (FinMasterDB - Version 4)
        ========================================================================== */
     const DB_NAME = 'FinMasterDB';
-    const DB_VERSION = 3;
+    const DB_VERSION = 4;
 
     let dbInstance = null;
 
@@ -7161,6 +8355,14 @@
 
             if (!db.objectStoreNames.contains('recurring')) {
               db.createObjectStore('recurring', { keyPath: 'id' });
+            }
+
+            if (!db.objectStoreNames.contains('journals')) {
+              db.createObjectStore('journals', { keyPath: 'id' });
+            }
+
+            if (!db.objectStoreNames.contains('savings_goals')) {
+              db.createObjectStore('savings_goals', { keyPath: 'id' });
             }
           };
 
@@ -7229,6 +8431,90 @@
           req.onsuccess = () => resolve(true);
           req.onerror = () => reject(req.error);
         });
+      }
+    };
+
+    /* ==========================================================================
+       WEB AUDIO API SOUND ENGINE (100% OFFLINE SYNTHESIZER)
+       ========================================================================== */
+    const SoundEngine = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) this.ctx = new AudioCtx();
+        }
+      },
+      play(type) {
+        if (!State.settings || State.settings.sound_enabled === false) return;
+        if (type === 'click' && State.settings.sound_click === false) return;
+        if (type === 'notify' && State.settings.sound_notify === false) return;
+        if (type === 'success' && State.settings.sound_success === false) return;
+        if (type === 'delete' && State.settings.sound_delete === false) return;
+
+        try {
+          this.init();
+          if (!this.ctx) return;
+          if (this.ctx.state === 'suspended') this.ctx.resume();
+
+          const volPercent = (State.settings && State.settings.sound_volume !== undefined) ? State.settings.sound_volume : 80;
+          const masterGain = (volPercent / 100) * 0.16;
+          const now = this.ctx.currentTime;
+
+          if (type === 'click') {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(850, now);
+            osc.frequency.exponentialRampToValueAtTime(320, now + 0.035);
+            gain.gain.setValueAtTime(masterGain, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.04);
+          } else if (type === 'notify') {
+            [587.33, 783.99].forEach((freq, idx) => {
+              const osc = this.ctx.createOscillator();
+              const gain = this.ctx.createGain();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+              gain.gain.setValueAtTime(masterGain * 0.85, now + idx * 0.07);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.18);
+              osc.connect(gain);
+              gain.connect(this.ctx.destination);
+              osc.start(now + idx * 0.07);
+              osc.stop(now + idx * 0.07 + 0.2);
+            });
+          } else if (type === 'success') {
+            [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+              const osc = this.ctx.createOscillator();
+              const gain = this.ctx.createGain();
+              osc.type = 'triangle';
+              osc.frequency.setValueAtTime(freq, now + idx * 0.06);
+              gain.gain.setValueAtTime(masterGain * 0.9, now + idx * 0.06);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.32);
+              osc.connect(gain);
+              gain.connect(this.ctx.destination);
+              osc.start(now + idx * 0.06);
+              osc.stop(now + idx * 0.06 + 0.35);
+            });
+          } else if (type === 'delete') {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(340, now);
+            osc.frequency.exponentialRampToValueAtTime(90, now + 0.12);
+            gain.gain.setValueAtTime(masterGain * 0.8, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.13);
+          }
+        } catch (e) {
+          console.warn('SoundEngine:', e);
+        }
       }
     };
 
@@ -7426,6 +8712,24 @@
         icon: 'repeat',
         color: '#0D9488',
         svg: `<svg class="nav-custom-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg>`
+      },
+      {
+        id: 'journal',
+        label: 'Nhật ký',
+        name: 'Nhật ký tài chính',
+        desc: 'Tâm lý & phản tư chi tiêu',
+        icon: 'book-open',
+        color: '#9333EA',
+        svg: `<svg class="nav-custom-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5zM6.5 4a.5.5 0 0 0-.5.5v15a.5.5 0 0 0 .5.5H18V4H6.5z"/></svg>`
+      },
+      {
+        id: 'savings',
+        label: 'Tiết kiệm',
+        name: 'Mục tiêu tiết kiệm',
+        desc: 'Quỹ mục tiêu & ước mơ',
+        icon: 'piggy-bank',
+        color: '#DB2777',
+        svg: `<svg class="nav-custom-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19 14v1a2 2 0 0 1-2 2h-1v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2H9v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2v-3a6 6 0 0 1 6-6h2a6 6 0 0 1 6 6v1h3a2 2 0 0 1 2 2z"/></svg>`
       }
     ];
 
@@ -7453,6 +8757,9 @@
       settings: {},
       categoryBudgets: {},
       recurring: [],
+      journals: [],
+      savingsGoals: [],
+      journalMoodFilter: 'all',
 
       activeTab: 'overview',
       overviewPeriod: '30d',
@@ -7595,7 +8902,7 @@
 
     /* Luxury Color Theme Controller */
     function setColorTheme(themeName, save = true) {
-      const validThemes = ['emerald', 'ocean', 'amethyst', 'sunset'];
+      const validThemes = ['emerald', 'ocean', 'amethyst', 'sunset', 'ruby', 'nordic', 'rose', 'cyber'];
       if (!validThemes.includes(themeName)) themeName = 'emerald';
       document.documentElement.setAttribute('data-color-theme', themeName);
       if (save) {
@@ -7606,7 +8913,11 @@
           emerald: 'Emerald Forest (Xanh ngọc)',
           ocean: 'Midnight Ocean (Xanh biển)',
           amethyst: 'Royal Amethyst (Tím hoàng gia)',
-          sunset: 'Sunset Bronze (Đồng sang trọng)'
+          sunset: 'Sunset Bronze (Đồng sang trọng)',
+          ruby: 'Ruby Crimson (Đỏ Ruby sang trọng)',
+          nordic: 'Nordic Slate (Xám Bắc Âu tối giản)',
+          rose: 'Rose Gold (Vàng hồng quý phái)',
+          cyber: 'Cyber Night (Đêm Neon công nghệ)'
         };
         showToast(`Đã chuyển sang chủ đề ${themeNamesMap[themeName] || themeName}!`);
       }
@@ -7617,6 +8928,184 @@
       lucide.createIcons();
     }
     window.setColorTheme = setColorTheme;
+
+    /* Image Quality Control (Thấp <50KB, TB <100KB, Cao <200KB) */
+    function setImageQualitySetting(mode) {
+      const validModes = ['low', 'medium', 'high'];
+      if (!validModes.includes(mode)) mode = 'high';
+      State.settings.image_quality = mode;
+      DB.put('settings', { key: 'image_quality', value: mode });
+      document.querySelectorAll('#imageQualityChipsBar .quality-preset-chip').forEach(chip => {
+        chip.classList.toggle('active', chip.dataset.quality === mode);
+      });
+      const labels = { low: 'Thấp (< 50KB)', medium: 'Trung bình (< 100KB)', high: 'Cao (< 200KB)' };
+      showToast(`Đã lưu chất lượng ảnh: ${labels[mode]}`);
+    }
+    window.setImageQualitySetting = setImageQualitySetting;
+
+    /* Flying Coins / Particles Animation for Transactions */
+    function triggerMoneyFlyAnimation(type, categoryObj) {
+      const count = 14;
+      const startX = window.innerWidth / 2;
+      const startY = window.innerHeight * 0.68;
+
+      let targetX = window.innerWidth / 2;
+      let targetY = 65; // Header balance position
+      if (type === 'expense') {
+        targetY = window.innerHeight * 0.82; // Downward into category
+      }
+
+      for (let i = 0; i < count; i++) {
+        const coin = document.createElement('div');
+        coin.className = 'flying-coin-element';
+        coin.textContent = type === 'income' ? '🪙' : '💸';
+        coin.style.left = `${startX + (Math.random() - 0.5) * 50}px`;
+        coin.style.top = `${startY + (Math.random() - 0.5) * 35}px`;
+        coin.style.opacity = '1';
+        document.body.appendChild(coin);
+
+        const angle = (Math.PI * 2 * i) / count;
+        const scatterDist = 45 + Math.random() * 65;
+        const midX = startX + Math.cos(angle) * scatterDist;
+        const midY = startY + Math.sin(angle) * scatterDist - (type === 'income' ? 35 : 0);
+
+        if (window.anime) {
+          anime({
+            targets: coin,
+            left: [
+              { value: midX, duration: 240, easing: 'easeOutQuad' },
+              { value: targetX + (Math.random() - 0.5) * 60, duration: 560, easing: 'easeInCubic' }
+            ],
+            top: [
+              { value: midY, duration: 240, easing: 'easeOutQuad' },
+              { value: targetY + (Math.random() - 0.5) * 35, duration: 560, easing: 'easeInCubic' }
+            ],
+            scale: [
+              { value: 1.35, duration: 240 },
+              { value: 0.25, duration: 560 }
+            ],
+            opacity: [
+              { value: 1, duration: 600 },
+              { value: 0, duration: 200 }
+            ],
+            rotate: { value: (Math.random() - 0.5) * 720, duration: 800 },
+            complete: () => {
+              coin.remove();
+            }
+          });
+        } else {
+          setTimeout(() => coin.remove(), 750);
+        }
+      }
+    }
+    window.triggerMoneyFlyAnimation = triggerMoneyFlyAnimation;
+
+    /* 2-Second Initial Splash Screen Controller */
+    function initSplashScreen() {
+      const splash = document.getElementById('appSplashScreen');
+      if (!splash) return;
+      setTimeout(() => {
+        splash.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        splash.style.opacity = '0';
+        splash.style.pointerEvents = 'none';
+        splash.style.transform = 'scale(1.05)';
+        setTimeout(() => {
+          splash.style.display = 'none';
+          checkPasscodeOnLaunch();
+        }, 420);
+      }, 1900);
+    }
+
+    /* iPhone-Style Numeric Passcode Lock Controller */
+    let currentEnteredPin = '';
+
+    function checkPasscodeOnLaunch() {
+      if (State.settings && State.settings.passcode_enabled && State.settings.passcode_pin) {
+        showPasscodeLockScreen();
+      }
+    }
+
+    function showPasscodeLockScreen() {
+      const overlay = document.getElementById('passcodeLockOverlay');
+      if (!overlay) return;
+      currentEnteredPin = '';
+      updatePasscodeDotsDisplay();
+      const errorMsg = document.getElementById('passcodeErrorMessage');
+      if (errorMsg) errorMsg.textContent = '';
+      overlay.classList.add('active');
+    }
+
+    function updatePasscodeDotsDisplay() {
+      const dots = document.querySelectorAll('#passcodeDots .passcode-dot');
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('filled', idx < currentEnteredPin.length);
+      });
+    }
+
+    function onPasscodeKeypadPress(key) {
+      if (typeof SoundEngine !== 'undefined') SoundEngine.play('click');
+      if (typeof triggerHaptic === 'function') triggerHaptic('light');
+
+      const errorMsg = document.getElementById('passcodeErrorMessage');
+      if (errorMsg) errorMsg.textContent = '';
+
+      if (key === 'back') {
+        if (currentEnteredPin.length > 0) {
+          currentEnteredPin = currentEnteredPin.slice(0, -1);
+          updatePasscodeDotsDisplay();
+        }
+        return;
+      }
+
+      if (key === 'cancel') {
+        currentEnteredPin = '';
+        updatePasscodeDotsDisplay();
+        return;
+      }
+
+      if (currentEnteredPin.length < 4) {
+        currentEnteredPin += key;
+        updatePasscodeDotsDisplay();
+
+        if (currentEnteredPin.length === 4) {
+          setTimeout(verifyPasscodeAttempt, 120);
+        }
+      }
+    }
+    window.onPasscodeKeypadPress = onPasscodeKeypadPress;
+
+    function verifyPasscodeAttempt() {
+      const expectedPin = State.settings?.passcode_pin || '1234';
+      const overlay = document.getElementById('passcodeLockOverlay');
+      const dotsContainer = document.getElementById('passcodeDots');
+      const errorMsg = document.getElementById('passcodeErrorMessage');
+
+      if (currentEnteredPin === expectedPin) {
+        if (typeof SoundEngine !== 'undefined') SoundEngine.play('success');
+        if (typeof triggerHaptic === 'function') triggerHaptic('success');
+        if (overlay) {
+          overlay.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          overlay.style.opacity = '0';
+          overlay.style.transform = 'scale(0.96)';
+          setTimeout(() => {
+            overlay.classList.remove('active');
+            overlay.style.opacity = '';
+            overlay.style.transform = '';
+          }, 320);
+        }
+        currentEnteredPin = '';
+      } else {
+        if (typeof SoundEngine !== 'undefined') SoundEngine.play('delete');
+        if (typeof triggerHaptic === 'function') triggerHaptic('warning');
+        if (dotsContainer) {
+          dotsContainer.classList.add('shake-error');
+          setTimeout(() => dotsContainer.classList.remove('shake-error'), 450);
+        }
+        if (errorMsg) errorMsg.textContent = 'Mật khẩu không đúng, vui lòng thử lại';
+        currentEnteredPin = '';
+        setTimeout(updatePasscodeDotsDisplay, 300);
+      }
+    }
 
     /* Quick Note Preset Chips in Wizard Step 3 */
     window.setWizardQuickNote = (noteText) => {
@@ -7730,25 +9219,23 @@
     }
 
     function showToast(message, isError = false) {
+      if (typeof SoundEngine !== 'undefined' && SoundEngine.play) {
+        SoundEngine.play('notify');
+      }
       const container = document.getElementById('toastContainer');
+      if (!container) return;
       const toast = document.createElement('div');
       toast.className = `toast-pill ${isError ? 'error' : ''}`;
       toast.innerHTML = `
-        <i data-lucide="${isError ? 'alert-circle' : 'check-circle'}" style="width: 18px; height: 18px;"></i>
+        <i data-lucide="${isError ? 'alert-circle' : 'check-circle'}" style="width: 17px; height: 17px; flex-shrink: 0;"></i>
         <span>${message}</span>
       `;
       container.appendChild(toast);
       lucide.createIcons();
 
       setTimeout(() => {
-        anime({
-          targets: toast,
-          opacity: [1, 0],
-          translateY: [0, -14],
-          duration: 250,
-          easing: 'easeInQuad',
-          complete: () => toast.remove()
-        });
+        toast.classList.add('dismissing');
+        setTimeout(() => toast.remove(), 350);
       }, 2600);
     }
 
@@ -7794,7 +9281,7 @@
       return '';
     }
 
-    /* Measured Blob Image Compression Guaranteeing < 200KB */
+    /* Dynamic Blob Image Compression (Thấp <50KB, TB <100KB, Cao <200KB) */
     async function compressImageFile(file) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -7803,8 +9290,9 @@
           const img = new Image();
           img.src = e.target.result;
           img.onload = async () => {
-            let maxDim = 1200;
-            let quality = 0.75;
+            const qualityMode = (State.settings && State.settings.image_quality) || 'high';
+            let maxDim = qualityMode === 'low' ? 700 : (qualityMode === 'medium' ? 950 : 1200);
+            let quality = qualityMode === 'low' ? 0.58 : (qualityMode === 'medium' ? 0.68 : 0.75);
             let canvas = document.createElement('canvas');
             let ctx = canvas.getContext('2d');
 
@@ -7852,9 +9340,22 @@
 
             let blob = await scaleAndExportBlob(maxDim, quality);
 
-            // Iteratively reduce dimensions and quality until strictly under 200KB (204,800 bytes)
-            const MAX_BYTES = 200 * 1024;
-            const steps = [
+            // Set MAX_BYTES strictly:
+            // low: 50KB (51,200 bytes)
+            // medium: 100KB (102,400 bytes)
+            // high: 200KB (204,800 bytes)
+            const MAX_BYTES = qualityMode === 'low' ? 50 * 1024 : (qualityMode === 'medium' ? 100 * 1024 : 200 * 1024);
+            const steps = qualityMode === 'low' ? [
+              { dim: 600, q: 0.50 },
+              { dim: 500, q: 0.42 },
+              { dim: 420, q: 0.35 },
+              { dim: 360, q: 0.28 }
+            ] : qualityMode === 'medium' ? [
+              { dim: 850, q: 0.60 },
+              { dim: 700, q: 0.50 },
+              { dim: 550, q: 0.42 },
+              { dim: 450, q: 0.35 }
+            ] : [
               { dim: 1000, q: 0.68 },
               { dim: 800, q: 0.60 },
               { dim: 640, q: 0.50 },
@@ -10438,6 +11939,13 @@
       });
     }
 
+    function formatShortK(num) {
+      const val = Math.abs(Number(num) || 0);
+      if (val >= 1000000) return (val / 1000000).toFixed(1).replace('.0', '') + 'M';
+      if (val >= 1000) return Math.round(val / 1000) + 'k';
+      return String(val);
+    }
+
     /* Financial Calendar Sub-View (Arka Style) */
     function renderFinancialCalendar() {
       const calDate = State.financialCalendarDate;
@@ -10479,28 +11987,36 @@
         if (curDateStr === todayStr) cell.classList.add('is-today');
         if (curDateStr === selectedDayStr) cell.classList.add('active-selected');
 
-        cell.innerHTML = `<span>${d}</span>`;
-
-        // Check if there are income, expense, or work txs on this date
+        // Check transactions on this date
         const dayTxs = State.transactions.filter(t => t.date === curDateStr);
-        let hasIncome = false;
-        let hasExpense = false;
-        let hasWork = false;
+        let dayInc = 0;
+        let dayExp = 0;
+        let hasPhoto = false;
 
         dayTxs.forEach(t => {
-          if (t.type === 'income') hasIncome = true;
-          if (t.type === 'expense') hasExpense = true;
-          if (t.isWork) hasWork = true;
+          if (t.type === 'income') dayInc += Number(t.amount) || 0;
+          if (t.type === 'expense') dayExp += Number(t.amount) || 0;
+          if (t.receipt) hasPhoto = true;
         });
 
-        if (hasIncome || hasExpense || hasWork) {
-          const dotsRow = document.createElement('div');
-          dotsRow.className = 'cal-dots-row';
-          if (hasIncome) dotsRow.innerHTML += '<div class="cal-dot income"></div>';
-          if (hasExpense) dotsRow.innerHTML += '<div class="cal-dot expense"></div>';
-          if (hasWork) dotsRow.innerHTML += '<div class="cal-dot work"></div>';
-          cell.appendChild(dotsRow);
+        let photoBadgeHtml = hasPhoto ? `<span class="cal-day-photo-badge" title="Có ảnh hóa đơn">📷</span>` : '';
+        let badgesHtml = '';
+        if (dayInc > 0 && dayExp > 0) {
+          badgesHtml = `
+            <span class="cal-day-amt-badge income">+${formatShortK(dayInc)}</span>
+            <span class="cal-day-amt-badge expense">-${formatShortK(dayExp)}</span>
+          `;
+        } else if (dayInc > 0) {
+          badgesHtml = `<span class="cal-day-amt-badge income">+${formatShortK(dayInc)}</span>`;
+        } else if (dayExp > 0) {
+          badgesHtml = `<span class="cal-day-amt-badge expense">-${formatShortK(dayExp)}</span>`;
         }
+
+        cell.innerHTML = `
+          <span>${d}</span>
+          ${photoBadgeHtml}
+          ${badgesHtml}
+        `;
 
         cell.onclick = () => {
           State.selectedCalDay = curDateStr;
@@ -10659,6 +12175,87 @@
           listContainer.appendChild(createTransactionCardElement(tx));
         });
       }
+
+      // Render Work Visual Calendar Grid (#workCalendarDaysGrid)
+      const workCalGrid = document.getElementById('workCalendarDaysGrid');
+      const workCalTitle = document.getElementById('workCalendarTitle');
+      if (workCalGrid) {
+        workCalGrid.innerHTML = '';
+        const now = new Date();
+        const y = now.getFullYear();
+        const m = now.getMonth();
+        if (workCalTitle) workCalTitle.textContent = `Lịch đi làm · Tháng ${m + 1}/${y}`;
+
+        const firstDayOfMonth = new Date(y, m, 1);
+        const lastDayOfMonth = new Date(y, m + 1, 0);
+        let startDayOfWeek = firstDayOfMonth.getDay() - 1;
+        if (startDayOfWeek === -1) startDayOfWeek = 6;
+        const totalDays = lastDayOfMonth.getDate();
+        const prevMonthLastDay = new Date(y, m, 0).getDate();
+
+        for (let i = startDayOfWeek - 1; i >= 0; i--) {
+          const prevDay = prevMonthLastDay - i;
+          const cell = document.createElement('div');
+          cell.className = 'cal-day-cell other-month';
+          cell.textContent = prevDay;
+          workCalGrid.appendChild(cell);
+        }
+
+        const todayStr = getTodayString();
+        for (let d = 1; d <= totalDays; d++) {
+          const curDateStr = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+          const dayWorkTxs = State.transactions.filter(t => t.isWork && t.date === curDateStr);
+          let wInc = 0;
+          let wExp = 0;
+          let hasPhoto = false;
+
+          dayWorkTxs.forEach(t => {
+            if (t.type === 'income') wInc += Number(t.amount) || 0;
+            if (t.type === 'expense') wExp += Number(t.amount) || 0;
+            if (t.receipt) hasPhoto = true;
+          });
+
+          const cell = document.createElement('div');
+          cell.className = 'cal-day-cell';
+          if (curDateStr === todayStr) cell.classList.add('is-today');
+
+          let photoBadgeHtml = hasPhoto ? `<span class="cal-day-photo-badge" title="Có ảnh chứng từ">📷</span>` : '';
+          let badgesHtml = '';
+          if (wInc > 0 && wExp > 0) {
+            badgesHtml = `
+              <span class="cal-day-amt-badge income">+${formatShortK(wInc)}</span>
+              <span class="cal-day-amt-badge expense">-${formatShortK(wExp)}</span>
+            `;
+          } else if (wInc > 0) {
+            badgesHtml = `<span class="cal-day-amt-badge income">+${formatShortK(wInc)}</span>`;
+          } else if (wExp > 0) {
+            badgesHtml = `<span class="cal-day-amt-badge expense">-${formatShortK(wExp)}</span>`;
+          }
+
+          cell.innerHTML = `
+            <span>${d}</span>
+            ${photoBadgeHtml}
+            ${badgesHtml}
+          `;
+
+          cell.onclick = () => {
+            document.querySelectorAll('#workCalendarDaysGrid .cal-day-cell').forEach(c => c.classList.remove('active-selected'));
+            cell.classList.add('active-selected');
+            if (listContainer) {
+              listContainer.innerHTML = '';
+              if (dayWorkTxs.length === 0) {
+                listContainer.innerHTML = `<div style="font-size: 0.8rem; color: var(--text-secondary); text-align: center; padding: 14px 0;">Không có chi phí hay thu nhập công việc ngày ${formatDateDisplay(curDateStr)}.</div>`;
+              } else {
+                dayWorkTxs.forEach(tx => listContainer.appendChild(createTransactionCardElement(tx)));
+              }
+              lucide.createIcons();
+            }
+          };
+
+          workCalGrid.appendChild(cell);
+        }
+      }
+
       lucide.createIcons();
     }
 
@@ -12846,31 +14443,686 @@
     };
 
     /* ==========================================================================
+       FINANCIAL JOURNAL CONTROLLER (#screen-journal)
+       ========================================================================== */
+    let selectedJournalStars = 5;
+    let selectedJournalMoodKey = 'confident';
+
+    function renderJournalScreen() {
+      const container = document.getElementById('journalEntriesList');
+      if (!container) return;
+
+      const journals = State.journals || [];
+      const totalCount = journals.length;
+
+      // Calculate stats
+      let avgRating = 5;
+      const moodCounts = {};
+      if (totalCount > 0) {
+        const sumRating = journals.reduce((s, j) => s + (Number(j.disciplineRating) || 5), 0);
+        avgRating = (sumRating / totalCount).toFixed(1);
+
+        journals.forEach(j => {
+          const m = j.mood || 'confident';
+          moodCounts[m] = (moodCounts[m] || 0) + 1;
+        });
+      }
+
+      // Dominant mood
+      let dominantMood = 'confident';
+      let maxMoodCount = 0;
+      Object.entries(moodCounts).forEach(([m, count]) => {
+        if (count > maxMoodCount) {
+          maxMoodCount = count;
+          dominantMood = m;
+        }
+      });
+
+      const moodLabels = {
+        confident: '🌟 Tự tin',
+        happy: '😊 Hài lòng',
+        thinking: '🤔 Đắn đo',
+        overspent: '⚠️ Hơi quá tay',
+        regret: '😰 Tiếc nuối'
+      };
+
+      const countEl = document.getElementById('journalStatTotalCount');
+      const starEl = document.getElementById('journalStatAvgDiscipline');
+      const moodEl = document.getElementById('journalStatDominantMood');
+
+      if (countEl) countEl.textContent = `${totalCount} bài viết`;
+      if (starEl) starEl.textContent = `★ ${avgRating} / 5`;
+      if (moodEl) moodEl.textContent = moodLabels[dominantMood] || '🌟 Tự tin';
+
+      // Filter by mood
+      const filter = State.journalMoodFilter || 'all';
+      let filtered = [...journals];
+      if (filter !== 'all') {
+        filtered = filtered.filter(j => j.mood === filter);
+      }
+
+      filtered.sort((a, b) => (b.date || '').localeCompare(a.date || '') || (b.createdAt - a.createdAt));
+
+      container.innerHTML = '';
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="editorial-card" style="text-align: center; padding: 32px 16px; color: var(--text-secondary);">
+            <i data-lucide="book-open" style="width: 32px; height: 32px; margin: 0 auto 10px; opacity: 0.5; color: #9333EA;"></i>
+            <div style="font-size: 0.88rem; font-weight: 700;">Chưa có nhật ký tài chính nào</div>
+            <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 4px; max-width: 280px; margin-left: auto; margin-right: auto;">
+              Ghi lại cảm xúc chi tiêu và bài học tài chính mỗi ngày để nâng cao tính kỷ luật.
+            </div>
+            <button type="button" onclick="openNewJournalModal()" style="margin-top: 14px; padding: 8px 20px; border-radius: 99px; background: #9333EA; color: #fff; border: none; font-size: 0.78rem; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(147, 51, 234, 0.25);">
+              + Viết nhật ký đầu tiên
+            </button>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      filtered.forEach(entry => {
+        const card = document.createElement('div');
+        card.className = 'journal-card';
+        card.style.background = 'var(--bg-card)';
+        card.style.borderRadius = 'var(--radius-lg)';
+        card.style.padding = '14px 16px';
+        card.style.border = '1px solid var(--border-card)';
+        card.style.boxShadow = 'var(--shadow-sm)';
+        card.style.marginBottom = '12px';
+
+        const starsStr = '★'.repeat(entry.disciplineRating || 5) + '☆'.repeat(Math.max(0, 5 - (entry.disciplineRating || 5)));
+        const tagsArr = Array.isArray(entry.tags) ? entry.tags : (entry.tags ? String(entry.tags).split(',').map(t => t.trim()) : []);
+
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="tx-badge" style="background: rgba(147, 51, 234, 0.12); color: #9333EA; font-weight: 800; font-size: 0.72rem;">
+                ${moodLabels[entry.mood] || '🌟 Tự tin'}
+              </span>
+              <span style="font-size: 0.72rem; color: var(--text-secondary); font-weight: 600;">
+                ${formatDateWithWeekday(entry.date)}
+              </span>
+            </div>
+            <div style="color: #F59E0B; font-size: 0.85rem; font-weight: 800; letter-spacing: 1px;">
+              ${starsStr}
+            </div>
+          </div>
+
+          <div style="font-size: 0.95rem; font-weight: 800; color: var(--text-primary); margin-bottom: 6px;">
+            ${entry.subject || 'Ghi chép chi tiêu'}
+          </div>
+
+          <div style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px; white-space: pre-wrap;">
+            ${entry.content || 'Không có nội dung phản tư chi tiết.'}
+          </div>
+
+          ${tagsArr.length > 0 ? `
+            <div style="display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px;">
+              ${tagsArr.map(t => `<span style="font-size: 0.68rem; font-weight: 700; background: var(--bg-card-subtle); color: var(--text-secondary); padding: 2px 8px; border-radius: 99px; border: 1px solid var(--border-subtle);">${t.startsWith('#') ? t : '#' + t}</span>`).join('')}
+            </div>
+          ` : ''}
+
+          <div style="display: flex; justify-content: flex-end; align-items: center; gap: 8px; border-top: 1px solid var(--border-subtle); padding-top: 8px; margin-top: 4px;">
+            <button type="button" class="btn-icon-subtle" onclick="openNewJournalModal('${entry.id}')" title="Sửa" style="color: var(--primary); width: 30px; height: 30px;">
+              <i data-lucide="pencil" style="width: 14px; height: 14px;"></i>
+            </button>
+            <button type="button" class="btn-icon-subtle" onclick="deleteJournalEntry('${entry.id}')" title="Xóa" style="color: var(--expense); width: 30px; height: 30px;">
+              <i data-lucide="trash-2" style="width: 14px; height: 14px;"></i>
+            </button>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      lucide.createIcons();
+    }
+    window.renderJournalScreen = renderJournalScreen;
+
+    function openNewJournalModal(editId = null) {
+      const modal = document.getElementById('journalEntryModal');
+      if (!modal) return;
+
+      const idInput = document.getElementById('journalEntryId');
+      const dateInput = document.getElementById('journalEntryDate');
+      const subjectInput = document.getElementById('journalEntrySubject');
+      const contentInput = document.getElementById('journalEntryContent');
+      const tagsInput = document.getElementById('journalEntryTags');
+      const modalTitle = document.getElementById('journalModalTitle');
+
+      if (editId) {
+        const entry = State.journals.find(j => j.id === editId);
+        if (entry) {
+          if (idInput) idInput.value = entry.id;
+          if (dateInput) dateInput.value = entry.date || getTodayString();
+          if (subjectInput) subjectInput.value = entry.subject || '';
+          if (contentInput) contentInput.value = entry.content || '';
+          if (tagsInput) tagsInput.value = Array.isArray(entry.tags) ? entry.tags.join(', ') : (entry.tags || '');
+          selectJournalMood(entry.mood || 'confident');
+          setJournalStars(entry.disciplineRating || 5);
+          if (modalTitle) modalTitle.textContent = 'Chỉnh sửa nhật ký';
+        }
+      } else {
+        if (idInput) idInput.value = '';
+        if (dateInput) dateInput.value = getTodayString();
+        if (subjectInput) subjectInput.value = '';
+        if (contentInput) contentInput.value = '';
+        if (tagsInput) tagsInput.value = '';
+        selectJournalMood('confident');
+        setJournalStars(5);
+        if (modalTitle) modalTitle.textContent = 'Viết nhật ký chi tiêu';
+      }
+
+      modal.classList.add('active');
+      lucide.createIcons();
+    }
+    window.openNewJournalModal = openNewJournalModal;
+
+    function closeJournalModal() {
+      const modal = document.getElementById('journalEntryModal');
+      if (modal) modal.classList.remove('active');
+    }
+    window.closeJournalModal = closeJournalModal;
+
+    function selectJournalMood(mood) {
+      selectedJournalMoodKey = mood;
+      const moodInput = document.getElementById('journalEntryMood');
+      if (moodInput) moodInput.value = mood;
+
+      document.querySelectorAll('#journalModalMoodSelector .mood-chip-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.jmood === mood);
+      });
+    }
+    window.selectJournalMood = selectJournalMood;
+
+    function setJournalStars(stars) {
+      selectedJournalStars = Number(stars) || 5;
+      const ratingInput = document.getElementById('journalEntryRating');
+      if (ratingInput) ratingInput.value = selectedJournalStars;
+
+      const starSpans = document.querySelectorAll('#journalStarSelector span');
+      starSpans.forEach((span, idx) => {
+        span.textContent = idx < selectedJournalStars ? '★' : '☆';
+      });
+
+      const label = document.getElementById('journalStarsLabel');
+      const starTexts = {
+        1: '1/5 - Kém kiểm soát',
+        2: '2/5 - Hơi lơ là',
+        3: '3/5 - Trung bình',
+        4: '4/5 - Kỷ luật tốt',
+        5: '5/5 - Xuất sắc'
+      };
+      if (label) label.textContent = starTexts[selectedJournalStars] || `${selectedJournalStars}/5`;
+    }
+    window.setJournalStars = setJournalStars;
+
+    function filterJournalByMood(mood) {
+      State.journalMoodFilter = mood;
+      document.querySelectorAll('#journalMoodFilterBar .mood-chip-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.jmoodfilter === mood);
+      });
+      renderJournalScreen();
+    }
+    window.filterJournalByMood = filterJournalByMood;
+
+    async function saveJournalEntry() {
+      const editId = document.getElementById('journalEntryId')?.value.trim();
+      const dateVal = document.getElementById('journalEntryDate')?.value || getTodayString();
+      const subject = document.getElementById('journalEntrySubject')?.value.trim();
+      const content = document.getElementById('journalEntryContent')?.value.trim();
+      const tagsRaw = document.getElementById('journalEntryTags')?.value.trim();
+      const mood = selectedJournalMoodKey || 'confident';
+      const rating = selectedJournalStars || 5;
+
+      if (!subject) {
+        showToast('Vui lòng nhập tiêu đề nhật ký!', true);
+        return;
+      }
+
+      const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+
+      if (editId) {
+        const idx = State.journals.findIndex(j => j.id === editId);
+        if (idx !== -1) {
+          State.journals[idx].date = dateVal;
+          State.journals[idx].subject = subject;
+          State.journals[idx].content = content;
+          State.journals[idx].tags = tags;
+          State.journals[idx].mood = mood;
+          State.journals[idx].disciplineRating = rating;
+          State.journals[idx].updatedAt = Date.now();
+          await DB.put('journals', State.journals[idx]);
+          showToast('Đã cập nhật nhật ký tài chính!');
+        }
+      } else {
+        const newEntry = {
+          id: 'jrn_' + Date.now(),
+          date: dateVal,
+          subject: subject,
+          content: content,
+          tags: tags,
+          mood: mood,
+          disciplineRating: rating,
+          createdAt: Date.now()
+        };
+        await DB.put('journals', newEntry);
+        State.journals.unshift(newEntry);
+        showToast('Đã lưu nhật ký tài chính!');
+      }
+
+      if (typeof SoundEngine !== 'undefined') SoundEngine.play('success');
+      closeJournalModal();
+      renderJournalScreen();
+    }
+    window.saveJournalEntry = saveJournalEntry;
+
+    async function deleteJournalEntry(id) {
+      const entry = State.journals.find(j => j.id === id);
+      if (!entry) return;
+
+      showConfirmDialog('Xóa nhật ký', `Bạn có chắc chắn muốn xóa bài nhật ký "${entry.subject || 'này'}" không?`, async () => {
+        await DB.delete('journals', id);
+        State.journals = State.journals.filter(j => j.id !== id);
+        if (typeof SoundEngine !== 'undefined') SoundEngine.play('delete');
+        showToast('Đã xóa nhật ký tài chính!');
+        renderJournalScreen();
+      });
+    }
+    window.deleteJournalEntry = deleteJournalEntry;
+
+    /* ==========================================================================
+       SAVINGS GOALS CONTROLLER (#screen-savings)
+       ========================================================================== */
+    function renderSavingsGoalsScreen() {
+      const container = document.getElementById('savingsGoalsListContainer');
+      if (!container) return;
+
+      const goals = State.savingsGoals || [];
+      const totalTarget = goals.reduce((s, g) => s + (Number(g.targetAmount) || 0), 0);
+      const totalCurrent = goals.reduce((s, g) => s + (Number(g.currentAmount) || 0), 0);
+      const overallPct = totalTarget > 0 ? Math.min(Math.round((totalCurrent / totalTarget) * 100), 100) : 0;
+
+      const targetEl = document.getElementById('savingsStatTotalTarget');
+      const currentEl = document.getElementById('savingsStatTotalSaved');
+      const progressEl = document.getElementById('savingsStatOverallProgress');
+
+      if (targetEl) targetEl.textContent = formatVND(totalTarget);
+      if (currentEl) currentEl.textContent = formatVND(totalCurrent);
+      if (progressEl) progressEl.textContent = `${overallPct}%`;
+
+      container.innerHTML = '';
+      if (goals.length === 0) {
+        container.innerHTML = `
+          <div class="editorial-card" style="text-align: center; padding: 32px 16px; color: var(--text-secondary);">
+            <i data-lucide="piggy-bank" style="width: 32px; height: 32px; margin: 0 auto 10px; opacity: 0.5; color: #DB2777;"></i>
+            <div style="font-size: 0.88rem; font-weight: 700;">Chưa có mục tiêu tiết kiệm nào</div>
+            <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 4px; max-width: 280px; margin-left: auto; margin-right: auto;">
+              Thiết lập mục tiêu mua sắm, quỹ khẩn cấp hoặc đầu tư và theo dõi tiến độ nạp tiền.
+            </div>
+            <button type="button" onclick="openCreateSavingsGoalModal()" style="margin-top: 14px; padding: 8px 20px; border-radius: 99px; background: #DB2777; color: #fff; border: none; font-size: 0.78rem; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(219, 39, 119, 0.25);">
+              + Tạo mục tiêu đầu tiên
+            </button>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      goals.forEach(goal => {
+        const target = Number(goal.targetAmount) || 1;
+        const current = Number(goal.currentAmount) || 0;
+        const pct = Math.min(Math.round((current / target) * 100), 100);
+        const remaining = Math.max(0, target - current);
+
+        // Days remaining
+        let daysLeftStr = '';
+        if (goal.deadline) {
+          const diffDays = Math.ceil((new Date(goal.deadline) - new Date()) / (1000 * 60 * 60 * 24));
+          if (diffDays > 0) daysLeftStr = `Còn ${diffDays} ngày`;
+          else if (diffDays === 0) daysLeftStr = 'Hôm nay đến hạn';
+          else daysLeftStr = `Quá hạn ${Math.abs(diffDays)} ngày`;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'savings-card';
+        card.style.background = 'var(--bg-card)';
+        card.style.borderRadius = 'var(--radius-lg)';
+        card.style.padding = '16px';
+        card.style.border = '1px solid var(--border-card)';
+        card.style.boxShadow = 'var(--shadow-sm)';
+        card.style.marginBottom = '12px';
+
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 38px; height: 38px; border-radius: 12px; background: rgba(219, 39, 119, 0.15); color: #DB2777; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="${goal.icon || 'piggy-bank'}" style="width: 20px; height: 20px;"></i>
+              </div>
+              <div>
+                <div style="font-size: 0.95rem; font-weight: 800; color: var(--text-primary);">${goal.name}</div>
+                <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 1px;">
+                  ${goal.deadline ? `Hạn chót: ${formatDateDisplay(goal.deadline)} ${daysLeftStr ? '· <b style="color: var(--primary);">' + daysLeftStr + '</b>' : ''}` : 'Không giới hạn thời gian'}
+                </div>
+              </div>
+            </div>
+            <span class="tx-badge" style="background: ${pct >= 100 ? 'rgba(52, 211, 153, 0.2)' : 'rgba(219, 39, 119, 0.12)'}; color: ${pct >= 100 ? 'var(--income)' : '#DB2777'}; font-weight: 800; font-size: 0.78rem;">
+              ${pct}%
+            </span>
+          </div>
+
+          <div class="savings-progress-track" style="height: 8px; background: var(--bg-card-subtle); border-radius: 99px; overflow: hidden; margin-bottom: 8px;">
+            <div class="savings-progress-fill" style="width: ${pct}%; height: 100%; background: ${pct >= 100 ? 'var(--income)' : 'linear-gradient(90deg, #F472B6, #DB2777)'}; border-radius: 99px; transition: width 0.4s var(--ease-spring);"></div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; color: var(--text-secondary); margin-bottom: 12px;">
+            <span>Đã tích lũy: <b style="color: var(--text-primary);">${formatVND(current)}</b></span>
+            <span>Mục tiêu: <b style="color: var(--text-primary);">${formatVND(target)}</b></span>
+          </div>
+
+          <div style="display: flex; gap: 8px; border-top: 1px solid var(--border-subtle); padding-top: 10px;">
+            <button type="button" onclick="openDepositSavingsModal('${goal.id}')" style="flex: 2; height: 36px; border-radius: var(--radius-full); background: var(--income); color: #fff; border: none; font-size: 0.78rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; box-shadow: 0 2px 8px rgba(40, 167, 107, 0.25);">
+              <i data-lucide="plus" style="width: 14px; height: 14px;"></i> Nạp tiền
+            </button>
+            <button type="button" class="btn-icon-subtle" onclick="openCreateSavingsGoalModal('${goal.id}')" title="Sửa" style="color: var(--primary); width: 36px; height: 36px; border: 1px solid var(--border-card);">
+              <i data-lucide="pencil" style="width: 14px; height: 14px;"></i>
+            </button>
+            <button type="button" class="btn-icon-subtle" onclick="deleteSavingsGoal('${goal.id}')" title="Xóa" style="color: var(--expense); width: 36px; height: 36px; border: 1px solid var(--border-card);">
+              <i data-lucide="trash-2" style="width: 14px; height: 14px;"></i>
+            </button>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      lucide.createIcons();
+    }
+    window.renderSavingsGoalsScreen = renderSavingsGoalsScreen;
+
+    function openCreateSavingsGoalModal(editId = null) {
+      const modal = document.getElementById('savingsGoalModal');
+      if (!modal) return;
+
+      const idInput = document.getElementById('savingsGoalId');
+      const nameInput = document.getElementById('savingsGoalName');
+      const targetInput = document.getElementById('savingsGoalTargetAmount');
+      const currentInput = document.getElementById('savingsGoalCurrentAmount');
+      const deadlineInput = document.getElementById('savingsGoalDeadline');
+      const iconSelect = document.getElementById('savingsGoalIcon');
+      const modalTitle = document.getElementById('savingsGoalModalTitle');
+
+      if (editId) {
+        const goal = State.savingsGoals.find(g => g.id === editId);
+        if (goal) {
+          if (idInput) idInput.value = goal.id;
+          if (nameInput) nameInput.value = goal.name || '';
+          if (targetInput) targetInput.value = formatNumberOnly(goal.targetAmount);
+          if (currentInput) currentInput.value = formatNumberOnly(goal.currentAmount || 0);
+          if (deadlineInput) deadlineInput.value = goal.deadline || '';
+          if (iconSelect) iconSelect.value = goal.icon || 'piggy-bank';
+          if (modalTitle) modalTitle.textContent = 'Chỉnh sửa mục tiêu tiết kiệm';
+        }
+      } else {
+        if (idInput) idInput.value = '';
+        if (nameInput) nameInput.value = '';
+        if (targetInput) targetInput.value = '';
+        if (currentInput) currentInput.value = '0';
+        if (deadlineInput) deadlineInput.value = '';
+        if (iconSelect) iconSelect.value = 'piggy-bank';
+        if (modalTitle) modalTitle.textContent = 'Mục tiêu tiết kiệm mới';
+      }
+
+      modal.classList.add('active');
+      lucide.createIcons();
+    }
+    window.openCreateSavingsGoalModal = openCreateSavingsGoalModal;
+
+    function closeSavingsGoalModal() {
+      const modal = document.getElementById('savingsGoalModal');
+      if (modal) modal.classList.remove('active');
+    }
+    window.closeSavingsGoalModal = closeSavingsGoalModal;
+
+    async function saveSavingsGoal() {
+      const editId = document.getElementById('savingsGoalId')?.value.trim();
+      const name = document.getElementById('savingsGoalName')?.value.trim();
+      const targetAmt = parseVNDInput(document.getElementById('savingsGoalTargetAmount')?.value || 0);
+      const currentAmt = parseVNDInput(document.getElementById('savingsGoalCurrentAmount')?.value || 0);
+      const deadline = document.getElementById('savingsGoalDeadline')?.value || null;
+      const icon = document.getElementById('savingsGoalIcon')?.value || 'piggy-bank';
+
+      if (!name) {
+        showToast('Vui lòng nhập tên mục tiêu tiết kiệm!', true);
+        return;
+      }
+      if (targetAmt <= 0) {
+        showToast('Số tiền mục tiêu phải lớn hơn 0!', true);
+        return;
+      }
+
+      if (editId) {
+        const idx = State.savingsGoals.findIndex(g => g.id === editId);
+        if (idx !== -1) {
+          State.savingsGoals[idx].name = name;
+          State.savingsGoals[idx].targetAmount = targetAmt;
+          State.savingsGoals[idx].currentAmount = currentAmt;
+          State.savingsGoals[idx].deadline = deadline;
+          State.savingsGoals[idx].icon = icon;
+          State.savingsGoals[idx].updatedAt = Date.now();
+          await DB.put('savings_goals', State.savingsGoals[idx]);
+          showToast('Đã cập nhật mục tiêu tiết kiệm!');
+        }
+      } else {
+        const newGoal = {
+          id: 'svg_' + Date.now(),
+          name: name,
+          targetAmount: targetAmt,
+          currentAmount: currentAmt,
+          deadline: deadline,
+          icon: icon,
+          createdAt: Date.now()
+        };
+        await DB.put('savings_goals', newGoal);
+        State.savingsGoals.push(newGoal);
+        showToast('Đã tạo mục tiêu tiết kiệm mới!');
+      }
+
+      if (typeof SoundEngine !== 'undefined') SoundEngine.play('success');
+      closeSavingsGoalModal();
+      renderSavingsGoalsScreen();
+    }
+    window.saveSavingsGoal = saveSavingsGoal;
+
+    function openDepositSavingsModal(goalId) {
+      const modal = document.getElementById('depositSavingsModal');
+      const goal = State.savingsGoals.find(g => g.id === goalId);
+      if (!modal || !goal) return;
+
+      document.getElementById('depositGoalId').value = goal.id;
+      document.getElementById('depositGoalNameText').textContent = goal.name;
+      document.getElementById('depositGoalCurrentProgressText').textContent = `Hiện có: ${formatVND(goal.currentAmount || 0)} / Mục tiêu: ${formatVND(goal.targetAmount)}`;
+      document.getElementById('depositAmountInput').value = '';
+
+      // Populate Wallets
+      const walletSel = document.getElementById('depositWalletSelect');
+      if (walletSel) {
+        walletSel.innerHTML = '';
+        const { walletBalances } = calculateFinancialBalances();
+        State.wallets.forEach(w => {
+          const bal = walletBalances[w.id] || 0;
+          const opt = document.createElement('option');
+          opt.value = w.id;
+          opt.textContent = `${w.name} (${formatVND(bal)})`;
+          walletSel.appendChild(opt);
+        });
+      }
+
+      modal.classList.add('active');
+      lucide.createIcons();
+    }
+    window.openDepositSavingsModal = openDepositSavingsModal;
+
+    function closeDepositSavingsModal() {
+      const modal = document.getElementById('depositSavingsModal');
+      if (modal) modal.classList.remove('active');
+    }
+    window.closeDepositSavingsModal = closeDepositSavingsModal;
+
+    async function submitDepositSavings() {
+      const goalId = document.getElementById('depositGoalId')?.value;
+      const depositAmt = parseVNDInput(document.getElementById('depositAmountInput')?.value || 0);
+      const walletId = document.getElementById('depositWalletSelect')?.value;
+
+      const goal = State.savingsGoals.find(g => g.id === goalId);
+      if (!goal) return;
+
+      if (depositAmt <= 0) {
+        showToast('Vui lòng nhập số tiền nạp lớn hơn 0!', true);
+        return;
+      }
+
+      const wallet = State.wallets.find(w => w.id === walletId) || State.wallets[0];
+
+      // Create an expense transaction for the deposit
+      const cat = State.categories.find(c => c.id === 'c_invest') || State.categories.find(c => c.type === 'expense') || State.categories[0];
+      const todayStr = getTodayString();
+      const txRecord = {
+        id: 'tx_svg_' + Date.now(),
+        amount: depositAmt,
+        type: 'expense',
+        categoryId: cat.id,
+        walletId: wallet.id,
+        date: todayStr,
+        note: `Nạp quỹ tiết kiệm: ${goal.name}`,
+        isWork: false,
+        createdAt: Date.now()
+      };
+
+      await DB.put('transactions', txRecord);
+      State.transactions.unshift(txRecord);
+
+      // Increase goal savings
+      goal.currentAmount = (Number(goal.currentAmount) || 0) + depositAmt;
+      await DB.put('savings_goals', goal);
+
+      triggerMoneyFlyAnimation('income', null);
+      if (typeof SoundEngine !== 'undefined') SoundEngine.play('success');
+
+      showToast(`Đã nạp thành công ${formatVND(depositAmt)} vào "${goal.name}"!`);
+      closeDepositSavingsModal();
+      renderAllScreens();
+    }
+    window.submitDepositSavings = submitDepositSavings;
+
+    async function deleteSavingsGoal(goalId) {
+      const goal = State.savingsGoals.find(g => g.id === goalId);
+      if (!goal) return;
+
+      showConfirmDialog('Xóa mục tiêu', `Bạn có chắc muốn xóa mục tiêu "${goal.name}" không?`, async () => {
+        await DB.delete('savings_goals', goalId);
+        State.savingsGoals = State.savingsGoals.filter(g => g.id !== goalId);
+        if (typeof SoundEngine !== 'undefined') SoundEngine.play('delete');
+        showToast('Đã xóa mục tiêu tiết kiệm!');
+        renderSavingsGoalsScreen();
+      });
+    }
+    window.deleteSavingsGoal = deleteSavingsGoal;
+
+    /* Passcode Settings Modal */
+    function openPasscodeSettingsModal() {
+      const modal = document.getElementById('passcodeSettingsModal');
+      if (!modal) return;
+      const input = document.getElementById('newPasscodeInput');
+      if (input) input.value = '';
+      modal.classList.add('active');
+    }
+    window.openPasscodeSettingsModal = openPasscodeSettingsModal;
+
+    function closePasscodeSettingsModal() {
+      const modal = document.getElementById('passcodeSettingsModal');
+      if (modal) modal.classList.remove('active');
+    }
+    window.closePasscodeSettingsModal = closePasscodeSettingsModal;
+
+    async function submitNewPasscode() {
+      const input = document.getElementById('newPasscodeInput');
+      const val = (input?.value || '').trim();
+      if (!/^\d{4}$/.test(val)) {
+        showToast('Mã PIN phải gồm đúng 4 chữ số!', true);
+        return;
+      }
+      State.settings.passcode_pin = val;
+      State.settings.passcode_enabled = true;
+      await DB.put('settings', { key: 'passcode_pin', value: val });
+      await DB.put('settings', { key: 'passcode_enabled', value: true });
+
+      const toggle = document.getElementById('passcodeEnableToggle');
+      if (toggle) toggle.checked = true;
+
+      const changePinRow = document.getElementById('changePasscodeRow');
+      if (changePinRow) changePinRow.style.display = 'flex';
+
+      if (typeof SoundEngine !== 'undefined') SoundEngine.play('success');
+      showToast('Đã lưu mã PIN bảo mật mới!');
+      closePasscodeSettingsModal();
+    }
+    window.submitNewPasscode = submitNewPasscode;
+
+    /* ==========================================================================
        11. FULL-SCREEN 4-STEP TRANSACTION WIZARD CONTROLLER & LIVE CAMERA SCANNER
        ========================================================================== */
     let cameraMediaStream = null;
     let cameraFacingMode = 'environment'; // 'environment' (sau) hoặc 'user' (trước)
+    let isCameraStarting = false;
+    let cameraSessionToken = 0; // Token chống race condition và rò rỉ camera nền
 
     async function startLiveCamera() {
+      const currentToken = ++cameraSessionToken;
       const video = document.getElementById('cameraVideo');
       const fallbackBox = document.getElementById('cameraFallbackBox');
       const laser = document.getElementById('cameraScanLaser');
       const statusText = document.getElementById('cameraStatusText');
 
+      // Nếu không còn ở bước 1 hoặc form đã đóng thì không khởi động camera
+      const wizardOverlay = document.getElementById('txWizardOverlay');
+      if (State.wizardStep !== 1 || !wizardOverlay?.classList.contains('active')) {
+        stopLiveCamera();
+        return;
+      }
+
+      // Nếu camera đang chạy mượt mà đúng luồng rồi thì không cần xin lại quyền
+      if (cameraMediaStream && cameraMediaStream.active && video && video.srcObject === cameraMediaStream) {
+        if (fallbackBox) fallbackBox.style.display = 'none';
+        if (laser) laser.style.display = 'block';
+        if (statusText) statusText.textContent = 'Camera trực tiếp';
+        return;
+      }
+
+      // Dừng luồng cũ trước khi tạo luồng mới
+      if (cameraMediaStream) {
+        try {
+          cameraMediaStream.getTracks().forEach(t => t.stop());
+        } catch (e) {}
+        cameraMediaStream = null;
+      }
+
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
         if (fallbackBox) fallbackBox.style.display = 'flex';
         if (laser) laser.style.display = 'none';
         if (statusText) statusText.textContent = 'Camera không hỗ trợ';
+        const msg = document.getElementById('cameraFallbackMsg');
+        if (msg) msg.textContent = 'Thiết bị hoặc trình duyệt không hỗ trợ mở camera trực tiếp. Bạn hãy chọn ảnh từ thư viện.';
         return;
       }
 
-      stopLiveCamera();
+      isCameraStarting = true;
+      if (fallbackBox) fallbackBox.style.display = 'none';
+      if (laser) laser.style.display = 'block';
+      if (statusText) statusText.textContent = 'Đang mở camera...';
 
       try {
-        if (fallbackBox) fallbackBox.style.display = 'none';
-        if (laser) laser.style.display = 'block';
-        if (statusText) statusText.textContent = 'Đang mở camera...';
-
         const constraints = {
           video: {
             facingMode: { ideal: cameraFacingMode },
@@ -12880,54 +15132,146 @@
           audio: false
         };
 
-        cameraMediaStream = await navigator.mediaDevices.getUserMedia(constraints);
+        let stream = null;
+        try {
+          stream = await navigator.mediaDevices.getUserMedia(constraints);
+        } catch (errConstraints) {
+          // Dự phòng: Nếu webcam máy tính không hỗ trợ facingMode hoặc độ phân giải cao
+          console.warn('Detailed camera constraints failed, falling back to simple video: true', errConstraints);
+          if (errConstraints.name === 'NotAllowedError' || errConstraints.name === 'PermissionDeniedError') {
+            throw errConstraints;
+          }
+          stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+        }
+
+        // KIỂM TRA QUAN TRỌNG: Nếu người dùng đã bấm "Bỏ qua", chụp ảnh hoặc chuyển sang Bước 2 trong khi camera đang load
+        if (currentToken !== cameraSessionToken || State.wizardStep !== 1 || !wizardOverlay?.classList.contains('active')) {
+          // Ngay lập tức tắt toàn bộ luồng camera phần cứng để không bao giờ chạy ngầm!
+          stream.getTracks().forEach(t => {
+            try { t.stop(); } catch (e) {}
+          });
+          isCameraStarting = false;
+          return;
+        }
+
+        cameraMediaStream = stream;
+
         if (video) {
-          video.srcObject = cameraMediaStream;
+          video.muted = true;
+          video.playsInline = true;
           video.setAttribute('playsinline', 'true');
-          await video.play();
+          video.setAttribute('muted', 'true');
+          video.srcObject = stream;
+
+          // Chờ video sẵn sàng metadata trước khi play để tránh lỗi AbortError
+          await new Promise((resolve) => {
+            if (video.readyState >= 1) {
+              resolve();
+            } else {
+              video.onloadedmetadata = () => resolve();
+              setTimeout(resolve, 800);
+            }
+          });
+
+          // Kiểm tra lại trạng thái trước khi phát
+          if (currentToken !== cameraSessionToken || State.wizardStep !== 1) {
+            stopLiveCamera();
+            return;
+          }
+
+          try {
+            await video.play();
+          } catch (playErr) {
+            if (playErr.name === 'AbortError') {
+              // Bị gián đoạn bởi điều hướng mới, không phải lỗi quyền
+              isCameraStarting = false;
+              return;
+            }
+            console.warn('Live camera play warning:', playErr);
+          }
+
           if (statusText) statusText.textContent = 'Camera trực tiếp';
+          if (fallbackBox) fallbackBox.style.display = 'none';
         }
       } catch (err) {
+        // Nếu phiên camera đã bị hủy do user chuyển bước thì bỏ qua không báo lỗi
+        if (currentToken !== cameraSessionToken || State.wizardStep !== 1) {
+          isCameraStarting = false;
+          return;
+        }
+
         console.warn('Live camera stream error:', err);
+        if (err.name === 'AbortError') {
+          // Lỗi do tải mới ngắt quãng, không hiển thị hộp báo lỗi
+          isCameraStarting = false;
+          return;
+        }
+
         if (fallbackBox) {
           fallbackBox.style.display = 'flex';
           const msg = document.getElementById('cameraFallbackMsg');
+          const localhostBtn = document.getElementById('switchLocalhostBtn');
+          if (localhostBtn) {
+            localhostBtn.style.display = (window.location.hostname === '127.0.0.1') ? 'flex' : 'none';
+          }
           if (msg) {
             if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-              msg.textContent = 'Vui lòng cấp quyền truy cập Camera cho ứng dụng để quét hóa đơn trực tiếp.';
+              msg.innerHTML = 'Quyền Camera đang bị <b>chặn trên trình duyệt</b>.<br>1. Nhấn biểu tượng ⚙️ hoặc 🔒 ở đầu thanh địa chỉ URL.<br>2. Bật <b>Cho phép (Allow)</b> Camera.<br><i>Hoặc bấm "Chụp ảnh trực tiếp" bên dưới để dùng máy ảnh máy tính/điện thoại!</i>';
+            } else if (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError') {
+              msg.textContent = 'Không tìm thấy thiết bị camera trên máy. Bạn có thể chụp ảnh hoặc chọn ảnh từ thư viện.';
+            } else if (err.name === 'NotReadableError' || err.name === 'TrackStartError') {
+              msg.textContent = 'Camera đang bị ứng dụng khác sử dụng (Zoom, Teams...). Vui lòng tắt app đó hoặc chụp ảnh trực tiếp.';
             } else {
-              msg.textContent = 'Không thể mở luồng camera. Bạn có thể chọn ảnh hóa đơn từ thư viện ảnh.';
+              msg.textContent = 'Không thể mở luồng camera. Bạn có thể bấm "Chụp ảnh trực tiếp" hoặc chọn ảnh từ thư viện.';
             }
           }
         }
         if (laser) laser.style.display = 'none';
-        if (statusText) statusText.textContent = 'Chưa cấp quyền';
+        if (statusText) statusText.textContent = 'Chưa mở được camera';
+      } finally {
+        isCameraStarting = false;
       }
     }
 
     function stopLiveCamera() {
+      cameraSessionToken++;
+      isCameraStarting = false;
+
       if (cameraMediaStream) {
         try {
-          cameraMediaStream.getTracks().forEach(track => track.stop());
+          cameraMediaStream.getTracks().forEach(track => {
+            try {
+              track.stop();
+            } catch (e) {}
+          });
         } catch (e) {
           console.warn('Error stopping camera tracks:', e);
         }
         cameraMediaStream = null;
       }
+
       const video = document.getElementById('cameraVideo');
       if (video) {
+        try {
+          video.pause();
+        } catch (e) {}
         video.srcObject = null;
       }
+
+      const laser = document.getElementById('cameraScanLaser');
+      if (laser) laser.style.display = 'none';
     }
 
     async function flipCameraFacingMode() {
       cameraFacingMode = (cameraFacingMode === 'environment') ? 'user' : 'environment';
+      stopLiveCamera();
       await startLiveCamera();
     }
 
     async function takeLiveCameraSnapshot() {
       const video = document.getElementById('cameraVideo');
       if (!video || !video.videoWidth || !video.videoHeight) {
+        stopLiveCamera();
         const cam = document.getElementById('cameraFileInput');
         if (cam) cam.click();
         return;
@@ -12946,6 +15290,9 @@
         canvas.height = video.videoHeight;
         const ctx = canvas.getContext('2d');
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // KHÓA VÀ TẮT NGAY CAMERA PHẦN CỨNG sau khi đã chụp xong khung hình!
+        stopLiveCamera();
 
         const exportBlobOrFallback = () => {
           return new Promise((resolve) => {
@@ -12973,7 +15320,6 @@
         };
 
         const blob = await exportBlobOrFallback();
-        stopLiveCamera();
         if (blob) {
           await handleReceiptImageSelected(blob);
         } else {
@@ -12992,6 +15338,7 @@
       State.wizardReceiptBlob = null;
       State.wizardReceiptDataUrl = null;
       State.wizardLocation = null;
+      State.wizardStep = 0; // Đặt về 0 để tránh resetReceiptPreview gọi đúp startLiveCamera
 
       const overlay = document.getElementById('txWizardOverlay');
       overlay.classList.add('active');
@@ -13113,6 +15460,11 @@
       const standardHeader = document.getElementById('standardWizardHeader');
       const wizardBody = document.getElementById('wizardMainBody');
 
+      if (wizardBody) {
+        wizardBody.scrollLeft = 0;
+        wizardBody.scrollTop = 0;
+      }
+
       // Bước 1 toàn màn hình camera (ẩn standard header, xóa padding)
       if (stepNum === 1) {
         if (standardHeader) standardHeader.style.display = 'none';
@@ -13157,12 +15509,14 @@
         if (idx + 1 === stepNum) {
           v.classList.add('active');
           v.style.display = 'flex';
+          v.scrollLeft = 0;
+          if (wizardBody) wizardBody.scrollLeft = 0;
           if (window.anime) {
             anime({
               targets: v,
               opacity: [0, 1],
-              translateX: [16, 0],
-              duration: 250,
+              translateY: [8, 0],
+              duration: 220,
               easing: 'easeOutQuad'
             });
           }
@@ -13275,7 +15629,7 @@
 
       if (btn) {
         btn.disabled = true;
-        btn.innerHTML = '<i data-lucide="loader-2" class="spin" style="width: 12px; height: 12px;"></i> Đang dò GPS...';
+        btn.innerHTML = '<i data-lucide="loader-2" class="spin" style="width: 10px; height: 10px;"></i> Dò...';
       }
       if (locStatus) {
         locStatus.innerHTML = '<span style="color: var(--mint); display: inline-flex; align-items: center; gap: 4px;"><i data-lucide="crosshair" style="width: 12px; height: 12px;"></i> Đang kết nối vệ tinh GPS...</span>';
@@ -13329,7 +15683,7 @@
           } finally {
             if (btn) {
               btn.disabled = false;
-              btn.innerHTML = '<i data-lucide="crosshair" style="width: 12px; height: 12px;"></i> Định vị GPS';
+              btn.innerHTML = '<i data-lucide="crosshair" style="width: 10px; height: 10px;"></i> GPS';
             }
             lucide.createIcons();
           }
@@ -13338,7 +15692,7 @@
           console.warn('Geolocation error:', error);
           if (btn) {
             btn.disabled = false;
-            btn.innerHTML = '<i data-lucide="crosshair" style="width: 12px; height: 12px;"></i> Định vị GPS';
+            btn.innerHTML = '<i data-lucide="crosshair" style="width: 10px; height: 10px;"></i> GPS';
           }
 
           let errMsg = 'Không thể lấy vị trí GPS!';
@@ -13496,6 +15850,9 @@
         item.style.border = isSelected ? '2px solid var(--primary)' : '1px solid var(--border-card)';
         item.style.boxShadow = isSelected ? 'var(--shadow-sm)' : 'none';
         item.style.transition = 'all 0.15s var(--ease-spring)';
+        item.style.minWidth = '0';
+        item.style.boxSizing = 'border-box';
+        item.style.overflow = 'hidden';
 
         item.onclick = () => {
           State.wizardCategoryId = cat.id;
@@ -13731,6 +16088,9 @@
 
         if (navigator.vibrate) navigator.vibrate([40, 30, 60]);
         launchConfetti();
+        if (typeof SoundEngine !== 'undefined') SoundEngine.play('success');
+        const catObj = State.categories.find(c => c.id === txRecord.categoryId);
+        triggerMoneyFlyAnimation(txRecord.type, catObj);
 
         // Update in-memory state
         if (State.editingTxId) {
@@ -14697,75 +17057,186 @@
       // Clear previous markers
       if (mapMarkersLayer) mapMarkersLayer.clearLayers();
 
+      // Cluster transactions at the same hotspot to prevent overlapping
+      const clusters = [];
+      locatedTxs.forEach(({ tx, coords }) => {
+        let matchedCluster = null;
+        for (const cl of clusters) {
+          const dist = getDistanceKm(cl.lat, cl.lng, coords.lat, coords.lng);
+          if (dist < 0.06 || (cl.address && coords.address && cl.address.toLowerCase() === coords.address.toLowerCase())) {
+            matchedCluster = cl;
+            break;
+          }
+        }
+        if (matchedCluster) {
+          matchedCluster.txs.push(tx);
+        } else {
+          clusters.push({
+            lat: coords.lat,
+            lng: coords.lng,
+            address: coords.address || 'Địa điểm chi tiêu',
+            txs: [tx]
+          });
+        }
+      });
+
       const bounds = [];
 
-      locatedTxs.forEach(({ tx, coords }) => {
-        const cat = State.categories.find(c => c.id === tx.categoryId) || { name: 'Khác', icon: 'tag', color: '#10B981' };
-        const isInc = (tx.type === 'income');
-        const color = cat.color || (isInc ? '#10B981' : '#EF4444');
-        const amtStr = formatVND(tx.amount);
-        const shortAmt = tx.amount >= 1000000 ? (tx.amount / 1000000).toFixed(1) + 'M' : (tx.amount / 1000).toFixed(0) + 'k';
-        const isSelected = (State.mapSelectedTxId === tx.id);
+      clusters.forEach(cluster => {
+        const isCluster = (cluster.txs.length > 1);
+        let totalExp = 0;
+        let totalInc = 0;
+        cluster.txs.forEach(t => {
+          if (t.type === 'income') totalInc += Number(t.amount) || 0;
+          else if (t.type === 'expense') totalExp += Number(t.amount) || 0;
+        });
 
-        const pinHtml = `
-          <div class="luxury-map-pin ${isSelected ? 'active' : ''}" id="mapPin_${tx.id}">
-            <div class="map-pin-bubble ${isInc ? 'income' : 'expense'}">
-              <span>${isInc ? '+' : '-'}${shortAmt}</span>
+        const firstTx = cluster.txs[0];
+        const cat = State.categories.find(c => c.id === firstTx.categoryId) || { name: 'Khác', icon: 'tag', color: '#10B981' };
+        const isSelected = cluster.txs.some(t => t.id === State.mapSelectedTxId);
+
+        let pinHtml = '';
+        if (!isCluster) {
+          const isInc = (firstTx.type === 'income');
+          const color = cat.color || (isInc ? '#10B981' : '#EF4444');
+          const shortAmt = formatShortK(firstTx.amount);
+
+          pinHtml = `
+            <div class="luxury-map-pin ${isSelected ? 'active' : ''}" id="mapPin_${firstTx.id}">
+              <div class="map-pin-bubble ${isInc ? 'income' : 'expense'}">
+                <span>${isInc ? '+' : '-'}${shortAmt}</span>
+              </div>
+              <div class="map-pin-icon-wrap" style="background-color: ${color};">
+                <i data-lucide="${cat.icon || 'tag'}" style="width: 16px; height: 16px; color: #fff;"></i>
+              </div>
             </div>
-            <div class="map-pin-icon-wrap" style="background-color: ${color};">
-              <i data-lucide="${cat.icon || 'tag'}" style="width: 16px; height: 16px; color: #fff;"></i>
+          `;
+        } else {
+          // GOM NHÓM ĐỊA ĐIỂM: HIỆN SỐ GIAO DỊCH TRÊN ĐẦU & TỔNG CHI / THU
+          let bubbleText = '';
+          if (totalExp > 0 && totalInc > 0) {
+            bubbleText = `-${formatShortK(totalExp)} | +${formatShortK(totalInc)}`;
+          } else if (totalExp > 0) {
+            bubbleText = `-${formatShortK(totalExp)}`;
+          } else {
+            bubbleText = `+${formatShortK(totalInc)}`;
+          }
+
+          pinHtml = `
+            <div class="luxury-map-pin luxury-cluster-pin ${isSelected ? 'active' : ''}" id="mapPinCluster_${firstTx.id}">
+              <div class="cluster-counter-badge">${cluster.txs.length} GD</div>
+              <div class="map-pin-bubble ${totalInc > 0 && totalExp === 0 ? 'income' : 'expense'}">
+                <span>${bubbleText}</span>
+              </div>
+              <div class="map-pin-icon-wrap" style="background-color: var(--primary);">
+                <i data-lucide="layers" style="width: 16px; height: 16px; color: #fff;"></i>
+              </div>
             </div>
-          </div>
-        `;
+          `;
+        }
 
         const icon = L.divIcon({
           className: 'custom-div-icon',
           html: pinHtml,
-          iconSize: [40, 54],
-          iconAnchor: [20, 54],
-          popupAnchor: [0, -52]
+          iconSize: [44, 58],
+          iconAnchor: [22, 58],
+          popupAnchor: [0, -56]
         });
 
-        const marker = L.marker([coords.lat, coords.lng], { icon: icon });
+        const marker = L.marker([cluster.lat, cluster.lng], { icon: icon });
 
-        // Popup Content
-        const popupContent = `
-          <div style="font-family: inherit; padding: 4px; min-width: 190px;">
-            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
-              <span style="font-size: 0.7rem; font-weight: 800; padding: 2px 6px; border-radius: 4px; background: ${color}20; color: ${color};">${cat.name}</span>
-              ${tx.isWork ? '<span style="font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 4px; background: var(--work-bg); color: var(--work);">Work</span>' : ''}
+        // QUIET LUXURY POPUP WITH RECEIPT THUMBNAIL PREVIEW
+        let popupContent = '';
+        if (!isCluster) {
+          const isInc = (firstTx.type === 'income');
+          const color = cat.color || (isInc ? '#10B981' : '#EF4444');
+          const amtStr = formatVND(firstTx.amount);
+
+          popupContent = `
+            <div style="font-family: inherit; padding: 6px; min-width: 210px; max-width: 250px;">
+              ${firstTx.receipt ? `
+                <div style="margin-bottom: 8px; border-radius: 8px; overflow: hidden; max-height: 100px; border: 1px solid var(--border-subtle);">
+                  <img src="${firstTx.receipt}" style="width: 100%; height: 100px; object-fit: cover; display: block;" alt="Hóa đơn">
+                </div>
+              ` : ''}
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 4px;">
+                <span style="font-size: 0.7rem; font-weight: 800; padding: 2px 7px; border-radius: 99px; background: ${color}20; color: ${color};">${cat.name}</span>
+                ${firstTx.isWork ? '<span style="font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 99px; background: var(--work-bg); color: var(--work);">Work</span>' : ''}
+              </div>
+              <div style="font-size: 1.25rem; font-weight: 800; color: ${isInc ? 'var(--income)' : 'var(--expense)'}; margin-bottom: 4px;">
+                ${isInc ? '+' : '-'}${amtStr}
+              </div>
+              <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 2px; line-height: 1.3;">
+                ${firstTx.note || cat.name}
+              </div>
+              <div style="font-size: 0.72rem; color: var(--text-secondary); margin-bottom: 10px;">
+                <i data-lucide="map-pin" style="width: 10px; height: 10px; display: inline-block;"></i> ${cluster.address} · ${formatDateDisplay(firstTx.date)}
+              </div>
+              <div style="display: flex; gap: 6px;">
+                <button onclick="openTxDetailModal(State.transactions.find(t => t.id === '${firstTx.id}'))" style="flex: 1; padding: 6px 10px; border-radius: 99px; background: var(--primary); color: #fff; border: none; font-size: 0.74rem; font-weight: 700; cursor: pointer; box-shadow: 0 2px 6px rgba(14,56,52,0.25);">
+                  Chi tiết
+                </button>
+                <a href="https://www.google.com/maps?q=${cluster.lat},${cluster.lng}" target="_blank" rel="noopener noreferrer" style="padding: 6px 10px; border-radius: 99px; background: var(--bg-card-subtle); color: var(--mint); border: 1px solid var(--border-card); font-size: 0.74rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 4px;">
+                  <i data-lucide="external-link" style="width: 11px; height: 11px;"></i> Maps
+                </a>
+              </div>
             </div>
-            <div style="font-size: 1.15rem; font-weight: 800; color: ${isInc ? 'var(--income)' : 'var(--expense)'}; margin-bottom: 4px;">
-              ${isInc ? '+' : '-'}${amtStr}
-            </div>
-            <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-primary); margin-bottom: 2px;">
-              ${tx.note || cat.name}
-            </div>
-            <div style="font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 8px;">
-              <i data-lucide="map-pin" style="width: 10px; height: 10px; display: inline-block;"></i> ${coords.address || 'Vị trí đã lưu'} · ${formatDateDisplay(tx.date)}
-            </div>
-            <div style="display: flex; gap: 6px;">
-              <button onclick="openTxDetailModal(State.transactions.find(t => t.id === '${tx.id}'))" style="flex: 1; padding: 5px 8px; border-radius: 99px; background: var(--primary); color: #fff; border: none; font-size: 0.72rem; font-weight: 700; cursor: pointer;">
-                Chi tiết
-              </button>
-              <a href="https://www.google.com/maps?q=${coords.lat},${coords.lng}" target="_blank" rel="noopener noreferrer" style="padding: 5px 8px; border-radius: 99px; background: var(--bg-card-subtle); color: var(--mint); border: 1px solid var(--border-card); font-size: 0.72rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 3px;">
-                <i data-lucide="external-link" style="width: 10px; height: 10px;"></i> Google Maps
+          `;
+        } else {
+          // Multi-Transaction Quiet Luxury Cluster Popup
+          let txItemsHtml = '';
+          cluster.txs.forEach(t => {
+            const tCat = State.categories.find(c => c.id === t.categoryId) || { name: 'Khác', color: '#10B981' };
+            const tIsInc = (t.type === 'income');
+            txItemsHtml += `
+              <div onclick="openTxDetailModal(State.transactions.find(x => x.id === '${t.id}'))" style="display: flex; align-items: center; justify-content: space-between; padding: 6px 4px; border-bottom: 1px solid var(--border-subtle); cursor: pointer;">
+                <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
+                  ${t.receipt ? `<img src="${t.receipt}" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover; flex-shrink: 0;" alt="Hóa đơn">` : ''}
+                  <div style="min-width: 0;">
+                    <div style="font-size: 0.76rem; font-weight: 700; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t.note || tCat.name}</div>
+                    <div style="font-size: 0.68rem; color: var(--text-secondary);">${formatDateDisplay(t.date)}</div>
+                  </div>
+                </div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: ${tIsInc ? 'var(--income)' : 'var(--expense)'}; margin-left: 6px; flex-shrink: 0;">
+                  ${tIsInc ? '+' : '-'}${formatVND(t.amount)}
+                </div>
+              </div>
+            `;
+          });
+
+          popupContent = `
+            <div style="font-family: inherit; padding: 6px; min-width: 230px; max-width: 280px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+                <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 170px;">
+                  📍 ${cluster.address}
+                </div>
+                <span class="tx-badge" style="background: var(--primary); color: #fff; font-weight: 800; font-size: 0.68rem;">${cluster.txs.length} GD</span>
+              </div>
+              <div style="font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 8px; background: var(--bg-card-subtle); padding: 4px 8px; border-radius: 6px;">
+                <span>Tổng chi: <b style="color: var(--expense);">-${formatVND(totalExp)}</b></span>
+                ${totalInc > 0 ? ` · Thu: <b style="color: var(--income);">+${formatVND(totalInc)}</b>` : ''}
+              </div>
+              <div style="max-height: 180px; overflow-y: auto; margin-bottom: 8px;">
+                ${txItemsHtml}
+              </div>
+              <a href="https://www.google.com/maps?q=${cluster.lat},${cluster.lng}" target="_blank" rel="noopener noreferrer" style="width: 100%; padding: 6px 10px; border-radius: 99px; background: var(--bg-card-subtle); color: var(--mint); border: 1px solid var(--border-card); font-size: 0.74rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 4px; box-sizing: border-box;">
+                <i data-lucide="external-link" style="width: 11px; height: 11px;"></i> Mở vị trí trên Google Maps
               </a>
             </div>
-          </div>
-        `;
+          `;
+        }
 
-        marker.bindPopup(popupContent, { maxWidth: 260, className: 'quiet-luxury-popup' });
+        marker.bindPopup(popupContent, { maxWidth: 280, className: 'quiet-luxury-popup' });
 
         marker.on('click', () => {
-          State.mapSelectedTxId = tx.id;
+          State.mapSelectedTxId = firstTx.id;
           document.querySelectorAll('.luxury-map-pin').forEach(p => p.classList.remove('active'));
-          const pinEl = document.getElementById(`mapPin_${tx.id}`);
+          const pinEl = document.getElementById(isCluster ? `mapPinCluster_${firstTx.id}` : `mapPin_${firstTx.id}`);
           if (pinEl) pinEl.classList.add('active');
 
           // Highlight and scroll card in carousel
           document.querySelectorAll('.map-tx-mini-card').forEach(c => c.classList.remove('active'));
-          const cardEl = document.getElementById(`mapTxCard_${tx.id}`);
+          const cardEl = document.getElementById(`mapTxCard_${firstTx.id}`);
           if (cardEl) {
             cardEl.classList.add('active');
             cardEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
@@ -14773,7 +17244,7 @@
         });
 
         marker.addTo(mapMarkersLayer);
-        bounds.push([coords.lat, coords.lng]);
+        bounds.push([cluster.lat, cluster.lng]);
       });
 
       // Fit map bounds if markers exist and not zoomed
@@ -15216,6 +17687,9 @@
       if (typeof closeCurrentBudgetSwipe === 'function') closeCurrentBudgetSwipe();
       if (typeof closeCurrentCategorySwipe === 'function') closeCurrentCategorySwipe();
       if (typeof closeCurrentRecurringSwipe === 'function') closeCurrentRecurringSwipe();
+      if (document.getElementById('txWizardOverlay')?.classList.contains('active')) {
+        closeTransactionWizard();
+      }
       State.activeTab = tabName;
       const navSlots = State.settings.bottom_nav_slots || ['overview', 'wallets', 'analytics', 'settings'];
       document.querySelectorAll('#bottomNavItemsGrid .nav-item').forEach(btn => {
@@ -15272,6 +17746,8 @@
       else if (tabName === 'budgets') renderBudgetsScreen();
       else if (tabName === 'categories') renderCategoriesScreen();
       else if (tabName === 'recurring') renderRecurringScreen();
+      else if (tabName === 'journal') renderJournalScreen();
+      else if (tabName === 'savings') renderSavingsGoalsScreen();
       else if (tabName === 'map') {
         renderSpendingMapScreen();
         setTimeout(() => {
@@ -15279,6 +17755,24 @@
             spendingMap.invalidateSize();
           }
         }, 150);
+      }
+
+      // HIỆU ỨNG LANDING PAGE: TỪNG THẺ HIỆN DẦN LÊN (STAGGERED FADE-UP)
+      const activeScreenEl = document.getElementById(`screen-${tabName}`);
+      if (activeScreenEl && window.anime) {
+        setTimeout(() => {
+          const cards = activeScreenEl.querySelectorAll('.editorial-card, .hero-balance-card, .wallet-card-item, .tx-card-item, .bento-stat-card, .journal-card, .savings-card, .cat-item-swipe-wrapper, .budget-swipe-wrapper, .recurring-swipe-wrapper, .settings-group-card, .map-tx-mini-card');
+          if (cards.length > 0) {
+            anime({
+              targets: cards,
+              opacity: [0, 1],
+              translateY: [14, 0],
+              delay: anime.stagger(38),
+              duration: 360,
+              easing: 'easeOutCubic'
+            });
+          }
+        }, 60);
       }
 
       lucide.createIcons();
@@ -15394,6 +17888,8 @@
       State.categories = await DB.getAll('categories');
       State.wallets = await DB.getAll('wallets');
       State.recurring = await DB.getAll('recurring');
+      State.journals = (await DB.getAll('journals')) || [];
+      State.savingsGoals = (await DB.getAll('savings_goals')) || [];
 
       const settingsArr = await DB.getAll('settings');
       State.settings = {};
@@ -15434,6 +17930,41 @@
       // Apply Color Theme Setting
       const colorTheme = State.settings.color_theme || 'emerald';
       setColorTheme(colorTheme, false);
+
+      // Apply Image Quality Setting
+      const imgQuality = State.settings.image_quality || 'high';
+      document.querySelectorAll('#imageQualityChipsBar .quality-preset-chip').forEach(c => {
+        c.classList.toggle('active', c.dataset.quality === imgQuality);
+      });
+
+      // Apply Passcode Setting
+      const passcodeToggle = document.getElementById('passcodeEnableToggle');
+      if (passcodeToggle) {
+        passcodeToggle.checked = !!State.settings.passcode_enabled;
+      }
+      const changePasscodeRow = document.getElementById('changePasscodeRow');
+      if (changePasscodeRow) {
+        changePasscodeRow.style.display = State.settings.passcode_enabled ? 'flex' : 'none';
+      }
+
+      // Apply Sound Settings
+      const volSlider = document.getElementById('soundVolumeSlider');
+      const volText = document.getElementById('soundVolumeValueText');
+      const volVal = State.settings.sound_volume !== undefined ? State.settings.sound_volume : 80;
+      if (volSlider) volSlider.value = volVal;
+      if (volText) volText.textContent = `${volVal}%`;
+
+      const swClick = document.getElementById('soundClickToggle');
+      if (swClick) swClick.checked = (State.settings.sound_click !== false);
+
+      const swNotify = document.getElementById('soundNotifyToggle');
+      if (swNotify) swNotify.checked = (State.settings.sound_notify !== false);
+
+      const swSuccess = document.getElementById('soundSuccessToggle');
+      if (swSuccess) swSuccess.checked = (State.settings.sound_success !== false);
+
+      const swDelete = document.getElementById('soundDeleteToggle');
+      if (swDelete) swDelete.checked = (State.settings.sound_delete !== false);
 
       // Apply Haptic Feedback Setting
       const hapticSwitch = document.getElementById('hapticFeedbackSwitch');
@@ -15532,9 +18063,97 @@
           openRecurringFormModal();
           return;
         }
+        if (State.activeTab === 'journal') {
+          openNewJournalModal();
+          return;
+        }
+        if (State.activeTab === 'savings') {
+          openCreateSavingsGoalModal();
+          return;
+        }
         const isFromWork = (State.activeTab === 'work');
         openTransactionWizard(null, true, { isWork: isFromWork });
       });
+
+      // Passcode Keypad Button Clicks
+      document.querySelectorAll('.passcode-key').forEach(btn => {
+        btn.addEventListener('click', () => {
+          onPasscodeKeypadPress(btn.dataset.key);
+        });
+      });
+
+      // Passcode Enable Toggle & Change PIN button in Settings
+      document.getElementById('passcodeEnableToggle')?.addEventListener('change', async (e) => {
+        const isChecked = e.target.checked;
+        if (isChecked) {
+          if (!State.settings.passcode_pin) {
+            openPasscodeSettingsModal();
+          } else {
+            State.settings.passcode_enabled = true;
+            await DB.put('settings', { key: 'passcode_enabled', value: true });
+            const row = document.getElementById('changePasscodeRow');
+            if (row) row.style.display = 'flex';
+            showToast('Đã kích hoạt bảo mật mã PIN!');
+          }
+        } else {
+          State.settings.passcode_enabled = false;
+          await DB.put('settings', { key: 'passcode_enabled', value: false });
+          const row = document.getElementById('changePasscodeRow');
+          if (row) row.style.display = 'none';
+          showToast('Đã tắt mã PIN bảo mật!');
+        }
+      });
+      document.getElementById('btnOpenChangePin')?.addEventListener('click', openPasscodeSettingsModal);
+
+      // Image Quality Chips Bar
+      document.querySelectorAll('#imageQualityChipsBar .quality-preset-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          setImageQualitySetting(chip.dataset.quality);
+        });
+      });
+
+      // Sound Volume Slider
+      document.getElementById('soundVolumeSlider')?.addEventListener('input', async (e) => {
+        const vol = Number(e.target.value);
+        const txt = document.getElementById('soundVolumeValueText');
+        if (txt) txt.textContent = `${vol}%`;
+        State.settings.sound_volume = vol;
+        await DB.put('settings', { key: 'sound_volume', value: vol });
+      });
+
+      // Sound Toggles & Tests
+      ['soundClickToggle', 'soundNotifyToggle', 'soundSuccessToggle', 'soundDeleteToggle'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('change', async (e) => {
+            const key = id.replace('Toggle', '').replace('sound', 'sound_').toLowerCase();
+            State.settings[key] = e.target.checked;
+            await DB.put('settings', { key: key, value: e.target.checked });
+            if (e.target.checked && typeof SoundEngine !== 'undefined') SoundEngine.play(key.replace('sound_', ''));
+          });
+        }
+      });
+
+      document.getElementById('btnTestSoundClick')?.addEventListener('click', () => SoundEngine.play('click'));
+      document.getElementById('btnTestSoundNotify')?.addEventListener('click', () => SoundEngine.play('notify'));
+      document.getElementById('btnTestSoundSuccess')?.addEventListener('click', () => SoundEngine.play('success'));
+      document.getElementById('btnTestSoundDelete')?.addEventListener('click', () => SoundEngine.play('delete'));
+
+      // Theme Preset Chips
+      document.querySelectorAll('.theme-preset-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          setColorTheme(btn.dataset.colortheme);
+        });
+      });
+
+      // Global Sound on Interactive Element Clicks
+      document.addEventListener('click', (e) => {
+        if (e.target.closest('button, .nav-item, .sidebar-nav-item, .pill-tab-btn, .chip-btn, .theme-preset-chip, .quality-preset-chip, .mood-chip-btn, .passcode-key')) {
+          if (typeof SoundEngine !== 'undefined' && SoundEngine.play) {
+            SoundEngine.play('click');
+          }
+        }
+      }, { passive: true });
 
       // Budget Create Modal Controls
       document.getElementById('closeBudgetCreateModalBtn')?.addEventListener('click', closeCreateBudgetModal);
@@ -15703,13 +18322,39 @@
       document.getElementById('cameraShutterBtn')?.addEventListener('click', takeLiveCameraSnapshot);
       document.getElementById('cameraFlipBtn')?.addEventListener('click', flipCameraFacingMode);
       document.getElementById('retryCameraBtn')?.addEventListener('click', startLiveCamera);
-      document.getElementById('fallbackGalleryBtn')?.addEventListener('click', () => document.getElementById('galleryFileInput').click());
-      document.getElementById('step1GalleryBtn')?.addEventListener('click', () => document.getElementById('galleryFileInput').click());
+      document.getElementById('fallbackCaptureBtn')?.addEventListener('click', () => {
+        stopLiveCamera();
+        document.getElementById('cameraFileInput').click();
+      });
+      document.getElementById('switchLocalhostBtn')?.addEventListener('click', () => {
+        window.location.href = window.location.href.replace('127.0.0.1', 'localhost');
+      });
+      document.getElementById('fallbackGalleryBtn')?.addEventListener('click', () => {
+        stopLiveCamera();
+        document.getElementById('galleryFileInput').click();
+      });
+      document.getElementById('fallbackSkipBtn')?.addEventListener('click', () => {
+        stopLiveCamera();
+        goToWizardStep(2);
+      });
+      document.getElementById('step1GalleryBtn')?.addEventListener('click', () => {
+        stopLiveCamera();
+        document.getElementById('galleryFileInput').click();
+      });
       document.getElementById('retakeReceiptBtn')?.addEventListener('click', resetReceiptPreview);
-      document.getElementById('changeReceiptBtn')?.addEventListener('click', () => document.getElementById('galleryFileInput').click());
+      document.getElementById('changeReceiptBtn')?.addEventListener('click', () => {
+        stopLiveCamera();
+        document.getElementById('galleryFileInput').click();
+      });
       document.getElementById('removeReceiptBtn')?.addEventListener('click', resetReceiptPreview);
-      document.getElementById('step1SkipBtn')?.addEventListener('click', () => goToWizardStep(2));
-      document.getElementById('step1NextBtn')?.addEventListener('click', () => goToWizardStep(2));
+      document.getElementById('step1SkipBtn')?.addEventListener('click', () => {
+        stopLiveCamera();
+        goToWizardStep(2);
+      });
+      document.getElementById('step1NextBtn')?.addEventListener('click', () => {
+        stopLiveCamera();
+        goToWizardStep(2);
+      });
 
       // Bước 2: Chọn Loại giao dịch (Tự động chuyển thẳng sang Bước 3 khi chạm)
       let step2AutoAdvanceTimer = null;
@@ -15728,6 +18373,24 @@
       document.getElementById('step2BackBtn')?.addEventListener('click', () => goToWizardStep(1));
 
       // Bước 3: Nhập thông tin
+      const wizBodyElem = document.getElementById('wizardMainBody');
+      if (wizBodyElem) {
+        wizBodyElem.addEventListener('scroll', () => {
+          if (wizBodyElem.scrollLeft !== 0) {
+            wizBodyElem.scrollLeft = 0;
+          }
+        }, { passive: true });
+      }
+
+      ['wizardWalletSelect', 'wizardDateInput', 'wizardLocationInput', 'wizardNoteInput'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('focus', () => {
+            if (wizBodyElem) wizBodyElem.scrollLeft = 0;
+          }, { passive: true });
+        }
+      });
+
       document.getElementById('step3EditReceiptBtn')?.addEventListener('click', () => goToWizardStep(1));
       document.getElementById('step3BackBtn')?.addEventListener('click', () => goToWizardStep(2));
       document.getElementById('step3NextBtn')?.addEventListener('click', () => {
@@ -16129,6 +18792,7 @@
        15. APP BOOTSTRAP
        ========================================================================== */
     window.addEventListener('DOMContentLoaded', async () => {
+      initSplashScreen();
       initSwipeToApply();
       initEventListeners();
       await seedDefaultData();
