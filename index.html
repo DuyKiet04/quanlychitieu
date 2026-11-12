@@ -96,182 +96,246 @@
     }
 
     /* ==========================================================================
-       4 LUXURY COLOR THEMES (FINTECH HIGH-END PALETTES)
+       8 DISTINCT & HIGH-CONTRAST QUIET LUXURY FINTECH COLOR THEMES
        ========================================================================== */
-    /* Theme 1: Emerald Forest (Mặc định) */
+    /* Theme 1: Emerald Forest (Ngọc lục bảo & Bạc hà) */
     [data-color-theme="emerald"] {
-      --primary: #0E3834;
-      --primary-rgb: 14, 56, 52;
-      --primary-light: #EBF3F1;
-      --mint: #2DA87B;
-      --mint-light: #E8F7F0;
-      --mint-accent: #7FE0B8;
-      --hero-gradient: linear-gradient(145deg, #092825 0%, #0E3834 60%, #17544E 100%);
-      --hero-subtle-glow: rgba(45, 168, 123, 0.35);
+      --primary: #064E3B;
+      --primary-rgb: 6, 78, 59;
+      --primary-light: #ECFDF5;
+      --mint: #10B981;
+      --mint-light: #D1FAE5;
+      --mint-accent: #34D399;
+      --hero-gradient: linear-gradient(145deg, #022019 0%, #064E3B 55%, #059669 100%);
+      --hero-subtle-glow: rgba(16, 185, 129, 0.4);
+      --nav-active: #059669;
+      --nav-center-bg: #064E3B;
+      --nav-center-icon: #FFFFFF;
+      --border-focus: #10B981;
     }
     [data-theme="dark"][data-color-theme="emerald"] {
-      --primary: #45B899;
-      --primary-rgb: 69, 184, 153;
-      --primary-light: #16302A;
-      --mint: #45B899;
-      --mint-light: #18352F;
-      --mint-accent: #7FE0B8;
-      --hero-gradient: linear-gradient(145deg, #051816 0%, #0D2D29 60%, #164640 100%);
-      --hero-subtle-glow: rgba(69, 184, 153, 0.3);
+      --primary: #34D399;
+      --primary-rgb: 52, 211, 153;
+      --primary-light: #062820;
+      --mint: #10B981;
+      --mint-light: #0B382D;
+      --mint-accent: #6EE7B7;
+      --hero-gradient: linear-gradient(145deg, #01140F 0%, #064E3B 60%, #0F766E 100%);
+      --hero-subtle-glow: rgba(16, 185, 129, 0.35);
+      --nav-active: #34D399;
+      --nav-center-bg: #10B981;
+      --nav-center-icon: #062820;
+      --border-focus: #34D399;
     }
 
-    /* Theme 2: Midnight Ocean (Sapphire & Cyan) */
+    /* Theme 2: Midnight Ocean (Xanh biển sâu Sapphire & Neon Cyan) */
     [data-color-theme="ocean"] {
-      --primary: #1E3A8A;
-      --primary-rgb: 30, 58, 138;
+      --primary: #1E40AF;
+      --primary-rgb: 30, 64, 175;
       --primary-light: #EFF6FF;
       --mint: #0284C7;
       --mint-light: #E0F2FE;
       --mint-accent: #38BDF8;
-      --hero-gradient: linear-gradient(145deg, #0C1D43 0%, #1E3A8A 60%, #2563EB 100%);
-      --hero-subtle-glow: rgba(56, 189, 248, 0.35);
+      --hero-gradient: linear-gradient(145deg, #0A1B44 0%, #1E40AF 55%, #2563EB 100%);
+      --hero-subtle-glow: rgba(56, 189, 248, 0.45);
+      --nav-active: #2563EB;
+      --nav-center-bg: #1E40AF;
+      --nav-center-icon: #FFFFFF;
+      --border-focus: #2563EB;
     }
     [data-theme="dark"][data-color-theme="ocean"] {
       --primary: #38BDF8;
       --primary-rgb: 56, 189, 248;
-      --primary-light: #0C2340;
-      --mint: #38BDF8;
-      --mint-light: #132D4E;
+      --primary-light: #0A1E3F;
+      --mint: #0284C7;
+      --mint-light: #0C2B59;
       --mint-accent: #7DD3FC;
-      --hero-gradient: linear-gradient(145deg, #071329 0%, #0F2753 60%, #193D7E 100%);
-      --hero-subtle-glow: rgba(56, 189, 248, 0.3);
+      --hero-gradient: linear-gradient(145deg, #050E24 0%, #1E3A8A 60%, #1D4ED8 100%);
+      --hero-subtle-glow: rgba(56, 189, 248, 0.4);
+      --nav-active: #38BDF8;
+      --nav-center-bg: #0284C7;
+      --nav-center-icon: #0A1E3F;
+      --border-focus: #38BDF8;
     }
 
     /* Theme 3: Royal Amethyst (Tím Hoàng gia & Cyber Violet) */
     [data-color-theme="amethyst"] {
-      --primary: #581C87;
-      --primary-rgb: 88, 28, 135;
+      --primary: #6B21A8;
+      --primary-rgb: 107, 33, 168;
       --primary-light: #FAF5FF;
-      --mint: #7C3AED;
-      --mint-light: #EDE9FE;
-      --mint-accent: #A78BFA;
-      --hero-gradient: linear-gradient(145deg, #220A38 0%, #581C87 60%, #7E22CE 100%);
-      --hero-subtle-glow: rgba(167, 139, 250, 0.35);
+      --mint: #9333EA;
+      --mint-light: #F3E8FF;
+      --mint-accent: #C084FC;
+      --hero-gradient: linear-gradient(145deg, #2A0845 0%, #6B21A8 55%, #A855F7 100%);
+      --hero-subtle-glow: rgba(168, 85, 247, 0.45);
+      --nav-active: #9333EA;
+      --nav-center-bg: #6B21A8;
+      --nav-center-icon: #FFFFFF;
+      --border-focus: #9333EA;
     }
     [data-theme="dark"][data-color-theme="amethyst"] {
-      --primary: #A78BFA;
-      --primary-rgb: 167, 139, 250;
-      --primary-light: #261042;
-      --mint: #A78BFA;
-      --mint-light: #35155D;
-      --mint-accent: #C4B5FD;
-      --hero-gradient: linear-gradient(145deg, #130620 0%, #300E4E 60%, #4D1A79 100%);
-      --hero-subtle-glow: rgba(167, 139, 250, 0.3);
+      --primary: #C084FC;
+      --primary-rgb: 192, 132, 252;
+      --primary-light: #2A0C48;
+      --mint: #A855F7;
+      --mint-light: #3B1266;
+      --mint-accent: #E9D5FF;
+      --hero-gradient: linear-gradient(145deg, #170426 0%, #581C87 60%, #7E22CE 100%);
+      --hero-subtle-glow: rgba(192, 132, 252, 0.4);
+      --nav-active: #C084FC;
+      --nav-center-bg: #A855F7;
+      --nav-center-icon: #2A0C48;
+      --border-focus: #C084FC;
     }
 
-    /* Theme 4: Sunset Bronze (Đồng Centurion & Amber) */
+    /* Theme 4: Sunset Bronze (Đồng Terracotta & Hổ Phách Vàng) */
     [data-color-theme="sunset"] {
-      --primary: #7C2D12;
-      --primary-rgb: 124, 45, 18;
+      --primary: #C2410C;
+      --primary-rgb: 194, 65, 12;
       --primary-light: #FFF7ED;
-      --mint: #D97706;
-      --mint-light: #FEF3C7;
-      --mint-accent: #FBBF24;
-      --hero-gradient: linear-gradient(145deg, #381206 0%, #7C2D12 60%, #9A3412 100%);
-      --hero-subtle-glow: rgba(251, 191, 36, 0.35);
+      --mint: #EA580C;
+      --mint-light: #FFEDD5;
+      --mint-accent: #F59E0B;
+      --hero-gradient: linear-gradient(145deg, #431407 0%, #9A3412 55%, #EA580C 100%);
+      --hero-subtle-glow: rgba(245, 158, 11, 0.45);
+      --nav-active: #EA580C;
+      --nav-center-bg: #C2410C;
+      --nav-center-icon: #FFFFFF;
+      --border-focus: #EA580C;
     }
     [data-theme="dark"][data-color-theme="sunset"] {
-      --primary: #FBBF24;
-      --primary-rgb: 251, 191, 36;
-      --primary-light: #361706;
-      --mint: #FBBF24;
-      --mint-light: #4A2209;
+      --primary: #FB923C;
+      --primary-rgb: 251, 146, 60;
+      --primary-light: #381206;
+      --mint: #F59E0B;
+      --mint-light: #521C0A;
       --mint-accent: #FDE68A;
-      --hero-gradient: linear-gradient(145deg, #1D0902 0%, #461906 60%, #6E280C 100%);
-      --hero-subtle-glow: rgba(251, 191, 36, 0.3);
+      --hero-gradient: linear-gradient(145deg, #270A03 0%, #7C2D12 60%, #C2410C 100%);
+      --hero-subtle-glow: rgba(251, 146, 60, 0.4);
+      --nav-active: #FB923C;
+      --nav-center-bg: #F59E0B;
+      --nav-center-icon: #381206;
+      --border-focus: #FB923C;
     }
 
-    /* Theme 5: Ruby Crimson (Đỏ Hồng Ngọc Quý Tộc) */
+    /* Theme 5: Ruby Crimson (Đỏ Rượu Vang & Đỏ Hồng Ngọc) */
     [data-color-theme="ruby"] {
-      --primary: #991B1B;
-      --primary-rgb: 153, 27, 27;
-      --primary-light: #FEF2F2;
+      --primary: #9F1239;
+      --primary-rgb: 159, 18, 57;
+      --primary-light: #FFF1F2;
       --mint: #E11D48;
       --mint-light: #FFE4E6;
-      --mint-accent: #FDA4AF;
-      --hero-gradient: linear-gradient(145deg, #450A0A 0%, #991B1B 60%, #BE123C 100%);
-      --hero-subtle-glow: rgba(244, 63, 94, 0.35);
+      --mint-accent: #FB7185;
+      --hero-gradient: linear-gradient(145deg, #4C0519 0%, #9F1239 55%, #E11D48 100%);
+      --hero-subtle-glow: rgba(225, 29, 72, 0.45);
+      --nav-active: #E11D48;
+      --nav-center-bg: #9F1239;
+      --nav-center-icon: #FFFFFF;
+      --border-focus: #E11D48;
     }
     [data-theme="dark"][data-color-theme="ruby"] {
       --primary: #FB7185;
       --primary-rgb: 251, 113, 133;
-      --primary-light: #3A0C16;
-      --mint: #FB7185;
-      --mint-light: #4C101F;
+      --primary-light: #3D0714;
+      --mint: #F43F5E;
+      --mint-light: #540B1D;
       --mint-accent: #FDA4AF;
-      --hero-gradient: linear-gradient(145deg, #240509 0%, #540D1E 60%, #7E152F 100%);
-      --hero-subtle-glow: rgba(251, 113, 133, 0.3);
+      --hero-gradient: linear-gradient(145deg, #2B020D 0%, #881337 60%, #BE123C 100%);
+      --hero-subtle-glow: rgba(251, 113, 133, 0.4);
+      --nav-active: #FB7185;
+      --nav-center-bg: #F43F5E;
+      --nav-center-icon: #3D0714;
+      --border-focus: #FB7185;
     }
 
-    /* Theme 6: Nordic Slate (Xám Băng Bắc Âu) */
+    /* Theme 6: Nordic Slate (Xám Đen Titan Tối Giản & Bạc Lạnh) */
     [data-color-theme="nordic"] {
       --primary: #1E293B;
       --primary-rgb: 30, 41, 59;
-      --primary-light: #F1F5F9;
+      --primary-light: #F8FAFC;
       --mint: #0EA5E9;
       --mint-light: #E0F2FE;
       --mint-accent: #38BDF8;
-      --hero-gradient: linear-gradient(145deg, #0F172A 0%, #1E293B 60%, #334155 100%);
-      --hero-subtle-glow: rgba(14, 165, 233, 0.35);
+      --hero-gradient: linear-gradient(145deg, #0B1120 0%, #1E293B 55%, #334155 100%);
+      --hero-subtle-glow: rgba(14, 165, 233, 0.4);
+      --nav-active: #0EA5E9;
+      --nav-center-bg: #1E293B;
+      --nav-center-icon: #38BDF8;
+      --border-focus: #0EA5E9;
     }
     [data-theme="dark"][data-color-theme="nordic"] {
-      --primary: #38BDF8;
-      --primary-rgb: 56, 189, 248;
-      --primary-light: #0F172A;
+      --primary: #CBD5E1;
+      --primary-rgb: 203, 213, 225;
+      --primary-light: #162032;
       --mint: #38BDF8;
       --mint-light: #1E293B;
-      --mint-accent: #7DD3FC;
-      --hero-gradient: linear-gradient(145deg, #050912 0%, #0F172A 60%, #1E293B 100%);
-      --hero-subtle-glow: rgba(56, 189, 248, 0.3);
+      --mint-accent: #E2E8F0;
+      --hero-gradient: linear-gradient(145deg, #05070B 0%, #0F172A 60%, #1E293B 100%);
+      --hero-subtle-glow: rgba(56, 189, 248, 0.35);
+      --nav-active: #38BDF8;
+      --nav-center-bg: #38BDF8;
+      --nav-center-icon: #0F172A;
+      --border-focus: #38BDF8;
     }
 
-    /* Theme 7: Rose Gold (Vàng Hồng Hoàng Gia) */
+    /* Theme 7: Rose Gold (Vàng Hồng Hoàng Gia & Champagne Rose) */
     [data-color-theme="rose"] {
-      --primary: #831843;
-      --primary-rgb: 131, 24, 67;
+      --primary: #9D174D;
+      --primary-rgb: 157, 23, 77;
       --primary-light: #FDF2F8;
       --mint: #DB2777;
       --mint-light: #FCE7F3;
       --mint-accent: #F472B6;
-      --hero-gradient: linear-gradient(145deg, #4A0422 0%, #831843 60%, #BE185D 100%);
-      --hero-subtle-glow: rgba(244, 114, 182, 0.35);
+      --hero-gradient: linear-gradient(145deg, #500724 0%, #9D174D 55%, #DB2777 100%);
+      --hero-subtle-glow: rgba(219, 39, 119, 0.45);
+      --nav-active: #DB2777;
+      --nav-center-bg: #9D174D;
+      --nav-center-icon: #FFFFFF;
+      --border-focus: #DB2777;
     }
     [data-theme="dark"][data-color-theme="rose"] {
       --primary: #F472B6;
       --primary-rgb: 244, 114, 182;
-      --primary-light: #38081B;
-      --mint: #F472B6;
-      --mint-light: #4D0C27;
+      --primary-light: #3B051D;
+      --mint: #EC4899;
+      --mint-light: #52092B;
       --mint-accent: #FBCFE8;
-      --hero-gradient: linear-gradient(145deg, #22030E 0%, #500A29 60%, #76123F 100%);
-      --hero-subtle-glow: rgba(244, 114, 182, 0.3);
+      --hero-gradient: linear-gradient(145deg, #2D0213 0%, #831843 60%, #BE185D 100%);
+      --hero-subtle-glow: rgba(244, 114, 182, 0.4);
+      --nav-active: #F472B6;
+      --nav-center-bg: #EC4899;
+      --nav-center-icon: #3B051D;
+      --border-focus: #F472B6;
     }
 
-    /* Theme 8: Cyber Night (Dạ Quang Thượng Hải) */
+    /* Theme 8: Cyber Night (Pitch OLED Black & Neon Matrix Green) */
     [data-color-theme="cyber"] {
-      --primary: #042F2E;
-      --primary-rgb: 4, 47, 46;
-      --primary-light: #F0FDFA;
-      --mint: #14B8A6;
-      --mint-light: #CCFBF1;
-      --mint-accent: #5EEAD4;
-      --hero-gradient: linear-gradient(145deg, #021C1C 0%, #042F2E 60%, #0F766E 100%);
-      --hero-subtle-glow: rgba(94, 234, 212, 0.35);
+      --primary: #059669;
+      --primary-rgb: 5, 150, 105;
+      --primary-light: #ECFDF5;
+      --mint: #10B981;
+      --mint-light: #D1FAE5;
+      --mint-accent: #00FF88;
+      --hero-gradient: linear-gradient(145deg, #000000 0%, #062820 55%, #059669 100%);
+      --hero-subtle-glow: rgba(0, 255, 136, 0.5);
+      --nav-active: #059669;
+      --nav-center-bg: #000000;
+      --nav-center-icon: #00FF88;
+      --border-focus: #00FF88;
     }
     [data-theme="dark"][data-color-theme="cyber"] {
-      --primary: #2DD4BF;
-      --primary-rgb: 45, 212, 191;
-      --primary-light: #042221;
-      --mint: #2DD4BF;
-      --mint-light: #0A3735;
-      --mint-accent: #99F6E4;
-      --hero-gradient: linear-gradient(145deg, #010F0F 0%, #032524 60%, #064E4B 100%);
-      --hero-subtle-glow: rgba(45, 212, 191, 0.3);
+      --primary: #00FF88;
+      --primary-rgb: 0, 255, 136;
+      --primary-light: #022016;
+      --mint: #10B981;
+      --mint-light: #043826;
+      --mint-accent: #6EE7B7;
+      --hero-gradient: linear-gradient(145deg, #000000 0%, #032018 60%, #064E3B 100%);
+      --hero-subtle-glow: rgba(0, 255, 136, 0.55);
+      --nav-active: #00FF88;
+      --nav-center-bg: #00FF88;
+      --nav-center-icon: #000000;
+      --border-focus: #00FF88;
     }
 
     [data-theme="dark"] {
@@ -1473,15 +1537,16 @@
       left: 0;
       right: 0;
       bottom: 0;
+      height: 100%;
+      height: 100dvh;
       background: var(--bg-body);
-      z-index: 100;
+      z-index: 1000;
       display: none;
       flex-direction: column;
       width: 100% !important;
       max-width: 440px !important;
       margin: 0 auto;
       overflow: hidden !important;
-      overflow-x: hidden !important;
       box-sizing: border-box !important;
     }
 
@@ -1535,37 +1600,41 @@
     }
 
     .wizard-body {
-      flex: 1;
-      overflow-y: auto !important;
+      flex: 1 1 0% !important;
+      height: 100% !important;
+      min-height: 0 !important;
+      overflow-y: scroll !important;
       overflow-x: hidden !important;
-      padding: 14px 16px calc(var(--safe-bottom) + 16px);
-      display: flex;
-      flex-direction: column;
+      -webkit-overflow-scrolling: touch !important;
+      padding: 14px 16px calc(var(--safe-bottom) + 90px) !important;
+      display: block !important;
       position: relative;
       width: 100% !important;
       max-width: 100% !important;
       box-sizing: border-box !important;
-      touch-action: pan-y !important;
-      -webkit-overflow-scrolling: touch;
     }
 
     .wizard-body.step1-body {
       padding: 0 !important;
       overflow: hidden !important;
+      height: 100% !important;
+      display: block !important;
     }
 
     .wizard-step-view {
       display: none;
-      flex-direction: column;
-      flex: 1;
       width: 100% !important;
       max-width: 100% !important;
-      overflow-x: hidden !important;
       box-sizing: border-box !important;
+      padding-bottom: 50px;
     }
 
     .wizard-step-view.active {
-      display: flex;
+      display: block !important;
+    }
+
+    .wizard-step-view > * {
+      flex-shrink: 0 !important;
     }
 
     /* STEP 1: IMMERSIVE FULL-PAGE CAMERA SCANNER */
@@ -2073,9 +2142,12 @@
     .wizard-btn-row {
       display: flex;
       gap: 12px;
-      margin-top: auto;
-      padding-top: 16px;
+      margin-top: 18px;
+      margin-bottom: 24px;
+      padding-top: 10px;
       align-items: center;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .btn-wizard-back {
@@ -2517,19 +2589,19 @@
     :root {
       --nav-bg: #FFFFFF;
       --nav-text: #8C9BA8;
-      --nav-active: #182220;
-      --nav-center-bg: #D1D8DF;
-      --nav-center-icon: #687684;
+      --nav-active: var(--primary);
+      --nav-center-bg: var(--primary);
+      --nav-center-icon: #FFFFFF;
       --chart-bar-color: #FFFFFF;
     }
 
     [data-theme="dark"] {
-      --nav-bg: #1A2624;
+      --nav-bg: #141F1D;
       --nav-text: #7D8F8B;
-      --nav-active: #FFFFFF;
-      --nav-center-bg: #2C3C38;
-      --nav-center-icon: #A5B8B4;
-      --chart-bar-color: #1A2624;
+      --nav-active: var(--mint);
+      --nav-center-bg: var(--mint);
+      --nav-center-icon: #0B1211;
+      --chart-bar-color: #141F1D;
     }
 
     .floating-nav-bar {
@@ -2924,19 +2996,39 @@
       border-color: var(--border-focus);
     }
 
-    /* iOS Safari & WebKit Date Input & Select Resets */
+    /* iOS Safari & WebKit Date Input & Select Resets (Prevents Vietnamese long-date shadow DOM overflow) */
+    input[type="date"],
     input[type="date"].form-input,
     select.form-input {
       min-width: 0 !important;
+      width: 100% !important;
       max-width: 100% !important;
       box-sizing: border-box !important;
       -webkit-appearance: none;
       appearance: none;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
     input[type="date"]::-webkit-date-and-time-value {
       text-align: left;
       min-height: 1.2em;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+      max-width: 100% !important;
+    }
+
+    input[type="date"]::-webkit-datetime-edit,
+    input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+      padding: 0 !important;
+      max-width: 100% !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
     }
 
     /* TOGGLE SWITCH */
@@ -4238,10 +4330,11 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 
-    /* SWIPE GESTURE WRAPPERS & ACTIONS FOR BUDGETS, CATEGORIES & RECURRING */
+    /* SWIPE GESTURE WRAPPERS & ACTIONS FOR BUDGETS, CATEGORIES, RECURRING & SAVINGS */
     .budget-swipe-wrapper,
     .category-swipe-wrapper,
-    .recurring-swipe-wrapper {
+    .recurring-swipe-wrapper,
+    .savings-swipe-wrapper {
       position: relative;
       border-radius: var(--radius-md);
       margin-bottom: 8px;
@@ -4253,7 +4346,8 @@
 
     .budget-swipe-actions,
     .category-swipe-actions,
-    .recurring-swipe-actions {
+    .recurring-swipe-actions,
+    .savings-swipe-actions {
       position: absolute;
       top: 0;
       bottom: 0;
@@ -4270,13 +4364,15 @@
 
     .budget-swipe-wrapper.swiped-open .budget-swipe-actions,
     .category-swipe-wrapper.swiped-open .category-swipe-actions,
-    .recurring-swipe-wrapper.swiped-open .recurring-swipe-actions {
+    .recurring-swipe-wrapper.swiped-open .recurring-swipe-actions,
+    .savings-swipe-wrapper.swiped-open .savings-swipe-actions {
       pointer-events: auto;
     }
 
     .budget-action-btn,
     .category-action-btn,
-    .recurring-action-btn {
+    .recurring-action-btn,
+    .savings-action-btn {
       width: 44px;
       height: 44px;
       border-radius: 50%;
@@ -4300,25 +4396,29 @@
 
     .budget-action-btn.edit-btn,
     .category-action-btn.edit-btn,
-    .recurring-action-btn.edit-btn {
+    .recurring-action-btn.edit-btn,
+    .savings-action-btn.edit-btn {
       background: #2563EB;
     }
 
     .budget-action-btn.delete-btn,
     .category-action-btn.delete-btn,
-    .recurring-action-btn.delete-btn {
+    .recurring-action-btn.delete-btn,
+    .savings-action-btn.delete-btn {
       background: var(--expense);
     }
 
     .budget-action-btn:active,
     .category-action-btn:active,
-    .recurring-action-btn:active {
+    .recurring-action-btn:active,
+    .savings-action-btn:active {
       transform: scale(0.9) !important;
     }
 
     .budget-swipe-wrapper.dragging .budget-action-btn,
     .category-swipe-wrapper.dragging .category-action-btn,
-    .recurring-swipe-wrapper.dragging .recurring-action-btn {
+    .recurring-swipe-wrapper.dragging .recurring-action-btn,
+    .savings-swipe-wrapper.dragging .savings-action-btn {
       transition: none !important;
     }
 
@@ -4339,12 +4439,32 @@
       transition: transform 0.25s var(--ease-spring), background-color 0.15s ease;
       cursor: pointer;
     }
+    .screen-savings-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      box-shadow: var(--shadow-sm);
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      justify-content: flex-start !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      position: relative;
+      z-index: 2;
+      will-change: transform;
+      transition: transform 0.25s var(--ease-spring), background-color 0.15s ease;
+      cursor: pointer;
+    }
     .screen-category-card:hover,
-    .screen-recurring-card:hover {
+    .screen-recurring-card:hover,
+    .screen-savings-card:hover {
       background: var(--bg-card-hover);
     }
     .screen-category-card.dragging,
-    .screen-recurring-card.dragging {
+    .screen-recurring-card.dragging,
+    .screen-savings-card.dragging {
       transition: none !important;
     }
 
@@ -4876,12 +4996,13 @@
       </div>
       <h2 class="passcode-title" id="passcodeScreenTitle">Nhập mật mã</h2>
       <p class="passcode-desc" id="passcodeScreenDesc">Bảo mật tài chính cá nhân</p>
-      <div class="passcode-dots-row" id="passcodeDotsRow">
+      <div class="passcode-dots-row" id="passcodeDots">
         <div class="passcode-dot" id="pdot-0"></div>
         <div class="passcode-dot" id="pdot-1"></div>
         <div class="passcode-dot" id="pdot-2"></div>
         <div class="passcode-dot" id="pdot-3"></div>
       </div>
+      <div id="passcodeErrorMessage" style="color: var(--expense); font-size: 0.76rem; font-weight: 700; min-height: 20px; margin-top: 4px;"></div>
     </div>
 
     <!-- 3x4 iOS Numeric Keypad -->
@@ -4922,14 +5043,14 @@
         <span class="passcode-key-num">9</span>
         <span class="passcode-key-sub">WXYZ</span>
       </button>
-      <button type="button" class="passcode-key" id="passcodeCancelBtn" style="border: none; background: transparent; box-shadow: none;">
+      <button type="button" class="passcode-key" id="passcodeCancelBtn" data-key="cancel" style="border: none; background: transparent; box-shadow: none;">
         <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary);">Hủy</span>
       </button>
       <button type="button" class="passcode-key" data-key="0">
         <span class="passcode-key-num">0</span>
         <span class="passcode-key-sub">+</span>
       </button>
-      <button type="button" class="passcode-key" id="passcodeDeleteBtn" style="border: none; background: transparent; box-shadow: none;">
+      <button type="button" class="passcode-key" id="passcodeDeleteBtn" data-key="back" style="border: none; background: transparent; box-shadow: none;">
         <i data-lucide="delete" style="width: 24px; height: 24px; color: var(--text-secondary);"></i>
       </button>
     </div>
@@ -6007,42 +6128,46 @@
             </div>
           </div>
 
-          <!-- Chất lượng ảnh giao dịch (Nén ảnh <50KB, <100KB, <200KB) -->
+          <!-- Chất lượng ảnh giao dịch (Thanh trượt ngang: Thấp <50KB, TB <100KB, Cao <200KB) -->
           <div style="padding: 12px 14px; border-bottom: 1px solid var(--border-subtle);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
               <div>
                 <div style="font-size: 0.84rem; font-weight: 700;">Chất lượng ảnh giao dịch</div>
-                <div style="font-size: 0.65rem; color: var(--text-secondary);">Tối ưu dung lượng hóa đơn lưu trữ</div>
+                <div style="font-size: 0.65rem; color: var(--text-secondary);">Thanh trượt nén ảnh hóa đơn tối ưu bộ nhớ</div>
               </div>
-              <span id="imageQualityBadge" style="font-size: 0.68rem; font-weight: 800; color: var(--mint); background: var(--bg-card-subtle); padding: 2px 8px; border-radius: 99px; border: 1px solid var(--border-card);">&lt; 200KB</span>
+              <span id="imageQualityBadge" style="font-size: 0.7rem; font-weight: 800; color: var(--mint); background: var(--bg-card-subtle); padding: 3px 10px; border-radius: 99px; border: 1px solid var(--border-card);">Cao (&lt;200KB)</span>
             </div>
-            <div style="display: flex; gap: 6px;">
-              <div class="quality-chip" id="qualityChipLow" onclick="setImageQualitySetting('low')">
-                Thấp (&lt;50KB)
-              </div>
-              <div class="quality-chip" id="qualityChipMedium" onclick="setImageQualitySetting('medium')">
-                TB (&lt;100KB)
-              </div>
-              <div class="quality-chip active" id="qualityChipHigh" onclick="setImageQualitySetting('high')">
-                Cao (&lt;200KB)
+            <div style="padding: 4px 6px;">
+              <input type="range" id="imageQualitySlider" min="1" max="3" step="1" value="3" oninput="onImageQualitySliderInput(this.value)" style="width: 100%; height: 6px; accent-color: var(--mint); cursor: pointer;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.68rem; font-weight: 700; color: var(--text-secondary); margin-top: 6px;">
+                <span onclick="setImageQualitySetting('low')" style="cursor: pointer;">Thấp (&lt;50KB)</span>
+                <span onclick="setImageQualitySetting('medium')" style="cursor: pointer;">TB (&lt;100KB)</span>
+                <span onclick="setImageQualitySetting('high')" style="cursor: pointer;">Cao (&lt;200KB)</span>
               </div>
             </div>
           </div>
 
           <!-- Mật khẩu số (PIN iPhone) -->
-          <div style="padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle);">
-            <div>
-              <div style="font-size: 0.84rem; font-weight: 700;">Mật khẩu số (PIN iPhone)</div>
-              <div style="font-size: 0.65rem; color: var(--text-secondary);" id="pinLockStatusText">Khóa bảo mật khi vào ứng dụng</div>
+          <div style="padding: 12px 14px; border-bottom: 1px solid var(--border-subtle);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div style="font-size: 0.84rem; font-weight: 700;">Mật khẩu số (PIN iPhone)</div>
+                <div style="font-size: 0.65rem; color: var(--text-secondary);" id="pinLockStatusText">Chưa bật mã PIN bảo vệ</div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <button type="button" id="changePinBtn" onclick="openPasscodeSettingsModal()" style="display: none; padding: 4px 10px; border-radius: 99px; background: var(--bg-card-subtle); border: 1px solid var(--border-card); font-size: 0.7rem; font-weight: 700; color: var(--primary); cursor: pointer;">
+                  Đổi PIN
+                </button>
+                <label class="switch">
+                  <input type="checkbox" id="pinLockToggleSwitch" onchange="togglePinLockSetting(this.checked)">
+                  <span class="slider"></span>
+                </label>
+              </div>
             </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <button type="button" id="changePinBtn" onclick="openSetPasscodeModal()" style="display: none; padding: 4px 10px; border-radius: 99px; background: var(--bg-card-subtle); border: 1px solid var(--border-card); font-size: 0.7rem; font-weight: 700; color: var(--text-primary); cursor: pointer;">
-                Đổi PIN
+            <div id="pinLockActiveActions" style="display: none; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border-subtle);">
+              <button type="button" onclick="lockAppNow()" style="width: 100%; height: 36px; border-radius: var(--radius-full); background: var(--primary-light); color: var(--primary); border: 1px solid var(--border-card); font-size: 0.75rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <i data-lucide="lock" style="width: 14px; height: 14px;"></i> Khóa màn hình ngay để nhập PIN
               </button>
-              <label class="switch">
-                <input type="checkbox" id="pinLockToggleSwitch" onchange="togglePinLockSetting(this.checked)">
-                <span class="slider"></span>
-              </label>
             </div>
           </div>
 
@@ -6571,19 +6696,14 @@
 
         <!-- Hero Journal Card -->
         <div class="hero-balance-card" style="background: linear-gradient(145deg, #3B0764 0%, #6B21A8 60%, #9333EA 100%); margin-bottom: 12px;">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-            <div>
-              <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.8);">Tâm lý & Phản tư</div>
-              <div style="font-size: 1.55rem; font-weight: 800; margin-top: 2px;">Nhật ký chi tiêu</div>
-            </div>
-            <button type="button" onclick="openNewJournalModal()" style="display: inline-flex; align-items: center; gap: 5px; padding: 6px 14px; border-radius: 99px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 0.72rem; font-weight: 700; cursor: pointer; backdrop-filter: blur(8px);">
-              <i data-lucide="plus" style="width: 13px; height: 13px;"></i> Viết nhật ký
-            </button>
+          <div>
+            <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.8);">Tâm lý & Phản tư</div>
+            <div style="font-size: 1.55rem; font-weight: 800; margin-top: 2px;">Nhật ký chi tiêu</div>
           </div>
           <div style="display: flex; gap: 12px; margin-top: 12px; font-size: 0.72rem; color: rgba(255,255,255,0.85);">
-            <div>Tổng ghi chép: <b style="color: #fff;" id="journalTotalEntriesCount">0</b></div>
+            <div>Tổng ghi chép: <b style="color: #fff;" id="journalTotalEntriesCount">0 bài viết</b></div>
             <div>•</div>
-            <div>Tự kiểm soát: <b style="color: #FDE047;" id="journalAvgRatingScore">5.0 ★</b></div>
+            <div>Tự kiểm soát: <b style="color: #FDE047;" id="journalAvgRatingScore">★ 5.0 / 5</b></div>
           </div>
         </div>
 
@@ -6620,14 +6740,9 @@
 
         <!-- Hero Savings Card -->
         <div class="hero-balance-card" style="background: linear-gradient(145deg, #500724 0%, #831843 60%, #BE185D 100%); margin-bottom: 12px;">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-            <div>
-              <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.8);">Tổng quỹ đã tích lũy</div>
-              <div id="savingsHeroTotalAccumulated" style="font-size: 1.65rem; font-weight: 800; margin-top: 2px;">0 ₫</div>
-            </div>
-            <button type="button" onclick="openCreateSavingsGoalModal()" style="display: inline-flex; align-items: center; gap: 5px; padding: 6px 14px; border-radius: 99px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 0.72rem; font-weight: 700; cursor: pointer; backdrop-filter: blur(8px);">
-              <i data-lucide="plus" style="width: 13px; height: 13px;"></i> Mục tiêu mới
-            </button>
+          <div>
+            <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(255,255,255,0.8);">Tổng quỹ đã tích lũy</div>
+            <div id="savingsHeroTotalAccumulated" style="font-size: 1.65rem; font-weight: 800; margin-top: 2px;">0 ₫</div>
           </div>
 
           <!-- Overall Savings Progress -->
@@ -6794,22 +6909,14 @@
               Vui lòng cấp quyền mở camera cho trình duyệt để quét hóa đơn, hoặc tải ảnh từ máy.
             </p>
             <div style="display: flex; gap: 8px; flex-direction: column; align-items: center; width: 100%; max-width: 260px;">
-              <button type="button" id="fallbackCaptureBtn" style="width: 100%; padding: 10px 16px; border-radius: 99px; background: #2DA87B; color: #FFFFFF; font-size: 0.78rem; font-weight: 800; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 12px rgba(45, 168, 123, 0.35);">
-                <i data-lucide="camera" style="width: 15px; height: 15px;"></i> Chụp ảnh trực tiếp
+              <button type="button" id="fallbackCaptureBtn" style="width: 100%; padding: 11px 16px; border-radius: 99px; background: #2DA87B; color: #FFFFFF; font-size: 0.8rem; font-weight: 800; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 14px rgba(45, 168, 123, 0.4);">
+                <i data-lucide="camera" style="width: 16px; height: 16px;"></i> Chụp ảnh trực tiếp
               </button>
-              <div style="display: flex; gap: 8px; width: 100%;">
-                <button type="button" id="retryCameraBtn" style="flex: 1; padding: 8px 12px; border-radius: 99px; background: rgba(255,255,255,0.14); color: #FFFFFF; font-size: 0.74rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.22); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
-                  <i data-lucide="refresh-cw" style="width: 13px; height: 13px;"></i> Thử lại
-                </button>
-                <button type="button" id="fallbackGalleryBtn" style="flex: 1; padding: 8px 12px; border-radius: 99px; background: rgba(255,255,255,0.14); color: #FFFFFF; font-size: 0.74rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.22); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
-                  <i data-lucide="image" style="width: 13px; height: 13px;"></i> Thư viện
-                </button>
-              </div>
+              <button type="button" id="retryCameraBtn" style="width: 100%; padding: 9px 12px; border-radius: 99px; background: rgba(255,255,255,0.14); color: #FFFFFF; font-size: 0.74rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.22); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                <i data-lucide="refresh-cw" style="width: 13px; height: 13px;"></i> Thử lại camera
+              </button>
               <button type="button" id="switchLocalhostBtn" style="width: 100%; padding: 7px 12px; border-radius: 99px; background: rgba(56, 189, 248, 0.12); color: #38BDF8; font-size: 0.72rem; font-weight: 700; border: 1px solid rgba(56, 189, 248, 0.25); cursor: pointer; display: none; align-items: center; justify-content: center; gap: 4px;">
                 <i data-lucide="external-link" style="width: 12px; height: 12px;"></i> Mở qua localhost để hỏi lại quyền
-              </button>
-              <button type="button" id="fallbackSkipBtn" style="width: 100%; padding: 8px 16px; border-radius: 99px; background: transparent; color: rgba(255,255,255,0.85); font-size: 0.74rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.15); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
-                Bỏ qua bước này &rarr;
               </button>
             </div>
           </div>
@@ -6982,30 +7089,30 @@
             <label class="form-label" style="margin-bottom: 0; font-size: 0.76rem;">Danh mục (<span id="wizardCatTypeLabel">Chi tiêu</span>)</label>
             <span style="font-size: 0.72rem; font-weight: 700; color: var(--mint); cursor: pointer;" id="wizardAddCatBtn">+ Thêm mới</span>
           </div>
-          <div id="wizardCategoryGrid" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; max-height: 120px; overflow-y: auto; overflow-x: hidden; padding: 1px; width: 100%; max-width: 100%; box-sizing: border-box;"></div>
+          <div id="wizardCategoryGrid" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; padding: 1px; width: 100%; max-width: 100%; box-sizing: border-box;"></div>
         </div>
 
         <!-- 2-column Compact Meta Row (Ví & Ngày) -->
-        <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; margin-bottom: 8px; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
-          <div class="form-group" style="margin-bottom: 0; min-width: 0; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
-            <label class="form-label" style="font-size: 0.72rem; margin-bottom: 3px;">Ví tài khoản</label>
-            <select class="form-input" id="wizardWalletSelect" style="height: 38px; font-size: 0.75rem; padding: 0 8px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"></select>
+        <div style="display: flex; gap: 8px; width: 100%; box-sizing: border-box; margin-bottom: 10px; clear: both;">
+          <div style="flex: 1 1 0; min-width: 0; box-sizing: border-box;">
+            <label class="form-label" style="font-size: 0.72rem; margin-bottom: 3px; display: block;">Ví tài khoản</label>
+            <select class="form-input" id="wizardWalletSelect" style="height: 40px; min-height: 40px; line-height: 40px; font-size: 0.76rem; padding: 0 8px; width: 100%; display: block; box-sizing: border-box; text-overflow: ellipsis; white-space: nowrap;"></select>
           </div>
-          <div class="form-group" style="margin-bottom: 0; min-width: 0; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
-            <label class="form-label" style="font-size: 0.72rem; margin-bottom: 3px;">Ngày giao dịch</label>
-            <input type="date" class="form-input" id="wizardDateInput" style="height: 38px; font-size: 0.75rem; padding: 0 6px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box;">
+          <div style="flex: 1 1 0; min-width: 0; box-sizing: border-box;">
+            <label class="form-label" style="font-size: 0.72rem; margin-bottom: 3px; display: block;">Ngày giao dịch</label>
+            <input type="date" class="form-input" id="wizardDateInput" style="height: 40px; min-height: 40px; line-height: 40px; font-size: 0.75rem; padding: 0 8px; width: 100%; display: block; box-sizing: border-box; -webkit-appearance: none; appearance: none;">
           </div>
         </div>
 
         <!-- Location GPS Detection Row -->
-        <div style="margin-bottom: 8px; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
-          <div style="position: relative; display: flex; align-items: center; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
-            <i data-lucide="map-pin" style="position: absolute; left: 10px; width: 14px; height: 14px; color: var(--mint); pointer-events: none; z-index: 2;"></i>
-            <input type="text" class="form-input" id="wizardLocationInput" placeholder="Vị trí (Tên đường, Phường)" style="height: 38px; padding-left: 30px; padding-right: 68px; font-size: 0.76rem; width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
-            <button type="button" id="detectLocationBtn" style="position: absolute; right: 5px; height: 28px; padding: 0 8px; border-radius: var(--radius-full); background: var(--primary-light); color: var(--primary); border: 1px solid var(--border-card); font-size: 0.68rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 3px; z-index: 3; flex-shrink: 0; white-space: nowrap;">
-              <i data-lucide="crosshair" style="width: 10px; height: 10px;"></i> GPS
+        <div style="margin-bottom: 10px; width: 100%; box-sizing: border-box; clear: both;">
+          <div style="position: relative; display: flex; align-items: center; width: 100%; box-sizing: border-box;">
+            <i data-lucide="map-pin" style="position: absolute; left: 10px; width: 15px; height: 15px; color: var(--mint); pointer-events: none; z-index: 2;"></i>
+            <input type="text" class="form-input" id="wizardLocationInput" placeholder="Vị trí (Tên đường, Phường)" style="height: 40px; min-height: 40px; padding-left: 32px; padding-right: 70px; font-size: 0.78rem; width: 100%; display: block; box-sizing: border-box; text-overflow: ellipsis; white-space: nowrap;">
+            <button type="button" id="detectLocationBtn" style="position: absolute; right: 5px; height: 30px; padding: 0 9px; border-radius: var(--radius-full); background: var(--primary-light); color: var(--primary); border: 1px solid var(--border-card); font-size: 0.68rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 3px; z-index: 3; flex-shrink: 0; white-space: nowrap;">
+              <i data-lucide="crosshair" style="width: 11px; height: 11px;"></i> GPS
             </button>
-            <button type="button" id="clearLocationBtn" style="display: none; position: absolute; right: 60px; background: transparent; border: none; cursor: pointer; color: var(--text-secondary); padding: 4px; z-index: 3;" title="Xóa">
+            <button type="button" id="clearLocationBtn" style="display: none; position: absolute; right: 62px; background: transparent; border: none; cursor: pointer; color: var(--text-secondary); padding: 4px; z-index: 3;" title="Xóa">
               <i data-lucide="x" style="width: 12px; height: 12px;"></i>
             </button>
           </div>
@@ -7015,12 +7122,12 @@
         </div>
 
         <!-- Note Input with Quick Note Presets -->
-        <div class="form-group" style="margin-bottom: 6px; width: 100%; max-width: 100%; box-sizing: border-box;">
-          <input type="text" class="form-input" id="wizardNoteInput" placeholder="Ghi chú (Ví dụ: Ăn trưa, Đi siêu thị...)" style="height: 38px; font-size: 0.78rem; padding: 0 10px; width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box;">
+        <div class="form-group" style="margin-bottom: 6px; width: 100%; box-sizing: border-box; clear: both;">
+          <input type="text" class="form-input" id="wizardNoteInput" placeholder="Ghi chú (Ví dụ: Ăn trưa, Đi siêu thị...)" style="height: 40px; min-height: 40px; font-size: 0.78rem; padding: 0 12px; width: 100%; box-sizing: border-box;">
         </div>
 
         <!-- Quick Note Preset Chips -->
-        <div class="quick-note-chips-bar" id="wizardQuickNoteChips" style="display: flex; gap: 5px; overflow-x: auto; padding: 2px 0 6px; margin-bottom: 8px; scrollbar-width: none; width: 100%; max-width: 100%; box-sizing: border-box; -webkit-overflow-scrolling: touch;">
+        <div class="quick-note-chips-bar" id="wizardQuickNoteChips" style="display: flex; gap: 5px; overflow-x: auto; padding: 2px 0 6px; margin-bottom: 8px; scrollbar-width: none; width: 100%; box-sizing: border-box; -webkit-overflow-scrolling: touch; clear: both;">
           <button type="button" class="quick-note-chip" onclick="setWizardQuickNote('Ăn trưa')">Ăn trưa</button>
           <button type="button" class="quick-note-chip" onclick="setWizardQuickNote('Cà phê')">Cà phê</button>
           <button type="button" class="quick-note-chip" onclick="setWizardQuickNote('Ăn tối')">Ăn tối</button>
@@ -7033,7 +7140,7 @@
         </div>
 
         <!-- Work Finance Toggle + Mini Receipt Row -->
-        <div style="display: flex; gap: 8px; margin-bottom: 12px; width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden;">
+        <div style="display: flex; gap: 8px; margin-bottom: 14px; width: 100%; box-sizing: border-box; clear: both;">
           <!-- Work Toggle -->
           <div style="flex: 1; min-width: 0; background: var(--work-bg); border-radius: var(--radius-sm); padding: 6px 10px; display: flex; align-items: center; justify-content: space-between; box-sizing: border-box;">
             <div style="display: flex; align-items: center; gap: 6px; min-width: 0; overflow: hidden;">
@@ -7058,11 +7165,11 @@
           </div>
         </div>
 
-        <div class="wizard-btn-row" style="margin-top: auto; padding-top: 10px;">
-          <button type="button" id="step3BackBtn" class="btn-wizard-back" style="height: 44px;">
+        <div class="wizard-btn-row" style="margin-top: 16px; margin-bottom: 28px; padding-top: 8px; clear: both;">
+          <button type="button" id="step3BackBtn" class="btn-wizard-back" style="height: 46px;">
             <i data-lucide="arrow-left" style="width: 15px; height: 15px;"></i> Phân loại
           </button>
-          <button type="button" id="step3NextBtn" class="btn-wizard-next" style="height: 44px;">
+          <button type="button" id="step3NextBtn" class="btn-wizard-next" style="height: 46px;">
             Xem xác nhận <i data-lucide="arrow-right" style="width: 15px; height: 15px;"></i>
           </button>
         </div>
@@ -8171,6 +8278,34 @@
             <textarea class="form-input" id="journalEntryContent" rows="3" placeholder="Hôm nay bạn thấy thế nào về các khoản chi tiêu? Có khoản nào cảm thấy lãng phí hoặc đáng tự hào không?..." style="height: auto; padding: 10px 12px; resize: vertical;"></textarea>
           </div>
 
+          <!-- Ảnh đính kèm (Camera / Thư viện) -->
+          <div class="form-group">
+            <label class="form-label">Ảnh hóa đơn / Khoảnh khắc kỷ luật</label>
+            <div style="display: flex; gap: 8px;">
+              <button type="button" class="btn-wizard-back" onclick="document.getElementById('journalCameraInput').click()" style="flex: 1; height: 38px; font-size: 0.76rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <i data-lucide="camera" style="width: 15px; height: 15px; color: #9333EA;"></i> Chụp ảnh
+              </button>
+              <button type="button" class="btn-wizard-back" onclick="document.getElementById('journalGalleryInput').click()" style="flex: 1; height: 38px; font-size: 0.76rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <i data-lucide="image" style="width: 15px; height: 15px; color: var(--primary);"></i> Thư viện
+              </button>
+            </div>
+            <input type="file" id="journalCameraInput" accept="image/*" capture="environment" style="display: none;" onchange="handleJournalPhotoChange(event.target.files[0])">
+            <input type="file" id="journalGalleryInput" accept="image/*" style="display: none;" onchange="handleJournalPhotoChange(event.target.files[0])">
+            
+            <!-- Thumbnail preview if image attached -->
+            <div id="journalPhotoPreviewBox" style="display: none; align-items: center; gap: 10px; margin-top: 8px; padding: 8px 10px; background: var(--bg-card-subtle); border-radius: var(--radius-sm); border: 1px solid var(--border-card);">
+              <img id="journalPhotoPreviewImg" src="" style="width: 44px; height: 44px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-card);" alt="Nhật ký">
+              <div style="flex: 1; min-width: 0;">
+                <div style="font-size: 0.76rem; font-weight: 700; color: var(--text-primary);">Đã đính kèm ảnh</div>
+                <div id="journalPhotoSizeText" style="font-size: 0.68rem; color: var(--text-secondary);">Ảnh đã tối ưu hóa</div>
+              </div>
+              <button type="button" class="btn-icon-subtle" onclick="removeJournalPhoto()" style="color: var(--expense); width: 32px; height: 32px;" title="Xóa ảnh">
+                <i data-lucide="x" style="width: 16px; height: 16px;"></i>
+              </button>
+            </div>
+            <input type="hidden" id="journalEntryPhoto" value="">
+          </div>
+
           <!-- Thẻ Hashtag -->
           <div class="form-group">
             <label class="form-label">Thẻ cảm xúc / Mục tiêu</label>
@@ -8286,22 +8421,39 @@
     </div>
   </div>
 
-  <!-- MODAL: THIẾT LẬP / ĐỔI MẬT KHẨU SỐ (PIN) -->
+  <!-- MODAL: THIẾT LẬP / ĐỔI MẬT KHẨU SỐ (PIN IPHONE) -->
   <div class="modal-overlay" id="passcodeSettingsModal" style="align-items: center;">
-    <div class="editorial-card" style="width: 90%; max-width: 360px; padding: 22px; text-align: center;">
-      <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;">
+    <div class="editorial-card" style="width: 90%; max-width: 340px; padding: 22px 18px; text-align: center;">
+      <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
         <i data-lucide="key-round" style="width: 24px; height: 24px;"></i>
       </div>
-      <h3 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 4px;" id="passcodeSettingModalTitle">Thiết lập mã PIN</h3>
-      <p style="font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 16px;" id="passcodeSettingModalDesc">Nhập 4 chữ số để làm mật khẩu mở ứng dụng</p>
+      <h3 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 3px;" id="passcodeSetupTitle">Thiết lập mã PIN</h3>
+      <p style="font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 12px;" id="passcodeSetupDesc">Nhập 4 chữ số mã PIN mới</p>
 
-      <div class="form-group" style="margin-bottom: 16px;">
-        <input type="password" inputmode="numeric" maxlength="4" class="form-input" id="newPasscodeInput" placeholder="••••" style="font-size: 1.8rem; font-weight: 800; text-align: center; letter-spacing: 0.3em; width: 140px; margin: 0 auto;">
+      <!-- 4 PIN setup indicator dots -->
+      <div class="passcode-dots-row" id="passcodeSetupDots" style="justify-content: center; margin: 12px 0 16px; gap: 14px;">
+        <div class="passcode-dot"></div>
+        <div class="passcode-dot"></div>
+        <div class="passcode-dot"></div>
+        <div class="passcode-dot"></div>
       </div>
 
-      <div style="display: flex; gap: 8px;">
-        <button type="button" onclick="closePasscodeSettingsModal()" style="flex: 1; height: 40px; border-radius: var(--radius-full); background: var(--bg-card-subtle); border: 1px solid var(--border-card); font-weight: 700; font-size: 0.8rem; cursor: pointer;">Hủy</button>
-        <button type="button" onclick="submitNewPasscode()" style="flex: 1; height: 40px; border-radius: var(--radius-full); background: var(--primary); color: #fff; border: none; font-weight: 700; font-size: 0.8rem; cursor: pointer;">Lưu PIN</button>
+      <div id="passcodeSetupErrorMsg" style="min-height: 18px; font-size: 0.72rem; font-weight: 700; color: var(--expense); margin-bottom: 8px;"></div>
+
+      <!-- 3x4 mini keypad for setup -->
+      <div style="display: grid; grid-template-columns: repeat(3, 58px); gap: 12px; justify-content: center; margin-bottom: 8px;" id="passcodeSetupKeypad">
+        <button type="button" class="passcode-key" style="width: 58px; height: 58px;" onclick="onPasscodeSetupKey('1')"><span class="passcode-key-num" style="font-size: 1.35rem;">1</span></button>
+        <button type="button" class="passcode-key" style="width: 58px; height: 58px;" onclick="onPasscodeSetupKey('2')"><span class="passcode-key-num" style="font-size: 1.35rem;">2</span></button>
+        <button type="button" class="passcode-key" style="width: 58px; height: 58px;" onclick="onPasscodeSetupKey('3')"><span class="passcode-key-num" style="font-size: 1.35rem;">3</span></button>
+        <button type="button" class="passcode-key" style="width: 58px; height: 58px;" onclick="onPasscodeSetupKey('4')"><span class="passcode-key-num" style="font-size: 1.35rem;">4</span></button>
+        <button type="button" class="passcode-key" style="width: 58px; height: 58px;" onclick="onPasscodeSetupKey('5')"><span class="passcode-key-num" style="font-size: 1.35rem;">5</span></button>
+        <button type="button" class="passcode-key" style="width: 58px; height: 58px;" onclick="onPasscodeSetupKey('6')"><span class="passcode-key-num" style="font-size: 1.35rem;">6</span></button>
+        <button type="button" class="passcode-key" style="width: 58px; height: 58px;" onclick="onPasscodeSetupKey('7')"><span class="passcode-key-num" style="font-size: 1.35rem;">7</span></button>
+        <button type="button" class="passcode-key" style="width: 58px; height: 58px;" onclick="onPasscodeSetupKey('8')"><span class="passcode-key-num" style="font-size: 1.35rem;">8</span></button>
+        <button type="button" class="passcode-key" style="width: 58px; height: 58px;" onclick="onPasscodeSetupKey('9')"><span class="passcode-key-num" style="font-size: 1.35rem;">9</span></button>
+        <button type="button" class="passcode-key" style="width: 58px; height: 58px; border: none; background: transparent; box-shadow: none;" onclick="closePasscodeSettingsModal()"><span style="font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);">Hủy</span></button>
+        <button type="button" class="passcode-key" style="width: 58px; height: 58px;" onclick="onPasscodeSetupKey('0')"><span class="passcode-key-num" style="font-size: 1.35rem;">0</span></button>
+        <button type="button" class="passcode-key" style="width: 58px; height: 58px; border: none; background: transparent; box-shadow: none;" onclick="onPasscodeSetupKey('back')"><i data-lucide="delete" style="width: 22px; height: 22px; color: var(--text-secondary);"></i></button>
       </div>
     </div>
   </div>
@@ -8930,18 +9082,199 @@
     window.setColorTheme = setColorTheme;
 
     /* Image Quality Control (Thấp <50KB, TB <100KB, Cao <200KB) */
+    function onImageQualitySliderInput(val) {
+      const mode = val === '1' ? 'low' : (val === '2' ? 'medium' : 'high');
+      setImageQualitySetting(mode);
+    }
+    window.onImageQualitySliderInput = onImageQualitySliderInput;
+
     function setImageQualitySetting(mode) {
       const validModes = ['low', 'medium', 'high'];
       if (!validModes.includes(mode)) mode = 'high';
       State.settings.image_quality = mode;
       DB.put('settings', { key: 'image_quality', value: mode });
-      document.querySelectorAll('#imageQualityChipsBar .quality-preset-chip').forEach(chip => {
-        chip.classList.toggle('active', chip.dataset.quality === mode);
-      });
-      const labels = { low: 'Thấp (< 50KB)', medium: 'Trung bình (< 100KB)', high: 'Cao (< 200KB)' };
+      
+      const slider = document.getElementById('imageQualitySlider');
+      if (slider) slider.value = mode === 'low' ? '1' : (mode === 'medium' ? '2' : '3');
+      
+      const badge = document.getElementById('imageQualityBadge');
+      const labels = { low: 'Thấp (<50KB)', medium: 'TB (<100KB)', high: 'Cao (<200KB)' };
+      if (badge) badge.textContent = labels[mode] || 'Cao (<200KB)';
       showToast(`Đã lưu chất lượng ảnh: ${labels[mode]}`);
     }
     window.setImageQualitySetting = setImageQualitySetting;
+
+    /* 2-Step Interactive iPhone Passcode Setup Controller */
+    let passcodeSetupStage = 1; // 1: Enter new PIN, 2: Confirm PIN
+    let passcodeSetupFirstPin = '';
+    let passcodeSetupConfirmPin = '';
+
+    function openPasscodeSettingsModal() {
+      const modal = document.getElementById('passcodeSettingsModal');
+      if (!modal) return;
+      passcodeSetupStage = 1;
+      passcodeSetupFirstPin = '';
+      passcodeSetupConfirmPin = '';
+      updatePasscodeSetupUI();
+      modal.classList.add('active');
+      lucide.createIcons();
+    }
+    window.openPasscodeSettingsModal = openPasscodeSettingsModal;
+
+    function closePasscodeSettingsModal() {
+      const modal = document.getElementById('passcodeSettingsModal');
+      if (modal) modal.classList.remove('active');
+      passcodeSetupStage = 1;
+      passcodeSetupFirstPin = '';
+      passcodeSetupConfirmPin = '';
+      updatePinLockUI();
+    }
+    window.closePasscodeSettingsModal = closePasscodeSettingsModal;
+
+    function updatePasscodeSetupUI() {
+      const titleEl = document.getElementById('passcodeSetupTitle');
+      const descEl = document.getElementById('passcodeSetupDesc');
+      const errorMsg = document.getElementById('passcodeSetupErrorMsg');
+      const dots = document.querySelectorAll('#passcodeSetupDots .passcode-dot');
+
+      if (passcodeSetupStage === 1) {
+        if (titleEl) titleEl.textContent = 'Thiết lập mã PIN';
+        if (descEl) descEl.textContent = 'Nhập 4 chữ số mã PIN mới';
+        if (errorMsg) errorMsg.textContent = '';
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('filled', idx < passcodeSetupFirstPin.length);
+        });
+      } else {
+        if (titleEl) titleEl.textContent = 'Xác nhận mã PIN';
+        if (descEl) descEl.textContent = 'Nhập lại 4 chữ số để xác nhận';
+        if (errorMsg) errorMsg.textContent = '';
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('filled', idx < passcodeSetupConfirmPin.length);
+        });
+      }
+    }
+
+    async function onPasscodeSetupKey(key) {
+      if (typeof SoundEngine !== 'undefined') SoundEngine.play('click');
+      if (typeof triggerHaptic === 'function') triggerHaptic('light');
+
+      const errorMsg = document.getElementById('passcodeSetupErrorMsg');
+      if (errorMsg) errorMsg.textContent = '';
+
+      if (key === 'back') {
+        if (passcodeSetupStage === 1) {
+          if (passcodeSetupFirstPin.length > 0) {
+            passcodeSetupFirstPin = passcodeSetupFirstPin.slice(0, -1);
+            updatePasscodeSetupUI();
+          }
+        } else {
+          if (passcodeSetupConfirmPin.length > 0) {
+            passcodeSetupConfirmPin = passcodeSetupConfirmPin.slice(0, -1);
+            updatePasscodeSetupUI();
+          }
+        }
+        return;
+      }
+
+      if (passcodeSetupStage === 1) {
+        if (passcodeSetupFirstPin.length < 4) {
+          passcodeSetupFirstPin += key;
+          updatePasscodeSetupUI();
+
+          if (passcodeSetupFirstPin.length === 4) {
+            setTimeout(() => {
+              passcodeSetupStage = 2;
+              passcodeSetupConfirmPin = '';
+              updatePasscodeSetupUI();
+            }, 180);
+          }
+        }
+      } else {
+        if (passcodeSetupConfirmPin.length < 4) {
+          passcodeSetupConfirmPin += key;
+          updatePasscodeSetupUI();
+
+          if (passcodeSetupConfirmPin.length === 4) {
+            setTimeout(async () => {
+              if (passcodeSetupConfirmPin === passcodeSetupFirstPin) {
+                // PIN matched!
+                State.settings.passcode_pin = passcodeSetupFirstPin;
+                State.settings.passcode_enabled = true;
+                await DB.put('settings', { key: 'passcode_pin', value: passcodeSetupFirstPin });
+                await DB.put('settings', { key: 'passcode_enabled', value: true });
+
+                if (typeof SoundEngine !== 'undefined') SoundEngine.play('success');
+                if (typeof triggerHaptic === 'function') triggerHaptic('success');
+                showToast('Đã thiết lập mã PIN bảo mật thành công!');
+                updatePinLockUI();
+                closePasscodeSettingsModal();
+              } else {
+                // PIN mismatch!
+                if (typeof SoundEngine !== 'undefined') SoundEngine.play('delete');
+                if (typeof triggerHaptic === 'function') triggerHaptic('warning');
+                const dotsContainer = document.getElementById('passcodeSetupDots');
+                if (dotsContainer) {
+                  dotsContainer.classList.add('shake-error');
+                  setTimeout(() => dotsContainer.classList.remove('shake-error'), 450);
+                }
+                if (errorMsg) errorMsg.textContent = 'Mã PIN không khớp, vui lòng thử lại!';
+                setTimeout(() => {
+                  passcodeSetupStage = 1;
+                  passcodeSetupFirstPin = '';
+                  passcodeSetupConfirmPin = '';
+                  updatePasscodeSetupUI();
+                }, 500);
+              }
+            }, 180);
+          }
+        }
+      }
+    }
+    window.onPasscodeSetupKey = onPasscodeSetupKey;
+
+    async function togglePinLockSetting(enabled) {
+      if (enabled) {
+        if (!State.settings.passcode_pin) {
+          openPasscodeSettingsModal();
+        } else {
+          State.settings.passcode_enabled = true;
+          await DB.put('settings', { key: 'passcode_enabled', value: true });
+          updatePinLockUI();
+          showToast('Đã kích hoạt bảo vệ mã PIN!');
+        }
+      } else {
+        State.settings.passcode_enabled = false;
+        await DB.put('settings', { key: 'passcode_enabled', value: false });
+        updatePinLockUI();
+        showToast('Đã tắt mã PIN bảo mật!');
+      }
+    }
+    window.togglePinLockSetting = togglePinLockSetting;
+
+    function updatePinLockUI() {
+      const sw = document.getElementById('pinLockToggleSwitch');
+      const changeBtn = document.getElementById('changePinBtn');
+      const statusText = document.getElementById('pinLockStatusText');
+      const activeActions = document.getElementById('pinLockActiveActions');
+
+      const isEnabled = !!(State.settings && State.settings.passcode_enabled && State.settings.passcode_pin);
+      if (sw) sw.checked = isEnabled;
+      if (changeBtn) changeBtn.style.display = isEnabled ? 'inline-block' : 'none';
+      if (activeActions) activeActions.style.display = isEnabled ? 'block' : 'none';
+      if (statusText) statusText.textContent = isEnabled ? 'Đã bật mã PIN bảo vệ' : 'Chưa bật mã PIN bảo vệ';
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+    window.updatePinLockUI = updatePinLockUI;
+
+    function lockAppNow() {
+      if (typeof triggerHaptic === 'function') triggerHaptic('medium');
+      if (State.settings && State.settings.passcode_pin) {
+        showPasscodeLockScreen();
+      } else {
+        openPasscodeSettingsModal();
+      }
+    }
+    window.lockAppNow = lockAppNow;
 
     /* Flying Coins / Particles Animation for Transactions */
     function triggerMoneyFlyAnimation(type, categoryObj) {
@@ -9024,6 +9357,12 @@
         showPasscodeLockScreen();
       }
     }
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && State.settings && State.settings.passcode_enabled && State.settings.passcode_pin) {
+        showPasscodeLockScreen();
+      }
+    });
 
     function showPasscodeLockScreen() {
       const overlay = document.getElementById('passcodeLockOverlay');
@@ -11831,7 +12170,7 @@
           labels.push(`T${m + 1}/${y}`);
 
           let inc = 0, exp = 0;
-          State.transactions.filter(t => t.date && t.date.startsWith(monthKey) && t.type !== 'transfer').forEach(t => {
+State.transactions.filter(t => t.date && t.date.startsWith(monthKey) && t.type !== 'transfer').forEach(t => {
             if (t.type === 'income') inc += Number(t.amount) || 0;
             else if (t.type === 'expense') exp += Number(t.amount) || 0;
           });
@@ -14442,14 +14781,53 @@
       });
     };
 
+    
     /* ==========================================================================
        FINANCIAL JOURNAL CONTROLLER (#screen-journal)
        ========================================================================== */
     let selectedJournalStars = 5;
     let selectedJournalMoodKey = 'confident';
+    let tempJournalPhotoData = null;
+
+    function handleJournalPhotoChange(file) {
+      if (!file) return;
+      showToast('Đang tối ưu ảnh nhật ký...');
+      compressImageFile(file).then(res => {
+        tempJournalPhotoData = res.dataUrl;
+        const previewBox = document.getElementById('journalPhotoPreviewBox');
+        const previewImg = document.getElementById('journalPhotoPreviewImg');
+        const sizeText = document.getElementById('journalPhotoSizeText');
+        const hiddenInput = document.getElementById('journalEntryPhoto');
+        if (previewImg) previewImg.src = res.dataUrl;
+        if (sizeText) sizeText.textContent = `${(res.sizeBytes / 1024).toFixed(0)} KB (Chuẩn tối ưu)`;
+        if (hiddenInput) hiddenInput.value = res.dataUrl;
+        if (previewBox) previewBox.style.display = 'flex';
+        showToast(`Đã đính kèm ảnh (${(res.sizeBytes / 1024).toFixed(0)} KB)`);
+        lucide.createIcons();
+      }).catch(err => {
+        console.error('Journal photo error:', err);
+        showToast('Không thể xử lý ảnh!', true);
+      });
+    }
+    window.handleJournalPhotoChange = handleJournalPhotoChange;
+
+    function removeJournalPhoto() {
+      tempJournalPhotoData = null;
+      const previewBox = document.getElementById('journalPhotoPreviewBox');
+      const previewImg = document.getElementById('journalPhotoPreviewImg');
+      const hiddenInput = document.getElementById('journalEntryPhoto');
+      const cam = document.getElementById('journalCameraInput');
+      const gal = document.getElementById('journalGalleryInput');
+      if (previewBox) previewBox.style.display = 'none';
+      if (previewImg) previewImg.src = '';
+      if (hiddenInput) hiddenInput.value = '';
+      if (cam) cam.value = '';
+      if (gal) gal.value = '';
+    }
+    window.removeJournalPhoto = removeJournalPhoto;
 
     function renderJournalScreen() {
-      const container = document.getElementById('journalEntriesList');
+      const container = document.getElementById('journalEntriesContainer');
       if (!container) return;
 
       const journals = State.journals || [];
@@ -14486,13 +14864,11 @@
         regret: '😰 Tiếc nuối'
       };
 
-      const countEl = document.getElementById('journalStatTotalCount');
-      const starEl = document.getElementById('journalStatAvgDiscipline');
-      const moodEl = document.getElementById('journalStatDominantMood');
+      const countEl = document.getElementById('journalTotalEntriesCount');
+      const starEl = document.getElementById('journalAvgRatingScore');
 
       if (countEl) countEl.textContent = `${totalCount} bài viết`;
       if (starEl) starEl.textContent = `★ ${avgRating} / 5`;
-      if (moodEl) moodEl.textContent = moodLabels[dominantMood] || '🌟 Tự tin';
 
       // Filter by mood
       const filter = State.journalMoodFilter || 'all';
@@ -14501,7 +14877,7 @@
         filtered = filtered.filter(j => j.mood === filter);
       }
 
-      filtered.sort((a, b) => (b.date || '').localeCompare(a.date || '') || (b.createdAt - a.createdAt));
+      filtered.sort((a, b) => (b.date || '').localeCompare(a.date || '') || ((b.createdAt || 0) - (a.createdAt || 0)));
 
       container.innerHTML = '';
       if (filtered.length === 0) {
@@ -14512,9 +14888,9 @@
             <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 4px; max-width: 280px; margin-left: auto; margin-right: auto;">
               Ghi lại cảm xúc chi tiêu và bài học tài chính mỗi ngày để nâng cao tính kỷ luật.
             </div>
-            <button type="button" onclick="openNewJournalModal()" style="margin-top: 14px; padding: 8px 20px; border-radius: 99px; background: #9333EA; color: #fff; border: none; font-size: 0.78rem; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(147, 51, 234, 0.25);">
-              + Viết nhật ký đầu tiên
-            </button>
+            <div style="font-size: 0.72rem; color: #9333EA; margin-top: 10px; font-weight: 700;">
+              Chạm vào dấu + ở thanh điều hướng dưới đáy để tạo bài viết đầu tiên
+            </div>
           </div>
         `;
         lucide.createIcons();
@@ -14557,6 +14933,12 @@
             ${entry.content || 'Không có nội dung phản tư chi tiết.'}
           </div>
 
+          ${entry.photo ? `
+            <div style="margin: 10px 0; border-radius: 12px; overflow: hidden; max-height: 220px; border: 1px solid var(--border-card);">
+              <img src="${entry.photo}" style="width: 100%; max-height: 220px; object-fit: cover; display: block;" alt="Ảnh nhật ký">
+            </div>
+          ` : ''}
+
           ${tagsArr.length > 0 ? `
             <div style="display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px;">
               ${tagsArr.map(t => `<span style="font-size: 0.68rem; font-weight: 700; background: var(--bg-card-subtle); color: var(--text-secondary); padding: 2px 8px; border-radius: 99px; border: 1px solid var(--border-subtle);">${t.startsWith('#') ? t : '#' + t}</span>`).join('')}
@@ -14590,6 +14972,9 @@
       const contentInput = document.getElementById('journalEntryContent');
       const tagsInput = document.getElementById('journalEntryTags');
       const modalTitle = document.getElementById('journalModalTitle');
+      const previewBox = document.getElementById('journalPhotoPreviewBox');
+      const previewImg = document.getElementById('journalPhotoPreviewImg');
+      const hiddenInput = document.getElementById('journalEntryPhoto');
 
       if (editId) {
         const entry = State.journals.find(j => j.id === editId);
@@ -14602,6 +14987,14 @@
           selectJournalMood(entry.mood || 'confident');
           setJournalStars(entry.disciplineRating || 5);
           if (modalTitle) modalTitle.textContent = 'Chỉnh sửa nhật ký';
+          if (entry.photo) {
+            tempJournalPhotoData = entry.photo;
+            if (previewImg) previewImg.src = entry.photo;
+            if (hiddenInput) hiddenInput.value = entry.photo;
+            if (previewBox) previewBox.style.display = 'flex';
+          } else {
+            removeJournalPhoto();
+          }
         }
       } else {
         if (idInput) idInput.value = '';
@@ -14612,6 +15005,7 @@
         selectJournalMood('confident');
         setJournalStars(5);
         if (modalTitle) modalTitle.textContent = 'Viết nhật ký chi tiêu';
+        removeJournalPhoto();
       }
 
       modal.classList.add('active');
@@ -14622,6 +15016,7 @@
     function closeJournalModal() {
       const modal = document.getElementById('journalEntryModal');
       if (modal) modal.classList.remove('active');
+      removeJournalPhoto();
     }
     window.closeJournalModal = closeJournalModal;
 
@@ -14660,8 +15055,8 @@
 
     function filterJournalByMood(mood) {
       State.journalMoodFilter = mood;
-      document.querySelectorAll('#journalMoodFilterBar .mood-chip-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.jmoodfilter === mood);
+      document.querySelectorAll('#journalQuickMoodChips .mood-chip-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.mood === mood);
       });
       renderJournalScreen();
     }
@@ -14692,6 +15087,7 @@
           State.journals[idx].tags = tags;
           State.journals[idx].mood = mood;
           State.journals[idx].disciplineRating = rating;
+          State.journals[idx].photo = tempJournalPhotoData || null;
           State.journals[idx].updatedAt = Date.now();
           await DB.put('journals', State.journals[idx]);
           showToast('Đã cập nhật nhật ký tài chính!');
@@ -14705,6 +15101,7 @@
           tags: tags,
           mood: mood,
           disciplineRating: rating,
+          photo: tempJournalPhotoData || null,
           createdAt: Date.now()
         };
         await DB.put('journals', newEntry);
@@ -14735,6 +15132,26 @@
     /* ==========================================================================
        SAVINGS GOALS CONTROLLER (#screen-savings)
        ========================================================================== */
+    let currentlyOpenSavingsSwipeWrapper = null;
+
+    function closeCurrentSavingsSwipe() {
+      if (!currentlyOpenSavingsSwipeWrapper) return;
+      const card = currentlyOpenSavingsSwipeWrapper.querySelector('.screen-savings-card');
+      const editBtn = currentlyOpenSavingsSwipeWrapper.querySelector('.savings-action-btn.edit-btn');
+      const deleteBtn = currentlyOpenSavingsSwipeWrapper.querySelector('.savings-action-btn.delete-btn');
+      if (card) card.style.transform = 'translateX(0px)';
+      if (editBtn) {
+        editBtn.style.transform = 'scale(0)';
+        editBtn.style.opacity = '0';
+      }
+      if (deleteBtn) {
+        deleteBtn.style.transform = 'scale(0)';
+        deleteBtn.style.opacity = '0';
+      }
+      currentlyOpenSavingsSwipeWrapper.classList.remove('swiped-open');
+      currentlyOpenSavingsSwipeWrapper = null;
+    }
+
     function renderSavingsGoalsScreen() {
       const container = document.getElementById('savingsGoalsListContainer');
       if (!container) return;
@@ -14744,13 +15161,15 @@
       const totalCurrent = goals.reduce((s, g) => s + (Number(g.currentAmount) || 0), 0);
       const overallPct = totalTarget > 0 ? Math.min(Math.round((totalCurrent / totalTarget) * 100), 100) : 0;
 
-      const targetEl = document.getElementById('savingsStatTotalTarget');
-      const currentEl = document.getElementById('savingsStatTotalSaved');
-      const progressEl = document.getElementById('savingsStatOverallProgress');
+      const heroTotal = document.getElementById('savingsHeroTotalAccumulated');
+      const heroTarget = document.getElementById('savingsHeroOverallTargetText');
+      const heroPct = document.getElementById('savingsHeroOverallPctText');
+      const heroBar = document.getElementById('savingsHeroOverallBar');
 
-      if (targetEl) targetEl.textContent = formatVND(totalTarget);
-      if (currentEl) currentEl.textContent = formatVND(totalCurrent);
-      if (progressEl) progressEl.textContent = `${overallPct}%`;
+      if (heroTotal) heroTotal.textContent = formatVND(totalCurrent);
+      if (heroTarget) heroTarget.textContent = `Mục tiêu: ${formatVND(totalTarget)}`;
+      if (heroPct) heroPct.textContent = `${overallPct}%`;
+      if (heroBar) heroBar.style.width = `${overallPct}%`;
 
       container.innerHTML = '';
       if (goals.length === 0) {
@@ -14761,9 +15180,9 @@
             <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 4px; max-width: 280px; margin-left: auto; margin-right: auto;">
               Thiết lập mục tiêu mua sắm, quỹ khẩn cấp hoặc đầu tư và theo dõi tiến độ nạp tiền.
             </div>
-            <button type="button" onclick="openCreateSavingsGoalModal()" style="margin-top: 14px; padding: 8px 20px; border-radius: 99px; background: #DB2777; color: #fff; border: none; font-size: 0.78rem; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(219, 39, 119, 0.25);">
-              + Tạo mục tiêu đầu tiên
-            </button>
+            <div style="font-size: 0.72rem; color: #DB2777; margin-top: 10px; font-weight: 700;">
+              Chạm vào dấu + ở thanh điều hướng dưới đáy để tạo mục tiêu mới
+            </div>
           </div>
         `;
         lucide.createIcons();
@@ -14771,31 +15190,45 @@
       }
 
       goals.forEach(goal => {
-        const target = Number(goal.targetAmount) || 1;
-        const current = Number(goal.currentAmount) || 0;
-        const pct = Math.min(Math.round((current / target) * 100), 100);
-        const remaining = Math.max(0, target - current);
+        const cardEl = createSavingsCardElement(goal);
+        container.appendChild(cardEl);
+      });
 
-        // Days remaining
-        let daysLeftStr = '';
-        if (goal.deadline) {
-          const diffDays = Math.ceil((new Date(goal.deadline) - new Date()) / (1000 * 60 * 60 * 24));
-          if (diffDays > 0) daysLeftStr = `Còn ${diffDays} ngày`;
-          else if (diffDays === 0) daysLeftStr = 'Hôm nay đến hạn';
-          else daysLeftStr = `Quá hạn ${Math.abs(diffDays)} ngày`;
-        }
+      lucide.createIcons();
+    }
+    window.renderSavingsGoalsScreen = renderSavingsGoalsScreen;
 
-        const card = document.createElement('div');
-        card.className = 'savings-card';
-        card.style.background = 'var(--bg-card)';
-        card.style.borderRadius = 'var(--radius-lg)';
-        card.style.padding = '16px';
-        card.style.border = '1px solid var(--border-card)';
-        card.style.boxShadow = 'var(--shadow-sm)';
-        card.style.marginBottom = '12px';
+    function createSavingsCardElement(goal) {
+      const target = Number(goal.targetAmount) || 1;
+      const current = Number(goal.currentAmount) || 0;
+      const pct = Math.min(Math.round((current / target) * 100), 100);
 
-        card.innerHTML = `
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+      let daysLeftStr = '';
+      if (goal.deadline) {
+        const diffDays = Math.ceil((new Date(goal.deadline) - new Date()) / (1000 * 60 * 60 * 24));
+        if (diffDays > 0) daysLeftStr = `Còn ${diffDays} ngày`;
+        else if (diffDays === 0) daysLeftStr = 'Hôm nay đến hạn';
+        else daysLeftStr = `Quá hạn ${Math.abs(diffDays)} ngày`;
+      }
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'savings-swipe-wrapper';
+      wrapper.id = `savingsSwipe_${goal.id}`;
+
+      wrapper.innerHTML = `
+        <div class="savings-swipe-actions">
+          <button type="button" class="savings-action-btn edit-btn" title="Sửa mục tiêu">
+            <i data-lucide="pencil" style="width: 17px; height: 17px;"></i>
+            <span>Sửa</span>
+          </button>
+          <button type="button" class="savings-action-btn delete-btn" title="Xóa mục tiêu">
+            <i data-lucide="trash-2" style="width: 17px; height: 17px;"></i>
+            <span>Xóa</span>
+          </button>
+        </div>
+
+        <div class="screen-savings-card" id="savingsCardItem_${goal.id}">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
             <div style="display: flex; align-items: center; gap: 10px;">
               <div style="width: 38px; height: 38px; border-radius: 12px; background: rgba(219, 39, 119, 0.15); color: #DB2777; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                 <i data-lucide="${goal.icon || 'piggy-bank'}" style="width: 20px; height: 20px;"></i>
@@ -14803,7 +15236,7 @@
               <div>
                 <div style="font-size: 0.95rem; font-weight: 800; color: var(--text-primary);">${goal.name}</div>
                 <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 1px;">
-                  ${goal.deadline ? `Hạn chót: ${formatDateDisplay(goal.deadline)} ${daysLeftStr ? '· <b style="color: var(--primary);">' + daysLeftStr + '</b>' : ''}` : 'Không giới hạn thời gian'}
+                  ${goal.deadline ? `Hạn chót: ${formatDateDisplay(goal.deadline)} ${daysLeftStr ? '· <b style="color: var(--primary);">' + daysLeftStr + '</b>' : ''}` : 'Không thời hạn'}
                 </div>
               </div>
             </div>
@@ -14812,66 +15245,189 @@
             </span>
           </div>
 
-          <div class="savings-progress-track" style="height: 8px; background: var(--bg-card-subtle); border-radius: 99px; overflow: hidden; margin-bottom: 8px;">
+          <div class="savings-progress-track" style="height: 8px; background: var(--bg-card-subtle); border-radius: 99px; overflow: hidden; margin-bottom: 6px;">
             <div class="savings-progress-fill" style="width: ${pct}%; height: 100%; background: ${pct >= 100 ? 'var(--income)' : 'linear-gradient(90deg, #F472B6, #DB2777)'}; border-radius: 99px; transition: width 0.4s var(--ease-spring);"></div>
           </div>
 
-          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; color: var(--text-secondary); margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 10px;">
             <span>Đã tích lũy: <b style="color: var(--text-primary);">${formatVND(current)}</b></span>
             <span>Mục tiêu: <b style="color: var(--text-primary);">${formatVND(target)}</b></span>
           </div>
 
-          <div style="display: flex; gap: 8px; border-top: 1px solid var(--border-subtle); padding-top: 10px;">
-            <button type="button" onclick="openDepositSavingsModal('${goal.id}')" style="flex: 2; height: 36px; border-radius: var(--radius-full); background: var(--income); color: #fff; border: none; font-size: 0.78rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; box-shadow: 0 2px 8px rgba(40, 167, 107, 0.25);">
-              <i data-lucide="plus" style="width: 14px; height: 14px;"></i> Nạp tiền
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 8px;">
+            <button type="button" onclick="event.stopPropagation(); openDepositSavingsModal('${goal.id}')" style="height: 32px; padding: 0 14px; border-radius: var(--radius-full); background: var(--income); color: #fff; border: none; font-size: 0.74rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; box-shadow: 0 2px 8px rgba(40, 167, 107, 0.25);">
+              <i data-lucide="plus" style="width: 13px; height: 13px;"></i> Nạp tiền
             </button>
-            <button type="button" class="btn-icon-subtle" onclick="openCreateSavingsGoalModal('${goal.id}')" title="Sửa" style="color: var(--primary); width: 36px; height: 36px; border: 1px solid var(--border-card);">
-              <i data-lucide="pencil" style="width: 14px; height: 14px;"></i>
-            </button>
-            <button type="button" class="btn-icon-subtle" onclick="deleteSavingsGoal('${goal.id}')" title="Xóa" style="color: var(--expense); width: 36px; height: 36px; border: 1px solid var(--border-card);">
-              <i data-lucide="trash-2" style="width: 14px; height: 14px;"></i>
-            </button>
+            <div style="font-size: 0.65rem; color: var(--text-muted); display: flex; align-items: center; gap: 3px;">
+              <i data-lucide="chevron-left" style="width: 12px; height: 12px;"></i> Vuốt để sửa / xóa
+            </div>
           </div>
-        `;
+        </div>
+      `;
 
-        container.appendChild(card);
+      const card = wrapper.querySelector('.screen-savings-card');
+      const editBtn = wrapper.querySelector('.savings-action-btn.edit-btn');
+      const deleteBtn = wrapper.querySelector('.savings-action-btn.delete-btn');
+
+      let isPointerDown = false;
+      let startX = 0;
+      let startY = 0;
+      let currentOffsetX = 0;
+      let isSwiping = false;
+      let hasDragged = false;
+      const snapWidth = -116;
+
+      const updateScale = (progress) => {
+        const p = Math.min(Math.max(progress, 0), 1);
+        const scaleVal = 0.05 + 0.95 * p;
+        editBtn.style.transform = `scale(${scaleVal})`;
+        editBtn.style.opacity = `${p}`;
+        deleteBtn.style.transform = `scale(${scaleVal})`;
+        deleteBtn.style.opacity = `${p}`;
+      };
+
+      card.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('button')) return;
+        if (e.button !== 0 && e.pointerType === 'mouse') return;
+        if (currentlyOpenSavingsSwipeWrapper && currentlyOpenSavingsSwipeWrapper !== wrapper) {
+          closeCurrentSavingsSwipe();
+        }
+        isPointerDown = true;
+        hasDragged = false;
+        isSwiping = false;
+        startX = e.clientX;
+        startY = e.clientY;
+        currentOffsetX = wrapper.classList.contains('swiped-open') ? snapWidth : 0;
       });
 
-      lucide.createIcons();
-    }
-    window.renderSavingsGoalsScreen = renderSavingsGoalsScreen;
+      card.addEventListener('pointermove', (e) => {
+        if (!isPointerDown) return;
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
 
+        if (!isSwiping) {
+          if (Math.abs(deltaX) > 7 && Math.abs(deltaX) > Math.abs(deltaY)) {
+            isSwiping = true;
+            hasDragged = true;
+            try { card.setPointerCapture(e.pointerId); } catch {}
+            wrapper.classList.add('dragging');
+            card.classList.add('dragging');
+          } else if (Math.abs(deltaY) > 8) {
+            isPointerDown = false;
+            return;
+          }
+        }
+
+        if (isSwiping) {
+          let newX = currentOffsetX + deltaX;
+          if (newX > 0) newX = newX * 0.2;
+          if (newX < snapWidth) {
+            newX = snapWidth + (newX - snapWidth) * 0.25;
+          }
+          card.style.transform = `translateX(${newX}px)`;
+          const dist = Math.max(0, -newX);
+          const progress = Math.min(dist / Math.abs(snapWidth), 1);
+          updateScale(progress);
+        }
+      });
+
+      const finishSwipe = () => {
+        if (!isPointerDown) return;
+        isPointerDown = false;
+
+        if (isSwiping) {
+          wrapper.classList.remove('dragging');
+          card.classList.remove('dragging');
+
+          const matrix = new DOMMatrix(window.getComputedStyle(card).transform);
+          const curX = matrix.m41;
+
+          if (curX < -45) {
+            card.style.transform = `translateX(${snapWidth}px)`;
+            editBtn.style.transform = 'scale(1)';
+            editBtn.style.opacity = '1';
+            deleteBtn.style.transform = 'scale(1)';
+            deleteBtn.style.opacity = '1';
+            wrapper.classList.add('swiped-open');
+            currentlyOpenSavingsSwipeWrapper = wrapper;
+          } else {
+            card.style.transform = 'translateX(0px)';
+            editBtn.style.transform = 'scale(0)';
+            editBtn.style.opacity = '0';
+            deleteBtn.style.transform = 'scale(0)';
+            deleteBtn.style.opacity = '0';
+            wrapper.classList.remove('swiped-open');
+            if (currentlyOpenSavingsSwipeWrapper === wrapper) currentlyOpenSavingsSwipeWrapper = null;
+          }
+        }
+      };
+
+      card.addEventListener('pointerup', (e) => {
+        try { card.releasePointerCapture(e.pointerId); } catch {}
+        finishSwipe();
+      });
+
+      card.addEventListener('pointercancel', () => {
+        finishSwipe();
+      });
+
+      card.addEventListener('click', () => {
+        if (hasDragged) return;
+        if (wrapper.classList.contains('swiped-open')) {
+          closeCurrentSavingsSwipe();
+        }
+      });
+
+      editBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeCurrentSavingsSwipe();
+        openCreateSavingsGoalModal(goal.id);
+      });
+
+      deleteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeCurrentSavingsSwipe();
+        deleteSavingsGoal(goal.id);
+      });
+
+      return wrapper;
+    }
+
+
+/* ==========================================================================
+       SAVINGS GOALS MODAL & CRUD CONTROLLER
+       ========================================================================== */
     function openCreateSavingsGoalModal(editId = null) {
+      if (typeof closeCurrentSavingsSwipe === 'function') closeCurrentSavingsSwipe();
       const modal = document.getElementById('savingsGoalModal');
       if (!modal) return;
-
+      const titleEl = document.getElementById('savingsGoalModalTitle');
       const idInput = document.getElementById('savingsGoalId');
       const nameInput = document.getElementById('savingsGoalName');
       const targetInput = document.getElementById('savingsGoalTargetAmount');
       const currentInput = document.getElementById('savingsGoalCurrentAmount');
       const deadlineInput = document.getElementById('savingsGoalDeadline');
       const iconSelect = document.getElementById('savingsGoalIcon');
-      const modalTitle = document.getElementById('savingsGoalModalTitle');
 
       if (editId) {
-        const goal = State.savingsGoals.find(g => g.id === editId);
+        const goal = (State.savingsGoals || []).find(g => g.id === editId);
         if (goal) {
+          if (titleEl) titleEl.textContent = 'Chỉnh sửa mục tiêu';
           if (idInput) idInput.value = goal.id;
           if (nameInput) nameInput.value = goal.name || '';
-          if (targetInput) targetInput.value = formatNumberOnly(goal.targetAmount);
-          if (currentInput) currentInput.value = formatNumberOnly(goal.currentAmount || 0);
+          if (targetInput) targetInput.value = (Number(goal.targetAmount) || 0).toLocaleString('vi-VN');
+          if (currentInput) currentInput.value = (Number(goal.currentAmount) || 0).toLocaleString('vi-VN');
           if (deadlineInput) deadlineInput.value = goal.deadline || '';
           if (iconSelect) iconSelect.value = goal.icon || 'piggy-bank';
-          if (modalTitle) modalTitle.textContent = 'Chỉnh sửa mục tiêu tiết kiệm';
         }
       } else {
+        if (titleEl) titleEl.textContent = 'Mục tiêu tiết kiệm mới';
         if (idInput) idInput.value = '';
         if (nameInput) nameInput.value = '';
         if (targetInput) targetInput.value = '';
         if (currentInput) currentInput.value = '0';
         if (deadlineInput) deadlineInput.value = '';
         if (iconSelect) iconSelect.value = 'piggy-bank';
-        if (modalTitle) modalTitle.textContent = 'Mục tiêu tiết kiệm mới';
       }
 
       modal.classList.add('active');
@@ -14886,77 +15442,98 @@
     window.closeSavingsGoalModal = closeSavingsGoalModal;
 
     async function saveSavingsGoal() {
-      const editId = document.getElementById('savingsGoalId')?.value.trim();
+      const idInput = document.getElementById('savingsGoalId')?.value.trim();
       const name = document.getElementById('savingsGoalName')?.value.trim();
-      const targetAmt = parseVNDInput(document.getElementById('savingsGoalTargetAmount')?.value || 0);
-      const currentAmt = parseVNDInput(document.getElementById('savingsGoalCurrentAmount')?.value || 0);
-      const deadline = document.getElementById('savingsGoalDeadline')?.value || null;
+      const targetStr = document.getElementById('savingsGoalTargetAmount')?.value.replace(/[^0-9]/g, '') || '0';
+      const currentStr = document.getElementById('savingsGoalCurrentAmount')?.value.replace(/[^0-9]/g, '') || '0';
+      const deadline = document.getElementById('savingsGoalDeadline')?.value || '';
       const icon = document.getElementById('savingsGoalIcon')?.value || 'piggy-bank';
 
+      const targetAmount = Number(targetStr);
+      const currentAmount = Number(currentStr);
+
       if (!name) {
-        showToast('Vui lòng nhập tên mục tiêu tiết kiệm!', true);
+        showToast('Vui lòng nhập tên mục tiêu!', true);
         return;
       }
-      if (targetAmt <= 0) {
-        showToast('Số tiền mục tiêu phải lớn hơn 0!', true);
+      if (targetAmount <= 0) {
+        showToast('Vui lòng nhập số tiền mục tiêu lớn hơn 0!', true);
         return;
       }
 
-      if (editId) {
-        const idx = State.savingsGoals.findIndex(g => g.id === editId);
+      if (!State.savingsGoals) State.savingsGoals = [];
+
+      if (idInput) {
+        const idx = State.savingsGoals.findIndex(g => g.id === idInput);
         if (idx !== -1) {
-          State.savingsGoals[idx].name = name;
-          State.savingsGoals[idx].targetAmount = targetAmt;
-          State.savingsGoals[idx].currentAmount = currentAmt;
-          State.savingsGoals[idx].deadline = deadline;
-          State.savingsGoals[idx].icon = icon;
-          State.savingsGoals[idx].updatedAt = Date.now();
+          State.savingsGoals[idx] = {
+            ...State.savingsGoals[idx],
+            name,
+            targetAmount,
+            currentAmount,
+            deadline,
+            icon,
+            updatedAt: Date.now()
+          };
           await DB.put('savings_goals', State.savingsGoals[idx]);
           showToast('Đã cập nhật mục tiêu tiết kiệm!');
         }
       } else {
         const newGoal = {
-          id: 'svg_' + Date.now(),
-          name: name,
-          targetAmount: targetAmt,
-          currentAmount: currentAmt,
-          deadline: deadline,
-          icon: icon,
+          id: `sg_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
+          name,
+          targetAmount,
+          currentAmount,
+          deadline,
+          icon,
           createdAt: Date.now()
         };
-        await DB.put('savings_goals', newGoal);
         State.savingsGoals.push(newGoal);
+        await DB.put('savings_goals', newGoal);
         showToast('Đã tạo mục tiêu tiết kiệm mới!');
       }
 
       if (typeof SoundEngine !== 'undefined') SoundEngine.play('success');
+      if (typeof triggerHaptic === 'function') triggerHaptic('success');
       closeSavingsGoalModal();
       renderSavingsGoalsScreen();
     }
     window.saveSavingsGoal = saveSavingsGoal;
 
+    async function deleteSavingsGoal(goalId) {
+      if (!confirm('Bạn có chắc chắn muốn xóa mục tiêu tiết kiệm này?')) return;
+      if (!State.savingsGoals) return;
+      State.savingsGoals = State.savingsGoals.filter(g => g.id !== goalId);
+      await DB.delete('savings_goals', goalId);
+      if (typeof SoundEngine !== 'undefined') SoundEngine.play('delete');
+      if (typeof triggerHaptic === 'function') triggerHaptic('warning');
+      showToast('Đã xóa mục tiêu tiết kiệm!');
+      renderSavingsGoalsScreen();
+    }
+    window.deleteSavingsGoal = deleteSavingsGoal;
+
+    /* Nạp tiền vào quỹ tiết kiệm */
     function openDepositSavingsModal(goalId) {
+      const goal = (State.savingsGoals || []).find(g => g.id === goalId);
+      if (!goal) return;
       const modal = document.getElementById('depositSavingsModal');
-      const goal = State.savingsGoals.find(g => g.id === goalId);
-      if (!modal || !goal) return;
+      if (!modal) return;
 
-      document.getElementById('depositGoalId').value = goal.id;
-      document.getElementById('depositGoalNameText').textContent = goal.name;
-      document.getElementById('depositGoalCurrentProgressText').textContent = `Hiện có: ${formatVND(goal.currentAmount || 0)} / Mục tiêu: ${formatVND(goal.targetAmount)}`;
-      document.getElementById('depositAmountInput').value = '';
+      const idInput = document.getElementById('depositGoalId');
+      const nameText = document.getElementById('depositGoalNameText');
+      const progressText = document.getElementById('depositGoalCurrentProgressText');
+      const amountInput = document.getElementById('depositAmountInput');
+      const walletSelect = document.getElementById('depositWalletSelect');
 
-      // Populate Wallets
-      const walletSel = document.getElementById('depositWalletSelect');
-      if (walletSel) {
-        walletSel.innerHTML = '';
-        const { walletBalances } = calculateFinancialBalances();
-        State.wallets.forEach(w => {
-          const bal = walletBalances[w.id] || 0;
-          const opt = document.createElement('option');
-          opt.value = w.id;
-          opt.textContent = `${w.name} (${formatVND(bal)})`;
-          walletSel.appendChild(opt);
-        });
+      if (idInput) idInput.value = goal.id;
+      if (nameText) nameText.textContent = goal.name;
+      if (progressText) progressText.textContent = `Hiện có: ${formatVND(goal.currentAmount || 0)} / Mục tiêu: ${formatVND(goal.targetAmount || 0)}`;
+      if (amountInput) amountInput.value = '';
+
+      if (walletSelect) {
+        walletSelect.innerHTML = (State.wallets || []).map(w => `
+          <option value="${w.id}">${w.name} (${formatVND(w.balance || 0)})</option>
+        `).join('');
       }
 
       modal.classList.add('active');
@@ -14972,105 +15549,40 @@
 
     async function submitDepositSavings() {
       const goalId = document.getElementById('depositGoalId')?.value;
-      const depositAmt = parseVNDInput(document.getElementById('depositAmountInput')?.value || 0);
+      const amountStr = document.getElementById('depositAmountInput')?.value.replace(/[^0-9]/g, '') || '0';
       const walletId = document.getElementById('depositWalletSelect')?.value;
-
-      const goal = State.savingsGoals.find(g => g.id === goalId);
-      if (!goal) return;
+      const depositAmt = Number(amountStr);
 
       if (depositAmt <= 0) {
         showToast('Vui lòng nhập số tiền nạp lớn hơn 0!', true);
         return;
       }
 
-      const wallet = State.wallets.find(w => w.id === walletId) || State.wallets[0];
+      const goal = (State.savingsGoals || []).find(g => g.id === goalId);
+      if (!goal) return;
 
-      // Create an expense transaction for the deposit
-      const cat = State.categories.find(c => c.id === 'c_invest') || State.categories.find(c => c.type === 'expense') || State.categories[0];
-      const todayStr = getTodayString();
-      const txRecord = {
-        id: 'tx_svg_' + Date.now(),
-        amount: depositAmt,
-        type: 'expense',
-        categoryId: cat.id,
-        walletId: wallet.id,
-        date: todayStr,
-        note: `Nạp quỹ tiết kiệm: ${goal.name}`,
-        isWork: false,
-        createdAt: Date.now()
-      };
-
-      await DB.put('transactions', txRecord);
-      State.transactions.unshift(txRecord);
-
-      // Increase goal savings
       goal.currentAmount = (Number(goal.currentAmount) || 0) + depositAmt;
       await DB.put('savings_goals', goal);
 
-      triggerMoneyFlyAnimation('income', null);
-      if (typeof SoundEngine !== 'undefined') SoundEngine.play('success');
+      // Trừ tiền từ ví nếu có
+      if (walletId && State.wallets) {
+        const wallet = State.wallets.find(w => w.id === walletId);
+        if (wallet) {
+          wallet.balance = (Number(wallet.balance) || 0) - depositAmt;
+          await DB.put('wallets', wallet);
+        }
+      }
 
-      showToast(`Đã nạp thành công ${formatVND(depositAmt)} vào "${goal.name}"!`);
+      if (typeof SoundEngine !== 'undefined') SoundEngine.play('success');
+      if (typeof triggerHaptic === 'function') triggerHaptic('success');
+      showToast(`Đã nạp ${formatVND(depositAmt)} vào mục tiêu ${goal.name}!`);
       closeDepositSavingsModal();
-      renderAllScreens();
+      renderSavingsGoalsScreen();
+      if (typeof renderWalletsScreen === 'function') renderWalletsScreen();
+      if (typeof renderOverviewScreen === 'function') renderOverviewScreen();
     }
     window.submitDepositSavings = submitDepositSavings;
-
-    async function deleteSavingsGoal(goalId) {
-      const goal = State.savingsGoals.find(g => g.id === goalId);
-      if (!goal) return;
-
-      showConfirmDialog('Xóa mục tiêu', `Bạn có chắc muốn xóa mục tiêu "${goal.name}" không?`, async () => {
-        await DB.delete('savings_goals', goalId);
-        State.savingsGoals = State.savingsGoals.filter(g => g.id !== goalId);
-        if (typeof SoundEngine !== 'undefined') SoundEngine.play('delete');
-        showToast('Đã xóa mục tiêu tiết kiệm!');
-        renderSavingsGoalsScreen();
-      });
-    }
-    window.deleteSavingsGoal = deleteSavingsGoal;
-
-    /* Passcode Settings Modal */
-    function openPasscodeSettingsModal() {
-      const modal = document.getElementById('passcodeSettingsModal');
-      if (!modal) return;
-      const input = document.getElementById('newPasscodeInput');
-      if (input) input.value = '';
-      modal.classList.add('active');
-    }
-    window.openPasscodeSettingsModal = openPasscodeSettingsModal;
-
-    function closePasscodeSettingsModal() {
-      const modal = document.getElementById('passcodeSettingsModal');
-      if (modal) modal.classList.remove('active');
-    }
-    window.closePasscodeSettingsModal = closePasscodeSettingsModal;
-
-    async function submitNewPasscode() {
-      const input = document.getElementById('newPasscodeInput');
-      const val = (input?.value || '').trim();
-      if (!/^\d{4}$/.test(val)) {
-        showToast('Mã PIN phải gồm đúng 4 chữ số!', true);
-        return;
-      }
-      State.settings.passcode_pin = val;
-      State.settings.passcode_enabled = true;
-      await DB.put('settings', { key: 'passcode_pin', value: val });
-      await DB.put('settings', { key: 'passcode_enabled', value: true });
-
-      const toggle = document.getElementById('passcodeEnableToggle');
-      if (toggle) toggle.checked = true;
-
-      const changePinRow = document.getElementById('changePasscodeRow');
-      if (changePinRow) changePinRow.style.display = 'flex';
-
-      if (typeof SoundEngine !== 'undefined') SoundEngine.play('success');
-      showToast('Đã lưu mã PIN bảo mật mới!');
-      closePasscodeSettingsModal();
-    }
-    window.submitNewPasscode = submitNewPasscode;
-
-    /* ==========================================================================
+/* ==========================================================================
        11. FULL-SCREEN 4-STEP TRANSACTION WIZARD CONTROLLER & LIVE CAMERA SCANNER
        ========================================================================== */
     let cameraMediaStream = null;
@@ -17982,7 +18494,8 @@
       lucide.createIcons();
     }
 
-    /* ==========================================================================
+    
+/* ==========================================================================
        14. EVENT LISTENERS INITIALIZATION
        ========================================================================== */
     function initEventListeners() {
@@ -18047,6 +18560,12 @@
       // Center Add Button (+): Tích hợp đồng bộ toàn hệ thống theo màn hình hiện tại
       document.getElementById('openAddTransactionBtn')?.addEventListener('click', () => {
         triggerHaptic('medium');
+        if (State.activeTab === 'wallets') { openAddWalletModal(); return; }
+        if (State.activeTab === 'budgets') { openCreateBudgetModal(); return; }
+        if (State.activeTab === 'categories') { openCreateCategoryModal(); return; }
+        if (State.activeTab === 'recurring') { openRecurringFormModal(); return; }
+        if (State.activeTab === 'journal') { openNewJournalModal(); return; }
+        if (State.activeTab === 'savings') { openCreateSavingsGoalModal(); return; }
         if (State.activeTab === 'wallets') {
           openAddWalletModal();
           return;
@@ -18082,35 +18601,8 @@
         });
       });
 
-      // Passcode Enable Toggle & Change PIN button in Settings
-      document.getElementById('passcodeEnableToggle')?.addEventListener('change', async (e) => {
-        const isChecked = e.target.checked;
-        if (isChecked) {
-          if (!State.settings.passcode_pin) {
-            openPasscodeSettingsModal();
-          } else {
-            State.settings.passcode_enabled = true;
-            await DB.put('settings', { key: 'passcode_enabled', value: true });
-            const row = document.getElementById('changePasscodeRow');
-            if (row) row.style.display = 'flex';
-            showToast('Đã kích hoạt bảo mật mã PIN!');
-          }
-        } else {
-          State.settings.passcode_enabled = false;
-          await DB.put('settings', { key: 'passcode_enabled', value: false });
-          const row = document.getElementById('changePasscodeRow');
-          if (row) row.style.display = 'none';
-          showToast('Đã tắt mã PIN bảo mật!');
-        }
-      });
-      document.getElementById('btnOpenChangePin')?.addEventListener('click', openPasscodeSettingsModal);
-
-      // Image Quality Chips Bar
-      document.querySelectorAll('#imageQualityChipsBar .quality-preset-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-          setImageQualitySetting(chip.dataset.quality);
-        });
-      });
+      // Passcode Pin Lock Controls
+      document.getElementById('changePinBtn')?.addEventListener('click', openPasscodeSettingsModal);
 
       // Sound Volume Slider
       document.getElementById('soundVolumeSlider')?.addEventListener('input', async (e) => {

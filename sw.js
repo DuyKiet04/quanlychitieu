@@ -3,7 +3,7 @@
    Enables 100% Offline Capability, Instant Loading & App Shell Caching
    ========================================================================== */
 
-const CACHE_NAME = 'finmaster-v4.0-cache';
+const CACHE_NAME = 'finmaster-v6.0-cache';
 
 // Core Application Shell & CDN Dependencies
 const APP_SHELL_ASSETS = [
