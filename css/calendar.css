@@ -1,0 +1,511 @@
+      /* FINANCIAL CALENDAR GRID (ARKA STYLE) */
+      .calendar-container {
+        background: var(--bg-card);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-lg);
+        padding: 16px;
+        margin-bottom: 14px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .calendar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+
+      .calendar-weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        text-align: center;
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: var(--text-secondary);
+        margin-bottom: 8px;
+      }
+
+      .calendar-days-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+      }
+
+      .cal-day-cell {
+        aspect-ratio: 1;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        cursor: pointer;
+        position: relative;
+        background: var(--bg-card-subtle);
+        border: 1px solid transparent;
+        transition: all 0.15s var(--ease-spring);
+      }
+
+      .cal-day-cell.other-month {
+        opacity: 0.3;
+      }
+
+      .cal-day-cell.active-selected {
+        border-color: var(--primary);
+        background: var(--primary-light);
+        color: var(--primary);
+        font-weight: 800;
+      }
+
+      .cal-day-cell.is-today {
+        box-shadow: inset 0 0 0 2px var(--mint);
+      }
+
+      .cal-dots-row {
+        display: flex;
+        gap: 2px;
+        position: absolute;
+        bottom: 4px;
+      }
+
+      .cal-dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+      }
+
+      .cal-dot.income {
+        background-color: var(--income);
+      }
+
+      .cal-dot.expense {
+        background-color: var(--expense);
+      }
+
+      .cal-dot.work {
+        background-color: var(--work);
+      }
+
+
+      /* OVERVIEW COMPACT DATE FILTER TOOLBAR & MODAL */
+      .overview-date-filter-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 8px;
+        padding-top: 8px;
+        border-top: 1px dashed var(--border-subtle);
+      }
+
+      .overview-date-filter-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-full);
+        padding: 6px 12px;
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        cursor: pointer;
+        transition: all 0.2s var(--ease-spring);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      }
+
+      .overview-date-filter-btn:hover {
+        background: var(--bg-card-hover);
+        border-color: var(--mint);
+        color: var(--primary);
+      }
+
+      .overview-date-filter-btn:active {
+        transform: scale(0.97);
+      }
+
+      .overview-period-range-tag {
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: var(--text-secondary);
+        background: var(--bg-card-subtle);
+        border: 1px solid var(--border-card);
+        padding: 4px 10px;
+        border-radius: var(--radius-full);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      /* Horizontal Capsule Pill Track (7N 30N 6T 12T) matching reference design */
+      .modal-period-capsule-bar {
+        display: flex;
+        align-items: center;
+        background: var(--bg-card-subtle);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-full);
+        padding: 3px;
+        gap: 4px;
+        margin-bottom: 2px;
+      }
+
+      .modal-period-pill-btn {
+        flex: 1;
+        height: 34px;
+        border-radius: var(--radius-full);
+        border: none;
+        background: transparent;
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s var(--ease-spring);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-period-pill-btn:hover {
+        color: var(--text-primary);
+      }
+
+      .modal-period-pill-btn.active {
+        background: var(--bg-card);
+        color: var(--primary);
+        font-weight: 800;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border: 1px solid var(--border-subtle);
+      }
+
+      [data-theme="dark"] .modal-period-pill-btn.active {
+        background: var(--bg-card);
+        color: var(--mint);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+      }
+
+      .overview-filter-insight-box {
+        background: linear-gradient(
+          135deg,
+          rgba(14, 56, 52, 0.04),
+          rgba(45, 168, 123, 0.06)
+        );
+        border: 1px solid rgba(45, 168, 123, 0.22);
+        border-radius: 14px;
+        padding: 12px;
+        margin-top: 12px;
+      }
+
+
+      /* ==========================================================================
+         CALENDAR CELL ENHANCEMENTS (AMOUNTS & RECEIPT BADGE)
+         ========================================================================== */
+      .cal-day-cell {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 3px 1px;
+        min-height: 52px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        background: var(--bg-card);
+        border: 1px solid var(--border-card);
+        font-size: 0.72rem;
+      }
+
+      .cal-day-cell:hover {
+        background: var(--bg-card-hover);
+      }
+
+      .cal-day-cell.active-selected {
+        border-color: var(--primary) !important;
+        box-shadow: 0 0 0 1.5px var(--primary) inset !important;
+      }
+
+      .cal-day-cell.is-today {
+        background: var(--primary-light);
+        font-weight: 800;
+      }
+
+      .cal-day-num-wrap {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        font-size: 0.74rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 2px;
+      }
+
+      .cal-day-photo-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--mint);
+        font-size: 9px;
+      }
+
+      .cal-day-amt-badge {
+        font-size: 8px;
+        font-weight: 800;
+        line-height: 1.1;
+        padding: 1px 3px;
+        border-radius: 3px;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .cal-day-amt-badge.income {
+        color: var(--income);
+        background: rgba(40, 167, 107, 0.12);
+      }
+
+      .cal-day-amt-badge.expense {
+        color: var(--expense);
+        background: rgba(231, 90, 77, 0.12);
+      }
+
+
+
+/* ==========================================================================
+   ENHANCED RESPONSIVE CALENDAR & DATE FIXES (MOBILE OVERFLOW PREVENTION)
+   ========================================================================== */
+
+/* Universal Calendar Grid Constraints: Force 7 equal columns with minmax(0, 1fr) */
+.calendar-days-grid,
+#financialCalendarGrid,
+#workCalendarDaysGrid,
+.analytics-heatmap-grid {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  gap: 4px;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden;
+}
+
+.calendar-weekdays {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  gap: 4px;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  text-align: center;
+}
+
+.calendar-weekdays div {
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* Day Cell Hard Constraints (Prevents badge/text blowout) */
+.cal-day-cell {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  aspect-ratio: auto !important;
+  overflow: hidden !important;
+  word-break: break-all;
+}
+
+.cal-day-amt-badge {
+  display: block !important;
+  max-width: 100% !important;
+  width: calc(100% - 2px) !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.cal-day-photo-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  max-width: 100% !important;
+  line-height: 1 !important;
+}
+
+/* Analytics Heatmap Cell Styling */
+.heatmap-day-cell {
+  aspect-ratio: 1 !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: transform 0.15s ease !important;
+  box-sizing: border-box !important;
+}
+
+.heatmap-day-cell:active {
+  transform: scale(0.92);
+}
+
+/* Date Filter Bars Responsive Wrapping */
+.overview-date-filter-bar {
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+}
+
+.overview-date-filter-btn {
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+.overview-period-range-tag {
+  max-width: 100% !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Modal Capsule Pill Bars (Horizontal scroll on overflow) */
+.modal-period-capsule-bar {
+  display: flex !important;
+  align-items: center !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+  -webkit-overflow-scrolling: touch !important;
+  flex-wrap: nowrap !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.modal-period-capsule-bar::-webkit-scrollbar {
+  display: none !important;
+}
+
+.modal-period-pill-btn {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+/* Date inputs responsive sizing in modals */
+.form-input[type="date"],
+input[type="date"].form-input {
+  font-size: 0.82rem !important;
+  padding: 0 8px !important;
+}
+
+/* Mobile Responsive Breakpoints for Calendar (Width <= 480px) */
+@media (max-width: 480px) {
+  .calendar-container {
+    padding: 12px 8px !important;
+    border-radius: var(--radius-md) !important;
+    margin-bottom: 12px !important;
+  }
+
+  .calendar-header {
+    margin-bottom: 10px !important;
+    padding: 0 2px !important;
+  }
+
+  #calCurrentMonthTitle {
+    font-size: 0.92rem !important;
+  }
+
+  .calendar-weekdays {
+    font-size: 0.65rem !important;
+    gap: 2px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .calendar-days-grid,
+  #financialCalendarGrid,
+  #workCalendarDaysGrid,
+  .analytics-heatmap-grid {
+    gap: 2.5px !important;
+  }
+
+  .cal-day-cell {
+    min-height: 48px !important;
+    padding: 2px 1px !important;
+    border-radius: 7px !important;
+    font-size: 0.68rem !important;
+  }
+
+  .cal-day-amt-badge {
+    font-size: 7px !important;
+    padding: 1px 1px !important;
+    border-radius: 2px !important;
+    line-height: 1.05 !important;
+  }
+
+  .cal-day-photo-badge {
+    font-size: 8px !important;
+  }
+
+  .overview-date-filter-bar {
+    padding-top: 6px !important;
+    margin-top: 6px !important;
+  }
+
+  .overview-date-filter-btn {
+    padding: 5px 10px !important;
+    font-size: 0.72rem !important;
+  }
+
+  .overview-period-range-tag {
+    font-size: 0.68rem !important;
+    padding: 3px 8px !important;
+  }
+
+  .analytics-filter-bar {
+    padding: 8px 10px !important;
+    gap: 6px !important;
+  }
+
+  .analytics-filter-btn {
+    padding: 5px 10px !important;
+    font-size: 0.72rem !important;
+  }
+}
+
+/* Extra Small Screens (Width <= 360px, e.g. iPhone SE 1st gen, Galaxy Fold outer, compact devices) */
+@media (max-width: 360px) {
+  .calendar-container {
+    padding: 8px 4px !important;
+  }
+
+  .calendar-weekdays {
+    font-size: 0.58rem !important;
+    gap: 1.5px !important;
+  }
+
+  .calendar-days-grid,
+  #financialCalendarGrid,
+  #workCalendarDaysGrid,
+  .analytics-heatmap-grid {
+    gap: 1.5px !important;
+  }
+
+  .cal-day-cell {
+    min-height: 44px !important;
+    padding: 1px 0.5px !important;
+    border-radius: 5px !important;
+    font-size: 0.62rem !important;
+  }
+
+  .cal-day-amt-badge {
+    font-size: 6.5px !important;
+    padding: 0.5px 0.5px !important;
+    letter-spacing: -0.2px !important;
+  }
+}

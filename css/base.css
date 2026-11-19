@@ -1,0 +1,526 @@
+      /* Reset & Base */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+      }
+
+      *::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
+
+      input,
+      textarea,
+      select,
+      button {
+        font-family: inherit;
+        color: inherit;
+        user-select: auto;
+      }
+
+      html {
+        font-size: 13.5px;
+      }
+
+      @media (max-width: 400px) {
+        html {
+          font-size: 13px;
+        }
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+          "Inter", sans-serif;
+        background-color: #e6ece9;
+        color: var(--text-primary);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        overflow-x: hidden;
+        line-height: 1.45;
+        font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Phone Viewport Container */
+      .app-viewport {
+        width: 100%;
+        max-width: 440px;
+        min-height: 100vh;
+        background-color: var(--bg-body);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        overflow-x: hidden;
+        transition:
+          background-color 0.25s ease,
+          color 0.25s ease;
+      }
+
+      @media (max-width: 440px) {
+        .app-viewport {
+          max-width: 100%;
+          box-shadow: none;
+        }
+      }
+
+      /* iOS Sticky Glass Header with Brand Theme Gradient */
+      .app-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        padding: calc(var(--safe-top) + 8px) 16px 8px;
+        background: var(--hero-gradient);
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        transition:
+          background 0.25s ease,
+          border-color 0.25s ease;
+        color: #ffffff;
+      }
+
+      [data-theme="dark"] .app-header {
+        background: var(--hero-gradient);
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .header-user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .header-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: var(--radius-full);
+        background: rgba(255, 255, 255, 0.2);
+        border: 1.5px solid rgba(255, 255, 255, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 0.85rem;
+        color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+        letter-spacing: -0.02em;
+      }
+
+      .header-meta h1 {
+        font-size: 0.88rem;
+        font-weight: 800;
+        color: #ffffff !important;
+        letter-spacing: -0.025em;
+        line-height: 1.2;
+      }
+
+      .header-meta p {
+        font-size: 0.65rem;
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-weight: 600;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .header-actions .btn-icon-subtle {
+        background: rgba(255, 255, 255, 0.15) !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        color: #ffffff !important;
+      }
+
+      .header-actions .btn-icon-subtle:active {
+        background: rgba(255, 255, 255, 0.3) !important;
+      }
+
+      .btn-icon-subtle {
+        width: 34px;
+        height: 34px;
+        border-radius: var(--radius-full);
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-card);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-primary);
+        cursor: pointer;
+        box-shadow: var(--shadow-sm);
+        transition: all 0.2s var(--ease-spring);
+      }
+
+      .btn-icon-subtle:active {
+        transform: scale(0.92);
+        background-color: var(--bg-card-subtle);
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .spin {
+        animation: spin 1s linear infinite;
+        display: inline-block;
+      }
+
+      /* Main Scroll View */
+      .main-scroll-view {
+        flex: 1;
+        padding: 14px 16px calc(58px + var(--safe-bottom) + 24px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+
+      .screen-view {
+        display: none;
+        opacity: 0;
+        transform: translateY(8px);
+        transition:
+          opacity 0.28s var(--ease-smooth),
+          transform 0.28s var(--ease-smooth);
+      }
+
+      .screen-view.active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* 3D ICON STYLING & BADGES (3Dicons / Fluent 3D Effect) */
+      .icon-3d-badge {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        flex-shrink: 0;
+        box-shadow:
+          0 8px 16px -4px rgba(0, 0, 0, 0.12),
+          inset 0 2px 4px rgba(255, 255, 255, 0.4),
+          inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+        transition: transform 0.2s var(--ease-spring);
+      }
+
+      .icon-3d-badge:active {
+        transform: scale(0.94);
+      }
+
+      .badge-cash {
+        background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+        color: #ffffff;
+      }
+
+      .badge-bank {
+        background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+        color: #ffffff;
+      }
+
+      .badge-ewallet {
+        background: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
+        color: #ffffff;
+      }
+
+      .badge-income {
+        background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+        color: #ffffff;
+      }
+
+      .badge-expense {
+        background: linear-gradient(135deg, #fb7185 0%, #e11d48 100%);
+        color: #ffffff;
+      }
+
+      .badge-budget {
+        background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+        color: #ffffff;
+      }
+
+      .badge-work {
+        background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+        color: #ffffff;
+      }
+
+      .badge-savings {
+        background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+        color: #ffffff;
+      }
+
+
+      /* ==========================================================================
+         SPLASH SCREEN (2s AUTO FADE-OUT WITH PULSING LUXURY LOGO)
+         ========================================================================== */
+      #appSplashScreen {
+        position: fixed;
+        inset: 0;
+        z-index: 100000;
+        background: var(
+          --hero-gradient,
+          linear-gradient(145deg, #092825 0%, #0e3834 60%, #17544e 100%)
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        transition:
+          opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+          visibility 0.5s ease;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      #appSplashScreen.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .splash-logo-wrap {
+        position: relative;
+        width: 88px;
+        height: 88px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .splash-pulse-ring {
+        position: absolute;
+        inset: -12px;
+        border-radius: 28px;
+        border: 2px solid rgba(45, 168, 123, 0.4);
+        animation: splashPulse 2.2s infinite ease-in-out;
+      }
+
+      @keyframes splashPulse {
+        0%,
+        100% {
+          transform: scale(0.96);
+          opacity: 0.3;
+        }
+        50% {
+          transform: scale(1.08);
+          opacity: 0.85;
+          filter: drop-shadow(0 0 16px rgba(45, 168, 123, 0.6));
+        }
+      }
+
+      .splash-logo-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 22px;
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+        position: relative;
+        z-index: 2;
+      }
+
+      .splash-title {
+        font-size: 1.45rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 4px;
+        color: #ffffff;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .splash-subtitle {
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: var(--mint-accent, #7fe0b8);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0.9;
+      }
+
+      /* ==========================================================================
+         IPHONE PIN PASSCODE LOCK SCREEN
+         ========================================================================== */
+      #passcodeLockOverlay {
+        position: fixed;
+        inset: 0;
+        z-index: 99990;
+        background: var(--bg-body);
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: calc(var(--safe-top) + 40px) 24px
+          calc(var(--safe-bottom) + 30px);
+        user-select: none;
+        -webkit-user-select: none;
+        transition: opacity 0.3s ease;
+      }
+
+      #passcodeLockOverlay.active {
+        display: flex;
+      }
+
+      .passcode-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .passcode-lock-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--primary-light);
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 14px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .passcode-title {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+        letter-spacing: -0.02em;
+      }
+
+      .passcode-desc {
+        font-size: 0.78rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      .passcode-dots-row {
+        display: flex;
+        gap: 16px;
+        margin: 28px 0;
+      }
+
+      .passcode-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: 1.5px solid var(--text-secondary);
+        background: transparent;
+        transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .passcode-dot.filled {
+        background: var(--primary);
+        border-color: var(--primary);
+        transform: scale(1.15);
+        box-shadow: 0 0 10px rgba(14, 56, 52, 0.35);
+      }
+
+      [data-theme="dark"] .passcode-dot.filled {
+        background: var(--mint);
+        border-color: var(--mint);
+        box-shadow: 0 0 10px rgba(45, 168, 123, 0.5);
+      }
+
+      .passcode-keypad {
+        display: grid;
+        grid-template-columns: repeat(3, 72px);
+        gap: 16px 22px;
+        margin-bottom: 20px;
+      }
+
+      .passcode-key {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: var(--bg-card);
+        border: 1px solid var(--border-card);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--text-primary);
+        box-shadow: var(--shadow-sm);
+        transition: all 0.12s ease;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .passcode-key:active {
+        transform: scale(0.92);
+        background: var(--border-card);
+      }
+
+      .passcode-key-num {
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .passcode-key-sub {
+        font-size: 0.58rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: var(--text-secondary);
+        margin-top: 2px;
+      }
+
+      .shake-anim {
+        animation: shakeAnim 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      }
+
+      @keyframes shakeAnim {
+        10%,
+        90% {
+          transform: translate3d(-3px, 0, 0);
+        }
+        20%,
+        80% {
+          transform: translate3d(5px, 0, 0);
+        }
+        30%,
+        50%,
+        70% {
+          transform: translate3d(-6px, 0, 0);
+        }
+        40%,
+        60% {
+          transform: translate3d(6px, 0, 0);
+        }
+      }
+
+      /* ==========================================================================
+         FLYING COIN & MONEY PARTICLES ANIMATION
+         ========================================================================== */
+      .flying-coin-element {
+        position: fixed;
+        pointer-events: none;
+        z-index: 99999;
+        font-size: 22px;
+        line-height: 1;
+        filter: drop-shadow(0 4px 10px rgba(234, 179, 8, 0.45));
+        will-change: transform, opacity;
+      }
+
