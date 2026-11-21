@@ -105,29 +105,74 @@
       window.setColorTheme = setColorTheme;
 
       /* Image Quality Control (Thấp <50KB, TB <100KB, Cao <200KB) */
-      function onImageQualitySliderInput(val) {
-        const mode = val === "1" ? "low" : val === "2" ? "medium" : "high";
-        setImageQualitySetting(mode);
-      }
-      window.onImageQualitySliderInput = onImageQualitySliderInput;
-
-      function setImageQualitySetting(mode) {
+      function applyImageQualityUI(mode) {
         const validModes = ["low", "medium", "high"];
         if (!validModes.includes(mode)) mode = "high";
-        State.settings.image_quality = mode;
-        DB.put("settings", { key: "image_quality", value: mode });
 
+        // 1. Cập nhật vị trí thanh trượt
         const slider = document.getElementById("imageQualitySlider");
-        if (slider)
+        if (slider) {
           slider.value = mode === "low" ? "1" : mode === "medium" ? "2" : "3";
+        }
 
+        // 2. Cập nhật nhãn huy hiệu góc phải
         const badge = document.getElementById("imageQualityBadge");
         const labels = {
           low: "Thấp (<50KB)",
           medium: "TB (<100KB)",
           high: "Cao (<200KB)",
         };
-        if (badge) badge.textContent = labels[mode] || "Cao (<200KB)";
+        if (badge) {
+          badge.textContent = labels[mode] || "Cao (<200KB)";
+        }
+
+        // 3. Highlight văn bản lựa chọn tương ứng bên dưới
+        const optLow = document.getElementById("qualityOptionLow");
+        const optMedium = document.getElementById("qualityOptionMedium");
+        const optHigh = document.getElementById("qualityOptionHigh");
+        if (optLow) {
+          optLow.style.color = mode === "low" ? "var(--mint)" : "var(--text-secondary)";
+          optLow.style.fontWeight = mode === "low" ? "800" : "600";
+        }
+        if (optMedium) {
+          optMedium.style.color = mode === "medium" ? "var(--mint)" : "var(--text-secondary)";
+          optMedium.style.fontWeight = mode === "medium" ? "800" : "600";
+        }
+        if (optHigh) {
+          optHigh.style.color = mode === "high" ? "var(--mint)" : "var(--text-secondary)";
+          optHigh.style.fontWeight = mode === "high" ? "800" : "600";
+        }
+      }
+      window.applyImageQualityUI = applyImageQualityUI;
+
+      function onImageQualitySliderInput(val) {
+        const mode = val === "1" ? "low" : val === "2" ? "medium" : "high";
+        setImageQualitySetting(mode);
+      }
+      window.onImageQualitySliderInput = onImageQualitySliderInput;
+
+      async function setImageQualitySetting(mode) {
+        const validModes = ["low", "medium", "high"];
+        if (!validModes.includes(mode)) mode = "high";
+
+        State.settings.image_quality = mode;
+
+        // Lưu song song vào localStorage để đảm bảo không mất kể cả khi tắt app ngay
+        try {
+          localStorage.setItem("finmaster_image_quality", mode);
+        } catch (e) {}
+
+        // Lưu vào IndexedDB vĩnh viễn
+        await DB.put("settings", { key: "image_quality", value: mode });
+
+        // Cập nhật toàn diện giao diện
+        applyImageQualityUI(mode);
+
+        const labels = {
+          low: "Thấp (<50KB)",
+          medium: "TB (<100KB)",
+          high: "Cao (<200KB)",
+        };
         showToast(`Đã lưu chất lượng ảnh: ${labels[mode]}`);
       }
       window.setImageQualitySetting = setImageQualitySetting;
@@ -673,7 +718,7 @@
         });
       }
 
-      function showToast(message, isError = false) {
+      function showToast(message, isError = false, undoAction = null) {
         if (typeof SoundEngine !== "undefined" && SoundEngine.play) {
           SoundEngine.play("notify");
         }
@@ -681,39 +726,215 @@
         if (!container) return;
         const toast = document.createElement("div");
         toast.className = `toast-pill ${isError ? "error" : ""}`;
+
+        let undoBtnHtml = "";
+        if (undoAction && typeof undoAction === "function") {
+          undoBtnHtml = `<button type="button" class="toast-undo-btn" style="background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,0.35); color: #fff; border-radius: 99px; padding: 2px 9px; font-size: 0.72rem; font-weight: 800; margin-left: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">Hoàn tác</button>`;
+        }
+
         toast.innerHTML = `
         <i data-lucide="${isError ? "alert-circle" : "check-circle"}" style="width: 17px; height: 17px; flex-shrink: 0;"></i>
         <span>${message}</span>
+        ${undoBtnHtml}
       `;
         container.appendChild(toast);
         lucide.createIcons();
 
+        if (undoAction && typeof undoAction === "function") {
+          const btn = toast.querySelector(".toast-undo-btn");
+          if (btn) {
+            btn.addEventListener("click", async (e) => {
+              e.stopPropagation();
+              toast.classList.add("dismissing");
+              setTimeout(() => toast.remove(), 250);
+              await undoAction();
+            });
+          }
+        }
+
         setTimeout(() => {
-          toast.classList.add("dismissing");
-          setTimeout(() => toast.remove(), 350);
-        }, 2600);
+          if (toast.isConnected) {
+            toast.classList.add("dismissing");
+            setTimeout(() => toast.remove(), 350);
+          }
+        }, undoAction ? 4500 : 2600);
       }
+
+      /**
+       * Universal Slide-to-Confirm Controller
+       * Attaches drag-to-confirm interaction to any .swipe-container
+       * @param {string|HTMLElement} containerOrId - Container ID or element
+       * @param {Object} options - Configuration options
+       */
+      function attachSlideToConfirm(containerOrId, options = {}) {
+        const container = typeof containerOrId === "string" ? document.getElementById(containerOrId) : containerOrId;
+        if (!container) return null;
+
+        const defaultText = options.text || "Trượt để xác nhận";
+        const confirmText = options.confirmText || "Thả để xác nhận...";
+        const doneText = options.doneText || "Đang xử lý...";
+        const onConfirm = options.onConfirm || (() => {});
+        const threshold = options.threshold || 0.90;
+
+        const trackFill = container.querySelector(".swipe-track-fill");
+        const textEl = container.querySelector(".swipe-text");
+        const thumb = container.querySelector(".swipe-thumb");
+        const thumbIcon = thumb ? thumb.querySelector("[data-lucide]") : null;
+
+        if (!trackFill || !textEl || !thumb) return null;
+
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+        let maxDrag = 0;
+        let isSubmitting = false;
+
+        function reset() {
+          currentX = 0;
+          isDragging = false;
+          isSubmitting = false;
+          thumb.classList.add("springing");
+          trackFill.classList.add("springing");
+          thumb.style.transform = "translateX(0px)";
+          trackFill.style.width = "0px";
+          textEl.textContent = defaultText;
+
+          if (thumbIcon && options.thumbIcon) {
+            thumbIcon.setAttribute("data-lucide", options.thumbIcon);
+            if (window.lucide && lucide.createIcons) lucide.createIcons();
+          }
+
+          setTimeout(() => {
+            thumb.classList.remove("springing");
+            trackFill.classList.remove("springing");
+          }, 350);
+        }
+
+        const onPointerDown = (e) => {
+          if (isSubmitting) return;
+          isDragging = true;
+          startX = e.clientX;
+          currentX = 0;
+          const containerWidth = container.clientWidth || 280;
+          const thumbWidth = thumb.clientWidth || 38;
+          maxDrag = Math.max(10, containerWidth - thumbWidth - 10);
+
+          try {
+            thumb.setPointerCapture(e.pointerId);
+          } catch (err) {}
+
+          thumb.classList.remove("springing");
+          trackFill.classList.remove("springing");
+        };
+
+        const onPointerMove = (e) => {
+          if (!isDragging || isSubmitting) return;
+          const deltaX = e.clientX - startX;
+          currentX = Math.max(0, Math.min(deltaX, maxDrag));
+
+          thumb.style.transform = "translateX(" + currentX + "px)";
+          trackFill.style.width = (currentX + thumb.clientWidth) + "px";
+
+          const progress = maxDrag > 0 ? currentX / maxDrag : 0;
+          if (progress >= 0.85) {
+            textEl.textContent = confirmText;
+          } else {
+            textEl.textContent = defaultText;
+          }
+        };
+
+        const onPointerUp = async (e) => {
+          if (!isDragging || isSubmitting) return;
+          isDragging = false;
+
+          try {
+            thumb.releasePointerCapture(e.pointerId);
+          } catch (err) {}
+
+          const progress = maxDrag > 0 ? currentX / maxDrag : 0;
+
+          if (progress >= threshold) {
+            isSubmitting = true;
+            thumb.style.transform = "translateX(" + maxDrag + "px)";
+            trackFill.style.width = "100%";
+            textEl.textContent = doneText;
+
+            if (typeof SoundEngine !== "undefined" && SoundEngine.play) {
+              SoundEngine.play("success");
+            }
+            if (typeof triggerHaptic === "function") {
+              triggerHaptic("heavy");
+            }
+
+            try {
+              await onConfirm();
+            } catch (err) {
+              console.error("Lỗi thực thi xác nhận thanh trượt:", err);
+            } finally {
+              setTimeout(reset, 400);
+            }
+          } else {
+            if (typeof triggerHaptic === "function" && progress > 0.3) {
+              triggerHaptic("light");
+            }
+            reset();
+          }
+        };
+
+        const onPointerCancel = () => {
+          if (isDragging) reset();
+        };
+
+        thumb.onpointerdown = onPointerDown;
+        thumb.onpointermove = onPointerMove;
+        thumb.onpointerup = onPointerUp;
+        thumb.onpointercancel = onPointerCancel;
+
+        return { reset };
+      }
+      window.attachSlideToConfirm = attachSlideToConfirm;
 
       function showConfirmDialog(title, message, onConfirm) {
         const modal = document.getElementById("confirmDialogModal");
-        document.getElementById("dialogTitle").textContent = title;
-        document.getElementById("dialogMessage").textContent = message;
+        if (!modal) return;
+
+        const titleEl = document.getElementById("dialogTitle");
+        const msgEl = document.getElementById("dialogMessage");
+        if (titleEl) titleEl.textContent = title;
+        if (msgEl) msgEl.textContent = message;
+
         modal.classList.add("active");
 
-        const confirmBtn = document.getElementById("dialogConfirmBtn");
         const cancelBtn = document.getElementById("dialogCancelBtn");
+        const confirmBtn = document.getElementById("dialogConfirmBtn");
 
         const cleanup = () => {
           modal.classList.remove("active");
-          confirmBtn.onclick = null;
-          cancelBtn.onclick = null;
+          if (cancelBtn) cancelBtn.onclick = null;
+          if (confirmBtn) confirmBtn.onclick = null;
         };
 
-        confirmBtn.onclick = () => {
-          cleanup();
-          onConfirm();
-        };
-        cancelBtn.onclick = cleanup;
+        if (cancelBtn) cancelBtn.onclick = cleanup;
+        if (confirmBtn) {
+          confirmBtn.onclick = () => {
+            cleanup();
+            if (onConfirm) onConfirm();
+          };
+        }
+
+        // Attach danger slide-to-confirm if present
+        const swipeDialog = document.getElementById("swipeDialogConfirm");
+        if (swipeDialog) {
+          attachSlideToConfirm("swipeDialogConfirm", {
+            text: "Trượt để xác nhận",
+            confirmText: "Thả để thực hiện...",
+            doneText: "Đang xử lý...",
+            onConfirm: async () => {
+              cleanup();
+              if (onConfirm) await onConfirm();
+            }
+          });
+        }
       }
 
       /* Kitbitz Vector Illustrations for Empty States */

@@ -16,6 +16,7 @@
           );
 
           currentlyOpenSwipeWrapper.classList.remove("dragging");
+          currentlyOpenSwipeWrapper.classList.remove("full-swipe-ready");
           if (card) {
             card.classList.remove("dragging");
             card.style.transform = "translateX(0px)";
@@ -164,12 +165,20 @@
 
         wrapper.innerHTML = `
         <div class="tx-swipe-actions">
-          <button class="tx-action-btn edit-btn" id="swipeEditBtn_${tx.id}" title="Sửa giao dịch" aria-label="Sửa">
-            <i data-lucide="edit-3" style="width: 18px; height: 18px;"></i>
-          </button>
-          <button class="tx-action-btn delete-btn" id="swipeDelBtn_${tx.id}" title="Xóa giao dịch" aria-label="Xóa">
-            <i data-lucide="trash-2" style="width: 18px; height: 18px;"></i>
-          </button>
+          <!-- Background đỏ kích hoạt khi lướt dài xóa kiểu Gmail -->
+          <div class="tx-full-swipe-bg">
+            <i data-lucide="trash-2" style="width: 20px; height: 20px;"></i>
+            <span>Xóa</span>
+          </div>
+          <!-- 2 nút tròn khi lướt nhẹ -->
+          <div class="tx-short-swipe-btns">
+            <button class="tx-action-btn edit-btn" id="swipeEditBtn_${tx.id}" title="Sửa giao dịch" aria-label="Sửa">
+              <i data-lucide="edit-3" style="width: 18px; height: 18px;"></i>
+            </button>
+            <button class="tx-action-btn delete-btn" id="swipeDelBtn_${tx.id}" title="Xóa giao dịch" aria-label="Xóa">
+              <i data-lucide="trash-2" style="width: 18px; height: 18px;"></i>
+            </button>
+          </div>
         </div>
         <div class="tx-card-item" id="txCardItem_${tx.id}">
           <div class="tx-left">
@@ -192,14 +201,16 @@
         const editBtn = wrapper.querySelector(".tx-action-btn.edit-btn");
         const deleteBtn = wrapper.querySelector(".tx-action-btn.delete-btn");
 
-        // Cài đặt cử chỉ Pointer Drag
+        // Cài đặt cử chỉ Pointer Drag (Hỗ trợ lướt nhẹ hiện 2 nút & lướt dài xóa luôn kiểu Gmail)
         let isPointerDown = false;
         let startX = 0;
         let startY = 0;
         let currentOffsetX = 0;
         let isSwiping = false;
         let hasDragged = false;
+        let isFullSwipeReady = false;
         const snapWidth = -116; // Chiều rộng vừa khớp 2 nút tròn
+        const longSwipeThreshold = -165; // Ngưỡng lướt dài xóa kiểu Gmail
 
         const updateScale = (progress) => {
           // Phóng to dần 2 nút từ 0 lên 1 khi kéo từ phải sang trái
@@ -222,6 +233,7 @@
           isPointerDown = true;
           hasDragged = false;
           isSwiping = false;
+          isFullSwipeReady = false;
           startX = e.clientX;
           startY = e.clientY;
           currentOffsetX = wrapper.classList.contains("swiped-open")
@@ -253,17 +265,37 @@
             let newX = currentOffsetX + deltaX;
             // Giới hạn không cho kéo sang phải
             if (newX > 0) newX = newX * 0.2;
-            // Kháng lực khi kéo quá 2 nút
-            if (newX < snapWidth) {
-              newX = snapWidth + (newX - snapWidth) * 0.25;
+
+            // Kéo dài sang trái: cho phép kéo tự do qua longSwipeThreshold
+            // Chỉ thêm chút kháng lực nhẹ khi kéo quá 270px
+            if (newX < -270) {
+              newX = -270 + (newX - (-270)) * 0.35;
             }
 
             card.style.transform = `translateX(${newX}px)`;
 
-            // Tính độ tiến trình phóng to 2 nút
-            const dist = Math.max(0, -newX);
-            const progress = Math.min(dist / Math.abs(snapWidth), 1);
-            updateScale(progress);
+            // Kiểm tra ngưỡng lướt dài kiểu Gmail
+            if (newX < longSwipeThreshold) {
+              if (!isFullSwipeReady) {
+                isFullSwipeReady = true;
+                wrapper.classList.add("full-swipe-ready");
+                if (typeof triggerHaptic === "function") {
+                  triggerHaptic("medium");
+                }
+              }
+            } else {
+              if (isFullSwipeReady) {
+                isFullSwipeReady = false;
+                wrapper.classList.remove("full-swipe-ready");
+                if (typeof triggerHaptic === "function") {
+                  triggerHaptic("light");
+                }
+              }
+              // Tính độ tiến trình phóng to 2 nút khi ở khoảng lướt ngắn
+              const dist = Math.max(0, -newX);
+              const progress = Math.min(dist / Math.abs(snapWidth), 1);
+              updateScale(progress);
+            }
           }
         });
 
@@ -280,8 +312,70 @@
             );
             const curX = matrix.m41;
 
-            // Nếu kéo sang trái vượt qua 45px -> Snap mở hoàn toàn
-            if (curX < -45) {
+            if (curX <= longSwipeThreshold) {
+              // ============================================================
+              // 1. LƯỚT DÀI (LONG SWIPE) -> XÓA NGAY LẬP TỨC KIỂU GMAIL!
+              // ============================================================
+              isFullSwipeReady = false;
+              wrapper.classList.remove("swiped-open");
+              if (currentlyOpenSwipeWrapper === wrapper) {
+                currentlyOpenSwipeWrapper = null;
+              }
+
+              // Animate thẻ bay hoàn toàn sang trái (Slide out left)
+              card.style.transition = "transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.2s ease";
+              card.style.transform = "translateX(-115%)";
+              card.style.opacity = "0";
+
+              setTimeout(async () => {
+                // Thu gọn chiều cao wrapper mượt mà (Collapse height)
+                wrapper.style.transition = "max-height 0.26s cubic-bezier(0.4, 0, 0.2, 1), margin 0.26s ease, opacity 0.2s ease, padding 0.26s ease";
+                wrapper.style.maxHeight = wrapper.offsetHeight + "px";
+                void wrapper.offsetHeight; // reflow
+                wrapper.style.maxHeight = "0px";
+                wrapper.style.marginBottom = "0px";
+                wrapper.style.paddingTop = "0px";
+                wrapper.style.paddingBottom = "0px";
+                wrapper.style.opacity = "0";
+                wrapper.style.overflow = "hidden";
+
+                if (typeof SoundEngine !== "undefined" && SoundEngine.play) {
+                  SoundEngine.play("delete");
+                }
+                if (typeof triggerHaptic === "function") {
+                  triggerHaptic("medium");
+                }
+
+                // Xóa khỏi Database & State
+                await DB.delete("transactions", tx.id);
+                const originalIndex = State.transactions.findIndex((t) => t.id === tx.id);
+                State.transactions = State.transactions.filter((t) => t.id !== tx.id);
+
+                // Cập nhật các màn hình & số dư
+                setTimeout(() => {
+                  renderAllScreens();
+                }, 270);
+
+                // Thông báo Toast có nút HOÀN TÁC chuẩn Gmail
+                const txTitle = tx.note || cat.name || "Giao dịch";
+                showToast(`Đã xóa: ${txTitle} (${formatVND(tx.amount)})`, false, async () => {
+                  // Hoàn tác: Phục hồi lại giao dịch vào vị trí ban đầu
+                  await DB.put("transactions", tx);
+                  if (originalIndex >= 0) {
+                    State.transactions.splice(originalIndex, 0, tx);
+                  } else {
+                    State.transactions.push(tx);
+                  }
+                  showToast("Đã hoàn tác giao dịch!");
+                  renderAllScreens();
+                });
+              }, 140);
+
+            } else if (curX < -45) {
+              // ============================================================
+              // 2. LƯỚT NHẸ -> SNAP MỞ 2 NÚT SỬA & XÓA NHƯ CŨ
+              // ============================================================
+              wrapper.classList.remove("full-swipe-ready");
               card.style.transform = `translateX(${snapWidth}px)`;
               editBtn.style.transform = "scale(1)";
               editBtn.style.opacity = "1";
@@ -290,7 +384,10 @@
               wrapper.classList.add("swiped-open");
               currentlyOpenSwipeWrapper = wrapper;
             } else {
-              // Đóng lại -> 2 nút thu nhỏ dần về 0
+              // ============================================================
+              // 3. ĐÓNG LẠI (SNAP CLOSED)
+              // ============================================================
+              wrapper.classList.remove("full-swipe-ready");
               card.style.transform = "translateX(0px)";
               editBtn.style.transform = "scale(0)";
               editBtn.style.opacity = "0";

@@ -72,6 +72,7 @@
         mapSelectedTxId: null,
         userGpsCoords: null,
         mapLayerType: "auto",
+        mapHeatmapEnabled: false,
       };
 
       /* Chart & Map Instances */
@@ -86,10 +87,11 @@
       /* Leaflet Map Global Instances & Layers */
       let spendingMap = null;
       let mapTileLayer = null;
+      let spendingHeatmapLayer = null;
       let mapMarkersLayer = null;
       let mapRadiusCircle = null;
       let mapUserMarker = null;
-      let mapCurrentLayerKey = "carto_light";
+      let mapCurrentLayerKey = "google_roadmap";
       let overviewMiniMap = null;
       let overviewMiniMapMarkersLayer = null;
 

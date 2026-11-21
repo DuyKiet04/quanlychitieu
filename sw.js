@@ -1,5 +1,5 @@
 // FinMaster Service Worker - 100% Offline PWA
-const CACHE_NAME = 'finmaster-v4';
+const CACHE_NAME = 'finmaster-v22';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -30,6 +30,7 @@ const ASSETS_TO_CACHE = [
   './js/wizard.js',
   './js/categories.js',
   './js/map.js',
+  './js/motion.js',
   './js/events.js',
   './js/app.js'
 ];
@@ -83,8 +84,8 @@ self.addEventListener('fetch', (event) => {
         }
         return networkResponse;
       }).catch(() => {
-        // Offline fallback
-        return null;
+        // Offline fallback or failed external request
+        return new Response(null, { status: 504, statusText: 'Offline' });
       });
     })
   );

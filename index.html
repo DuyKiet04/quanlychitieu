@@ -2205,107 +2205,11 @@
            TAB: LỊCH TÀI CHÍNH (FINANCIAL CALENDAR)
            ====================================================================== -->
         <section class="screen-view" id="screen-calendar">
-          <div id="analyticsCalendarView">
-            <div class="calendar-container">
-              <div class="calendar-header">
-                <button
-                  class="btn-icon-subtle"
-                  id="calPrevMonthBtn"
-                  style="width: 32px; height: 32px"
-                >
-                  <i
-                    data-lucide="chevron-left"
-                    style="width: 18px; height: 18px"
-                  ></i>
-                </button>
-                <div
-                  style="font-size: 1rem; font-weight: 800"
-                  id="calCurrentMonthTitle"
-                >
-                  Tháng ...
-                </div>
-                <button
-                  class="btn-icon-subtle"
-                  id="calNextMonthBtn"
-                  style="width: 32px; height: 32px"
-                >
-                  <i
-                    data-lucide="chevron-right"
-                    style="width: 18px; height: 18px"
-                  ></i>
-                </button>
-              </div>
-
-              <div class="calendar-weekdays">
-                <div>T2</div>
-                <div>T3</div>
-                <div>T4</div>
-                <div>T5</div>
-                <div>T6</div>
-                <div>T7</div>
-                <div>CN</div>
-              </div>
-
-              <div class="calendar-days-grid" id="financialCalendarGrid"></div>
-            </div>
-
-            <!-- Selected Day Detail Card -->
-            <div class="editorial-card" id="calSelectedDayBox">
-              <div class="section-header">
-                <h3 class="section-title">
-                  <i
-                    data-lucide="calendar"
-                    style="width: 14px; height: 14px; color: var(--primary)"
-                  ></i>
-                  <span id="calSelectedDayTitle">Chi tiết</span>
-                </h3>
-              </div>
-
-              <div class="bento-grid" style="margin-bottom: 8px">
-                <div class="bento-stat-card" style="padding: 8px 10px">
-                  <span class="stat-title">Thu</span>
-                  <span
-                    class="stat-value income-text"
-                    style="font-size: 0.95rem"
-                    id="calDayIncomeText"
-                    >+0 ₫</span
-                  >
-                </div>
-                <div class="bento-stat-card" style="padding: 8px 10px">
-                  <span class="stat-title">Chi</span>
-                  <span
-                    class="stat-value expense-text"
-                    style="font-size: 0.95rem"
-                    id="calDayExpenseText"
-                    >-0 ₫</span
-                  >
-                </div>
-              </div>
-
-              <div
-                id="calDayTxList"
-                style="display: flex; flex-direction: column; gap: 8px"
-              ></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ======================================================================
-           MODULE: CÔNG VIỆC & NGÀY CÔNG (WORK FINANCE & WORKDAYS)
-           ====================================================================== -->
-        <section class="screen-view" id="screen-work">
-          <!-- Top Header with Back to Profile button -->
-          <div
-            style="
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              margin-bottom: 10px;
-            "
-          >
+          <!-- 1. Thanh điều hướng đầu trang (Nút Quay lại & Về hôm nay) -->
+          <div class="calendar-top-bar">
             <button
               class="btn-icon-subtle"
-              onclick="switchActiveScreen('settings')"
+              onclick="switchActiveScreen('overview')"
               title="Quay lại"
               style="
                 display: flex;
@@ -2313,233 +2217,296 @@
                 gap: 4px;
                 padding: 0 10px;
                 width: auto;
-                font-size: 0.76rem;
+                font-size: 0.74rem;
                 font-weight: 700;
                 background: var(--bg-card);
                 border: 1px solid var(--border-card);
+                height: 32px;
+                border-radius: 99px;
               "
             >
-              <i
-                data-lucide="chevron-left"
-                style="width: 14px; height: 14px"
-              ></i>
-              Profile
+              <i data-lucide="chevron-left" style="width: 16px; height: 16px"></i>
+              <span>Quay lại</span>
             </button>
-            <span
-              style="
-                font-size: 0.78rem;
-                font-weight: 800;
-                color: var(--work);
-                text-transform: uppercase;
-                letter-spacing: 0.05em;
-              "
-              >Đi làm</span
-            >
-          </div>
-
-          <!-- Work Hero Card -->
-          <div
-            class="hero-balance-card"
-            style="
-              background: linear-gradient(
-                145deg,
-                #0e2e4e 0%,
-                #1a4973 60%,
-                #2563eb 100%
-              );
-              padding: 16px 18px;
-            "
-          >
             <div
               style="
+                font-size: 0.92rem;
+                font-weight: 800;
+                color: var(--text-primary);
                 display: flex;
                 align-items: center;
                 gap: 6px;
-                margin-bottom: 6px;
               "
-            >
-              <i
-                data-lucide="briefcase"
-                style="width: 14px; height: 14px; color: #93c5fd"
-              ></i>
-              <span
-                style="
-                  font-size: 0.74rem;
-                  font-weight: 700;
-                  text-transform: uppercase;
-                  letter-spacing: 0.04em;
-                "
-                >Đi làm</span
-              >
-            </div>
-            <div
-              style="font-size: 1.85rem; font-weight: 800; margin-bottom: 4px"
-              id="workNetIncomeDisplay"
-            >
-              0 ₫
-            </div>
-            <div style="font-size: 0.72rem; opacity: 0.85">
-              Thu nhập ròng sau chi phí
-            </div>
-          </div>
-
-          <!-- Date Filter Trigger Bar: Nút icon lịch + tên kỳ & Badge khoảng ngày -->
-          <div
-            class="overview-date-filter-bar"
-            style="
-              margin-top: 10px;
-              margin-bottom: 12px;
-              padding-top: 0;
-              border-top: none;
-            "
-          >
-            <button
-              type="button"
-              class="overview-date-filter-btn"
-              id="openWorkDateFilterBtn"
-              onclick="openWorkDateModal()"
-              title="Tùy chọn thời gian"
             >
               <i
                 data-lucide="calendar"
-                style="width: 13px; height: 13px; color: var(--work)"
+                style="width: 16px; height: 16px; color: var(--primary)"
               ></i>
-              <span id="workPeriodBtnLabel">Tháng này</span>
-              <i
-                data-lucide="chevron-down"
-                style="width: 11px; height: 11px; opacity: 0.65"
-              ></i>
-            </button>
-            <div id="workPeriodBadgeRange" class="overview-period-range-tag">
-              01/11 - 30/11
+              <span>Lịch chi tiêu</span>
             </div>
-          </div>
-
-          <!-- Work Bento Metrics -->
-          <div class="bento-grid">
-            <div class="bento-stat-card">
-              <span class="stat-title">Lương & Thu</span>
-              <span class="stat-value income-text" id="workTotalIncome"
-                >+0 ₫</span
-              >
-            </div>
-            <div class="bento-stat-card">
-              <span class="stat-title">Chi đi làm</span>
-              <span class="stat-value expense-text" id="workTotalExpense"
-                >-0 ₫</span
-              >
-            </div>
-            <div class="bento-stat-card">
-              <span class="stat-title">Ngày làm</span>
-              <span class="stat-value" id="workActiveDaysCount">0 ngày</span>
-            </div>
-            <div class="bento-stat-card">
-              <span class="stat-title">Chi TB / ngày</span>
-              <span class="stat-value expense-text" id="workDailyExpenseAvg"
-                >0 ₫</span
-              >
-            </div>
-            <div class="bento-stat-card bento-span-2">
-              <span class="stat-title">Thu TB / ngày đi làm</span>
-              <span class="stat-value income-text" id="workDailyIncomeAvg"
-                >0 ₫</span
-              >
-            </div>
-          </div>
-
-          <!-- Work Comparison Chart -->
-          <div
-            class="editorial-card"
-            style="margin-bottom: 12px; padding: 12px 14px"
-          >
-            <h3 class="section-title" style="margin-bottom: 10px">
-              <i
-                data-lucide="bar-chart-2"
-                style="width: 14px; height: 14px; color: var(--primary)"
-              ></i>
-              Thu vs Chi
-            </h3>
-            <div style="height: 170px; position: relative">
-              <canvas id="workComparisonChart"></canvas>
-            </div>
-          </div>
-
-          <!-- Work Visual Monthly Calendar (Direct Salary & Photo Badge) -->
-          <div
-            class="editorial-card"
-            style="margin-bottom: 12px; padding: 12px 14px"
-          >
-            <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 8px;
-              "
+            <button
+              id="calJumpTodayBtn"
+              class="cal-today-pill-btn"
+              title="Về ngày hôm nay"
             >
-              <h3 class="section-title" style="margin: 0">
-                <i
-                  data-lucide="calendar"
-                  style="width: 14px; height: 14px; color: var(--work)"
-                ></i>
-                Lịch đi làm & Lương
-              </h3>
-              <div
-                style="
-                  font-size: 0.72rem;
-                  font-weight: 700;
-                  color: var(--text-secondary);
-                "
-                id="workCalendarMonthTitle"
+              <i data-lucide="crosshair" style="width: 13px; height: 13px"></i>
+              <span>Hôm nay</span>
+            </button>
+          </div>
+
+          <!-- 2. Thẻ dòng tiền tài chính theo Tháng (Monthly Hero Summary) -->
+          <div class="calendar-month-hero-card">
+            <div class="cal-month-nav-row">
+              <button
+                class="cal-month-nav-btn"
+                id="calPrevMonthBtn"
+                title="Tháng trước"
+                aria-label="Tháng trước"
               >
-                Tháng ...
+                <i data-lucide="chevron-left" style="width: 18px; height: 18px"></i>
+              </button>
+              <div class="cal-month-picker-wrap">
+                <div class="cal-month-title" id="calCurrentMonthTitle">
+                  Tháng ...
+                </div>
+                <div class="cal-month-sub" id="calCurrentMonthTxCount">
+                  0 giao dịch
+                </div>
+              </div>
+              <button
+                class="cal-month-nav-btn"
+                id="calNextMonthBtn"
+                title="Tháng sau"
+                aria-label="Tháng sau"
+              >
+                <i data-lucide="chevron-right" style="width: 18px; height: 18px"></i>
+              </button>
+            </div>
+
+            <!-- 3 Cột thống kê dòng tiền tháng -->
+            <div class="cal-month-metrics-grid">
+              <div class="cal-metric-box">
+                <span class="cal-metric-label">Tổng thu</span>
+                <span class="cal-metric-val income-text" id="calMonthIncomeText"
+                  >+0 ₫</span
+                >
+              </div>
+              <div class="cal-metric-divider"></div>
+              <div class="cal-metric-box">
+                <span class="cal-metric-label">Tổng chi</span>
+                <span class="cal-metric-val expense-text" id="calMonthExpenseText"
+                  >-0 ₫</span
+                >
+              </div>
+              <div class="cal-metric-divider"></div>
+              <div class="cal-metric-box">
+                <span class="cal-metric-label">Ròng tháng</span>
+                <span class="cal-metric-val" id="calMonthNetText">0 ₫</span>
               </div>
             </div>
+          </div>
 
+          <!-- 3. Bảng Lưới Lịch (Calendar Grid) -->
+          <div class="calendar-card">
             <div class="calendar-weekdays">
               <div>T2</div>
               <div>T3</div>
               <div>T4</div>
               <div>T5</div>
               <div>T6</div>
-              <div>T7</div>
-              <div>CN</div>
+              <div class="weekend">T7</div>
+              <div class="weekend">CN</div>
             </div>
-            <div
-              class="calendar-days-grid"
-              id="workCalendarDaysGrid"
-            ></div>
+
+            <div class="calendar-days-grid" id="financialCalendarGrid"></div>
+
+            <!-- Chú thích ký hiệu lịch -->
+            <div class="cal-grid-legend">
+              <span class="cal-legend-item">
+                <span class="cal-legend-dot income"></span> Thu
+              </span>
+              <span class="cal-legend-item">
+                <span class="cal-legend-dot expense"></span> Chi
+              </span>
+              <span class="cal-legend-item">
+                <span class="cal-legend-badge-sample"></span> Chi nhiều
+              </span>
+              <span class="cal-legend-item">
+                <span class="cal-legend-ring-sample"></span> Hôm nay
+              </span>
+            </div>
           </div>
 
-          <!-- Work Breakdown by Category -->
-          <div
-            class="editorial-card"
-            style="margin-bottom: 12px; padding: 12px 14px"
-          >
-            <h3 class="section-title" style="margin-bottom: 10px">
-              <i
-                data-lucide="coffee"
-                style="width: 14px; height: 14px; color: var(--primary)"
-              ></i>
-              Khoản chi
-            </h3>
-            <div
-              id="workExpenseBreakdownList"
-              style="display: flex; flex-direction: column; gap: 6px"
-            ></div>
+          <!-- 4. Khối Soi Chi Tiết Ngày Được Chọn (Selected Day Inspector) -->
+          <div class="cal-selected-day-card" id="calSelectedDayBox">
+            <div class="cal-day-header">
+              <div class="cal-day-header-left">
+                <div class="cal-day-date-title" id="calSelectedDayTitle">
+                  Chi tiết ngày...
+                </div>
+                <div class="cal-day-date-sub" id="calSelectedDaySub">
+                  0 giao dịch
+                </div>
+              </div>
+              <button
+                class="cal-add-tx-btn"
+                id="calAddTxBtn"
+                title="Ghi chép cho ngày này"
+              >
+                <i data-lucide="plus" style="width: 14px; height: 14px"></i>
+                <span>Ghi chép</span>
+              </button>
+            </div>
+
+            <!-- 3 Cột thống kê ngày -->
+            <div class="cal-day-metrics-strip">
+              <div class="cal-day-metric">
+                <span class="lbl">Thu:</span>
+                <span class="val income-text" id="calDayIncomeText">+0 ₫</span>
+              </div>
+              <div class="cal-day-metric">
+                <span class="lbl">Chi:</span>
+                <span class="val expense-text" id="calDayExpenseText">-0 ₫</span>
+              </div>
+              <div class="cal-day-metric">
+                <span class="lbl">Ròng:</span>
+                <span class="val" id="calDayNetText">0 ₫</span>
+              </div>
+            </div>
+
+            <!-- Danh sách các giao dịch trong ngày -->
+            <div class="cal-day-tx-list" id="calDayTxList"></div>
+          </div>
+        </section>
+
+        <!-- ======================================================================
+           MODULE: CÔNG VIỆC & CHI TIÊU ĐI LÀM (#screen-work)
+           ====================================================================== -->
+        <section class="screen-view" id="screen-work">
+          <!-- 1. Header with Month Stepper & Back to Overview -->
+          <div class="work-header-nav">
+            <button class="btn-icon-subtle" onclick="switchActiveScreen('overview')" title="Quay lại Tổng quan" style="
+                  display: flex;
+                  align-items: center;
+                  gap: 5px;
+                  padding: 0 10px;
+                  width: auto;
+                  font-size: 0.74rem;
+                  font-weight: 700;
+                  background: var(--bg-card);
+                  border: 1px solid var(--border-card);
+                  height: 32px;
+                  border-radius: var(--radius-full);
+                ">
+              <i data-lucide="chevron-left" style="width: 15px; height: 15px"></i>
+              <span>Tổng quan</span>
+            </button>
+
+            <div class="work-month-stepper">
+              <button class="work-month-nav-btn" onclick="changeWorkMonth(-1)" title="Tháng trước">
+                <i data-lucide="chevron-left" style="width: 14px; height: 14px"></i>
+              </button>
+              <span class="work-month-label" id="workCurrentMonthLabel">Tháng 11, 2026</span>
+              <button class="work-month-nav-btn" onclick="changeWorkMonth(1)" title="Tháng sau">
+                <i data-lucide="chevron-right" style="width: 14px; height: 14px"></i>
+              </button>
+            </div>
           </div>
 
-          <!-- Work Transactions List -->
-          <div class="section-header">
-            <h3 class="section-title">
-              <i
-                data-lucide="list"
-                style="width: 14px; height: 14px; color: var(--primary)"
-              ></i>
-              Giao dịch
-            </h3>
+          <!-- 2. Compact Financial Flow Card (Lương nhận - Tiêu đi làm = Còn lại & % Tiêu) -->
+          <div class="work-flow-card">
+            <div class="work-flow-top">
+              <span class="work-flow-tag">Tài chính đi làm</span>
+              <span class="work-flow-pct" id="workBurnRateBadge">Đã tiêu 0%</span>
+            </div>
+            <div class="work-metrics-trio">
+              <div class="work-metric-item">
+                <span class="lbl">Lương nhận</span>
+                <span class="val" id="workSalaryReceived" style="color: #6ee7b7">+0 ₫</span>
+              </div>
+              <div class="work-metric-div"></div>
+              <div class="work-metric-item">
+                <span class="lbl">Tiêu đi làm</span>
+                <span class="val" id="workTotalExpense" style="color: #fca5a5">-0 ₫</span>
+              </div>
+              <div class="work-metric-div"></div>
+              <div class="work-metric-item">
+                <span class="lbl">Còn lại</span>
+                <span class="val" id="workNetBalance" style="color: #ffffff">0 ₫</span>
+              </div>
+            </div>
+            <div class="work-burn-bar-bg">
+              <div class="work-burn-bar-fill" id="workBurnRateBar" style="width: 0%"></div>
+            </div>
           </div>
-          <div id="workTransactionsList"></div>
+
+          <!-- 3. Top Expense Highlight Card ("Chi tiêu nhiều nhất cho đi làm") -->
+          <div class="work-top-expense-card" id="workTopExpenseCard">
+            <div class="work-card-hdr">
+              <span class="work-card-title">
+                <i data-lucide="flame" style="width: 14px; height: 14px; color: #f97316"></i>
+                Chi nhiều nhất
+              </span>
+              <span class="work-daily-avg-pill" id="workDailyExpenseAvg">TB: 0 ₫/ngày</span>
+            </div>
+            <div id="workTopExpenseContent">
+              <!-- Dynamically populated: Icon, Name, Amount, Share %, Daily Avg -->
+            </div>
+          </div>
+
+          <!-- 4. Category Breakdown (Stacked bar + List) -->
+          <div class="editorial-card" style="margin-bottom: 12px; padding: 12px 14px">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px">
+              <span style="font-size: 0.76rem; font-weight: 800; color: var(--text-primary)">
+                Phân bổ chi phí đi làm
+              </span>
+              <span style="font-size: 0.68rem; font-weight: 700; color: var(--text-secondary)" id="workExpenseCatCount">
+                0 khoản
+              </span>
+            </div>
+            <div class="work-category-stacked-bar" id="workCatStackedBar" style="margin-bottom: 10px"></div>
+            <div id="workExpenseBreakdownList" style="display: flex; flex-direction: column; gap: 7px"></div>
+          </div>
+
+          <!-- 5. Compact Mini Calendar (Chi tiêu theo ngày) -->
+          <div class="editorial-card" style="margin-bottom: 12px; padding: 12px 14px">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px">
+              <span style="font-size: 0.76rem; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 5px;">
+                <i data-lucide="calendar" style="width: 14px; height: 14px; color: var(--work)"></i>
+                Lịch chi tiêu tháng
+              </span>
+              <span style="font-size: 0.66rem; color: var(--text-secondary)" id="workActiveDaysCount">
+                0 ngày có chi tiêu
+              </span>
+            </div>
+
+            <!-- Calendar Weekday Headers -->
+            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; margin-bottom: 4px;">
+              <div style="font-size: 0.64rem; font-weight: 700; color: var(--text-secondary)">T2</div>
+              <div style="font-size: 0.64rem; font-weight: 700; color: var(--text-secondary)">T3</div>
+              <div style="font-size: 0.64rem; font-weight: 700; color: var(--text-secondary)">T4</div>
+              <div style="font-size: 0.64rem; font-weight: 700; color: var(--text-secondary)">T5</div>
+              <div style="font-size: 0.64rem; font-weight: 700; color: var(--text-secondary)">T6</div>
+              <div style="font-size: 0.64rem; font-weight: 700; color: var(--text-secondary)">T7</div>
+              <div style="font-size: 0.64rem; font-weight: 700; color: var(--text-secondary)">CN</div>
+            </div>
+
+            <!-- Calendar Days Grid -->
+            <div id="workCalendarGrid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px;"></div>
+          </div>
+
+          <!-- 6. Work Transactions List with Date Filter Badge -->
+          <div class="editorial-card" style="padding: 12px 14px; margin-bottom: 24px">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px">
+              <span style="font-size: 0.76rem; font-weight: 800; color: var(--text-primary)" id="workTxListHeading">
+                Danh sách chi tiêu đi làm
+              </span>
+              <button id="workClearFilterBtn" onclick="clearWorkDayFilter()" class="btn-icon-subtle" style="display: none; height: 24px; padding: 0 8px; font-size: 0.66rem; font-weight: 700; color: var(--primary); background: var(--bg-card-subtle); border-radius: var(--radius-full);">
+                Xem cả tháng
+              </button>
+            </div>
+            <div id="workTransactionsList" style="display: flex; flex-direction: column; gap: 8px"></div>
+          </div>
         </section>
 
         <!-- ======================================================================
@@ -4547,383 +4514,238 @@
         </section>
 
         <!-- ======================================================================
-           TAB: BẢN ĐỒ CHI TIÊU TOÀN MÀN HÌNH GOOGLE MAPS (FULL-SCREEN RADAR)
+           TAB: BẢN ĐỒ CHI TIÊU THÔNG MINH (QUIET LUXURY MAP RADAR - MODERN FINTECH)
            ====================================================================== -->
         <section class="screen-view" id="screen-map">
-          <!-- Full-Screen Interactive Google Map Container -->
+          <!-- Full-Screen Interactive Map Container -->
           <div id="spendingMapContainer"></div>
 
           <!-- Floating Glass Top Navigation Bar -->
-          <div class="map-fullscreen-topbar">
-            <div class="map-top-row">
-              <button
-                class="map-back-pill-btn"
-                id="mapBackBtn"
-                onclick="switchActiveScreen('overview')"
-                title="Quay lại"
-              >
-                <i
-                  data-lucide="chevron-left"
-                  style="width: 18px; height: 18px"
-                ></i>
-                <span>Quay lại</span>
+          <div class="map-floating-topbar">
+            <!-- Top Row: Back button, Search input, Summary Pill -->
+            <div class="map-top-search-row">
+              <button class="map-circle-btn" id="mapBackBtn" onclick="switchActiveScreen('overview')" title="Quay lại" aria-label="Quay lại">
+                <i data-lucide="chevron-left" style="width: 20px; height: 20px"></i>
               </button>
 
-              <!-- Viewport Summary Badge -->
-              <div class="map-kpi-pill-badge" id="mapViewportKpiBadge">
-                <span
-                  style="
-                    display: flex;
-                    align-items: center;
-                    gap: 4px;
-                    color: var(--expense);
-                    font-size: 0.82rem;
-                  "
-                >
-                  <i
-                    data-lucide="map-pin"
-                    style="width: 14px; height: 14px; color: var(--mint)"
-                  ></i>
-                  <span id="mapPointCountText">0 điểm</span>
-                </span>
-                <span style="color: var(--border-card)">|</span>
-                <span
-                  id="mapVisibleTotalAmount"
-                  style="
-                    color: var(--text-primary);
-                    font-size: 0.88rem;
-                    font-weight: 800;
-                  "
-                  >0 ₫</span
-                >
+              <!-- Search Glass Input -->
+              <div class="map-search-glass-wrap">
+                <i data-lucide="search" style="width: 16px; height: 16px; color: var(--text-secondary); flex-shrink: 0;"></i>
+                <input type="text" id="mapSearchInput" placeholder="Tìm kiếm địa điểm, giao dịch..." />
+                <button id="mapClearSearchBtn" style="display: none; background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 2px;">
+                  <i data-lucide="x" style="width: 14px; height: 14px"></i>
+                </button>
               </div>
+
+              <!-- Viewport Summary KPI Pill -->
+              <button class="map-kpi-pill-badge" id="mapFabHotspotsBtn" title="Xem điểm nóng & bộ lọc" aria-label="Xem điểm nóng">
+                <div class="map-kpi-wallet-icon">
+                  <i data-lucide="wallet" style="width: 14px; height: 14px"></i>
+                </div>
+                <div class="map-kpi-info">
+                  <span id="mapPointCountText" class="map-kpi-count">0 giao dịch</span>
+                  <span id="mapVisibleTotalAmount" class="map-kpi-amt">0 ₫</span>
+                </div>
+                <i data-lucide="chevron-right" style="width: 13px; height: 13px; color: var(--text-muted); margin-left: 1px;"></i>
+              </button>
             </div>
 
-            <!-- Glass Search Input Row -->
-            <div class="map-search-glass-wrap">
-              <i
-                data-lucide="search"
-                style="
-                  width: 16px;
-                  height: 16px;
-                  color: var(--text-secondary);
-                  flex-shrink: 0;
-                "
-              ></i>
-              <input
-                type="text"
-                id="mapSearchInput"
-                placeholder="Tìm tên đường, phường, quán ăn, ghi chú..."
-              />
-              <button
-                id="mapClearSearchBtn"
-                style="
-                  display: none;
-                  background: none;
-                  border: none;
-                  cursor: pointer;
-                  color: var(--text-muted);
-                  padding: 2px;
-                "
-              >
-                <i data-lucide="x" style="width: 14px; height: 14px"></i>
+            <!-- Time Filter Chips Row (Modern Quick Filter) -->
+            <div class="map-time-chips-bar" id="mapTimeChipsBar">
+              <button class="map-chip-btn active" data-mperiod="this_month">
+                <i data-lucide="calendar" style="width: 12px; height: 12px"></i>
+                <span>Tháng này</span>
+                <i data-lucide="chevron-down" style="width: 10px; height: 10px; opacity: 0.7;"></i>
+              </button>
+              <button class="map-chip-btn" data-mperiod="7d">
+                <i data-lucide="bar-chart-2" style="width: 12px; height: 12px"></i>
+                <span>Tuần này</span>
+              </button>
+              <button class="map-chip-btn" data-mperiod="today">
+                <i data-lucide="clock" style="width: 12px; height: 12px"></i>
+                <span>Hôm nay</span>
+              </button>
+              <button class="map-chip-btn" data-mperiod="all">
+                <i data-lucide="globe" style="width: 12px; height: 12px"></i>
+                <span>Tất cả</span>
               </button>
             </div>
           </div>
 
-          <!-- Floating Transaction Carousel at Bottom Left -->
-          <div class="map-bottom-tray">
-            <div class="map-tx-mini-carousel" id="mapTxCarousel">
-              <div
-                style="
-                  color: var(--text-secondary);
-                  font-size: 0.78rem;
-                  padding: 12px 14px;
-                  background: var(--bg-card);
-                  border-radius: var(--radius-md);
-                  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-                  border: 1px solid var(--border-card);
-                "
-              >
-                Chạm vào bất kỳ điểm nào trên bản đồ để xem giao dịch...
+          <!-- Vertical Control Action Stack (Right side) -->
+          <div class="map-controls-vertical-stack">
+            <!-- 1. Map Layer (Số / Vệ tinh) -->
+            <button class="map-ctrl-btn" id="mapFabGoogleLayerBtn" title="Đổi bản đồ: Số / Vệ tinh" aria-label="Đổi kiểu bản đồ">
+              <i data-lucide="layers" style="width: 19px; height: 19px"></i>
+              <span class="map-ctrl-label" id="mapFabLayerLabel">Bản đồ</span>
+            </button>
+
+            <!-- 2. Heatmap Toggle Button -->
+            <button class="map-ctrl-btn" id="mapHeatmapToggleBtn" title="Bật/Tắt Heatmap điểm nóng chi tiêu" aria-label="Bật tắt Heatmap">
+              <div class="map-heatmap-icon-wrap">
+                <i data-lucide="flame" style="width: 18px; height: 18px"></i>
               </div>
-            </div>
+              <span class="map-ctrl-label">Heatmap</span>
+              <span class="map-ctrl-badge" id="mapHeatmapBadge">OFF</span>
+            </button>
+
+            <!-- 3. Filter Sheet Trigger -->
+            <button class="map-ctrl-btn" id="mapFilterSheetBtn" title="Bộ lọc nâng cao & Điểm nóng" aria-label="Bộ lọc">
+              <i data-lucide="sliders-horizontal" style="width: 18px; height: 18px"></i>
+              <span class="map-ctrl-label">Bộ lọc</span>
+            </button>
+
+            <!-- 4. GPS Locate -->
+            <button class="map-ctrl-btn" id="mapFabGpsBtn" title="Định vị GPS vị trí của bạn" aria-label="Định vị">
+              <i data-lucide="crosshair" style="width: 19px; height: 19px; color: #2563eb;"></i>
+              <span class="map-ctrl-label">Định vị</span>
+            </button>
+
+            <!-- 5. Recenter Bounds -->
+            <button class="map-ctrl-btn" id="mapFabFitBoundsBtn" title="Xem bao quát toàn bộ điểm" aria-label="Bao quát">
+              <i data-lucide="maximize-2" style="width: 18px; height: 18px"></i>
+            </button>
           </div>
 
-          <!-- Circular FAB Action Buttons Stack at Bottom Right -->
-          <div class="map-fab-stack">
-            <!-- FAB 1: Điểm nóng & Bộ lọc (Hotspots / Filter Sheet) -->
-            <button
-              class="map-fab-btn primary"
-              id="mapFabHotspotsBtn"
-              title="Điểm nóng & Bộ lọc"
-              aria-label="Điểm nóng chi tiêu"
-            >
-              <i
-                data-lucide="flame"
-                style="width: 22px; height: 22px; color: #ffffff"
-              ></i>
-            </button>
+          <!-- Floating Area Spending Pill (Bottom Left) -->
+          <div class="map-area-summary-pill" id="mapAreaSummaryPill" title="Nhấn để xem top điểm nóng">
+            <i data-lucide="bar-chart-3" style="width: 13px; height: 13px; color: var(--mint);"></i>
+            <span class="area-label">Chi tiêu khu vực:</span>
+            <span class="area-val" id="mapAreaSummaryTotal">0 ₫</span>
+            <i data-lucide="chevron-right" style="width: 12px; height: 12px; color: var(--text-muted);"></i>
+          </div>
 
-            <!-- FAB 2: Thu phóng toàn bộ điểm (Fit Bounds) -->
-            <button
-              class="map-fab-btn"
-              id="mapFabFitBoundsBtn"
-              title="Xem bao quát toàn bộ"
-              aria-label="Xem toàn bộ"
-            >
-              <i
-                data-lucide="maximize-2"
-                style="width: 20px; height: 20px; color: var(--text-primary)"
-              ></i>
-            </button>
-
-            <!-- FAB 3: Vòng quét bán kính Gần tôi (Radar Near Me) -->
-            <button
-              class="map-fab-btn"
-              id="mapFabRadiusBtn"
-              title="Quét bán kính gần tôi"
-              aria-label="Bán kính gần tôi"
-            >
-              <i
-                data-lucide="radar"
-                style="width: 20px; height: 20px; color: var(--primary)"
-              ></i>
-              <span class="map-fab-badge" id="mapFabRadiusBadge">Tắt</span>
-            </button>
-
-            <!-- FAB 4: Định vị GPS của tôi (Locate Me) -->
-            <button
-              class="map-fab-btn"
-              id="mapFabGpsBtn"
-              title="Định vị GPS vị trí hiện tại"
-              aria-label="Định vị vị trí"
-            >
-              <i
-                data-lucide="navigation"
-                style="width: 20px; height: 20px; color: var(--mint)"
-              ></i>
-            </button>
-
-            <!-- FAB 5: Chuyển đổi Google Maps Số / Vệ tinh / Địa hình -->
-            <button
-              class="map-fab-btn"
-              id="mapFabGoogleLayerBtn"
-              title="Đổi bản đồ: Số / Vệ tinh Google"
-              aria-label="Đổi kiểu Google Map"
-            >
-              <i
-                data-lucide="layers"
-                style="width: 20px; height: 20px; color: var(--text-primary)"
-              ></i>
-              <span
-                class="map-fab-badge"
-                id="mapFabLayerBadge"
-                style="background: #2563eb"
-                >Số</span
-              >
-            </button>
+          <!-- Selected Transaction Modern Bottom Card / Sheet (Image 3) -->
+          <div class="map-bottom-sheet-card" id="mapSelectedTxCard">
+            <div class="map-card-handle"></div>
+            <div id="mapSelectedTxCardContent">
+              <!-- Rendered dynamically by js/map.js -->
+            </div>
           </div>
         </section>
 
         <!-- Floating Bottom Sheet: Điểm Nóng Chi Tiêu & Bộ Lọc Nâng Cao -->
-        <div id="mapHotspotsSheetModal">
-          <div class="map-hotspots-sheet-content">
-            <div
-              style="
-                width: 36px;
-                height: 4px;
-                border-radius: 99px;
-                background: var(--border-card);
-                margin: 0 auto 14px;
-              "
-            ></div>
+        <div id="mapHotspotsSheetModal" class="modal-overlay">
+          <div class="bottom-sheet map-hotspots-sheet-content">
+            <div class="sheet-handle-bar"></div>
 
-            <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 14px;
-              "
-            >
+            <div style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 14px;
+                ">
               <div style="display: flex; align-items: center; gap: 8px">
-                <div
-                  style="
-                    width: 28px;
-                    height: 28px;
-                    border-radius: 50%;
-                    background: rgba(239, 68, 68, 0.12);
-                    color: var(--expense);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                  "
-                >
+                <div style="
+                      width: 28px;
+                      height: 28px;
+                      border-radius: 50%;
+                      background: rgba(239, 68, 68, 0.12);
+                      color: var(--expense);
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                    ">
                   <i data-lucide="flame" style="width: 16px; height: 16px"></i>
                 </div>
                 <div>
-                  <h3
-                    style="
-                      font-size: 0.9rem;
-                      font-weight: 800;
-                      color: var(--text-primary);
-                      margin: 0;
-                    "
-                  >
+                  <h3 style="
+                        font-size: 0.9rem;
+                        font-weight: 800;
+                        color: var(--text-primary);
+                        margin: 0;
+                      ">
                     Điểm nóng
                   </h3>
-                  <span style="font-size: 0.65rem; color: var(--text-secondary)"
-                    >Top chi tiêu theo vị trí</span
-                  >
+                  <span style="font-size: 0.65rem; color: var(--text-secondary)">Top chi tiêu theo vị trí</span>
                 </div>
               </div>
-              <button
-                class="btn-icon-subtle"
-                id="closeMapHotspotsSheetBtn"
-                title="Đóng"
-              >
+              <button class="btn-icon-subtle" id="closeMapHotspotsSheetBtn" title="Đóng">
                 <i data-lucide="x" style="width: 16px; height: 16px"></i>
               </button>
             </div>
 
-            <!-- Time Presets Pills -->
-            <div style="margin-bottom: 10px">
-              <div
-                style="
-                  font-size: 0.68rem;
-                  font-weight: 800;
-                  color: var(--text-secondary);
-                  text-transform: uppercase;
-                  margin-bottom: 4px;
-                "
-              >
-                Thời gian
-              </div>
-              <div
-                style="
-                  display: flex;
-                  gap: 5px;
-                  overflow-x: auto;
-                  padding-bottom: 2px;
-                  scrollbar-width: none;
-                "
-                id="mapPeriodTabs"
-              >
-                <button class="pill-tab-btn" data-mperiod="today">
-                  Hôm nay
-                </button>
-                <button class="pill-tab-btn" data-mperiod="7d">7N</button>
-                <button class="pill-tab-btn" data-mperiod="this_month">
-                  Tháng này
-                </button>
-                <button class="pill-tab-btn active" data-mperiod="all">
-                  Tất cả
-                </button>
+            <!-- Time Presets Segmented Control -->
+            <div style="margin-bottom: 12px">
+              <div class="sheet-filter-header-label">Thời gian</div>
+              <div class="sheet-segmented-group" id="mapPeriodTabs">
+                <button class="sheet-segmented-btn" data-mperiod="today">Hôm nay</button>
+                <button class="sheet-segmented-btn" data-mperiod="7d">7N</button>
+                <button class="sheet-segmented-btn active" data-mperiod="this_month">Tháng này</button>
+                <button class="sheet-segmented-btn" data-mperiod="all">Tất cả</button>
               </div>
             </div>
 
-            <!-- Type Filter Tabs -->
-            <div style="margin-bottom: 12px">
-              <div
-                style="
-                  font-size: 0.68rem;
-                  font-weight: 800;
-                  color: var(--text-secondary);
-                  text-transform: uppercase;
-                  margin-bottom: 4px;
-                "
-              >
-                Phân loại
-              </div>
-              <div class="pill-tabs" id="mapTypeFilter">
-                <button class="pill-tab-btn active" data-mtype="all">
-                  Tất cả
-                </button>
-                <button class="pill-tab-btn" data-mtype="expense">Chi</button>
-                <button class="pill-tab-btn" data-mtype="income">Thu</button>
-                <button class="pill-tab-btn" data-mtype="work">Đi làm</button>
+            <!-- Type Filter Segmented Control -->
+            <div style="margin-bottom: 14px">
+              <div class="sheet-filter-header-label">Phân loại</div>
+              <div class="sheet-segmented-group" id="mapTypeFilter">
+                <button class="sheet-segmented-btn active" data-mtype="all">Tất cả</button>
+                <button class="sheet-segmented-btn" data-mtype="expense">Chi</button>
+                <button class="sheet-segmented-btn" data-mtype="income">Thu</button>
+                <button class="sheet-segmented-btn" data-mtype="work">Đi làm</button>
               </div>
             </div>
 
             <!-- Hotspots Ranked List -->
             <div style="margin-bottom: 14px">
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  margin-bottom: 6px;
-                "
-              >
-                <span
-                  style="
-                    font-size: 0.68rem;
-                    font-weight: 800;
-                    color: var(--text-secondary);
-                    text-transform: uppercase;
-                  "
-                  >Top khu vực</span
-                >
-                <span
-                  style="
-                    font-size: 0.65rem;
-                    color: var(--mint);
-                    font-weight: 700;
-                  "
-                  >Chạm để xem</span
-                >
+              <div style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 6px;
+                  ">
+                <span style="
+                      font-size: 0.68rem;
+                      font-weight: 800;
+                      color: var(--text-secondary);
+                      text-transform: uppercase;
+                    ">Top khu vực</span>
+                <span style="
+                      font-size: 0.65rem;
+                      color: var(--mint);
+                      font-weight: 700;
+                    ">Chạm để xem</span>
               </div>
               <div id="mapHotspotsList"></div>
             </div>
 
-            <!-- Sample Coords Assignment Button if any txs lack gps -->
-            <div
-              id="mapUnlocatedHelperCard"
-              style="
-                display: none;
-                padding: 12px;
-                background: var(--bg-card-subtle);
-                border-radius: var(--radius-md);
-                border: 1px dashed var(--border-card);
-              "
-            >
-              <div
-                style="
-                  display: flex;
-                  align-items: center;
-                  justify-content: space-between;
-                  gap: 10px;
-                "
-              >
+            <!-- Helper Card for Transactions without GPS -->
+            <div id="mapUnlocatedHelperCard" style="
+                  display: none;
+                  padding: 12px;
+                  background: var(--bg-card-subtle);
+                  border-radius: var(--radius-md);
+                  border: 1px dashed var(--border-card);
+                ">
+              <div style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 10px;
+                  ">
                 <div>
-                  <div
-                    style="
-                      font-size: 0.8rem;
-                      font-weight: 700;
-                      color: var(--text-primary);
-                    "
-                    id="mapUnlocatedCountText"
-                  >
+                  <div style="
+                        font-size: 0.8rem;
+                        font-weight: 700;
+                        color: var(--text-primary);
+                      " id="mapUnlocatedCountText">
                     Giao dịch chưa có GPS
                   </div>
                   <div style="font-size: 0.7rem; color: var(--text-secondary)">
-                    Gắn vị trí mẫu tại TP.HCM để thử nghiệm
+                    Gắn vị trí mẫu tại TP.HCM để trải nghiệm
                   </div>
                 </div>
-                <button
-                  id="mapAutoAssignCoordsBtn"
-                  style="
-                    padding: 6px 12px;
-                    border-radius: 99px;
-                    background: var(--primary);
-                    color: #fff;
-                    border: none;
-                    font-size: 0.72rem;
-                    font-weight: 700;
-                    cursor: pointer;
-                  "
-                >
+                <button id="mapAutoAssignCoordsBtn" style="
+                      padding: 6px 12px;
+                      border-radius: 99px;
+                      background: var(--primary);
+                      color: #fff;
+                      border: none;
+                      font-size: 0.72rem;
+                      font-weight: 700;
+                      cursor: pointer;
+                    ">
                   Gắn vị trí
                 </button>
               </div>
@@ -7610,108 +7432,97 @@
     </div>
 
     <!-- MODAL: TỰ ĐỘNG / TẠO DANH MỤC THÔNG MINH CHO GHI NHANH -->
+      <!-- MODAL: PHÁT HIỆN DANH MỤC MỚI (COMPACT, GỌN GÀNG, ÍT CHỮ) -->
     <div class="modal-overlay" id="smartCategoryPromptModal">
-      <div class="bottom-sheet" style="max-height: 88vh">
+      <div class="bottom-sheet" style="max-height: 85vh">
         <div class="sheet-handle-bar"></div>
-        <div class="sheet-header">
-          <div style="display: flex; align-items: center; gap: 8px">
-            <div style="width: 32px; height: 32px; border-radius: 10px; background: rgba(16, 185, 129, 0.15); color: #10B981; display: flex; align-items: center; justify-content: center">
-              <i data-lucide="sparkles" style="width: 17px; height: 17px"></i>
+        <div class="sheet-header" style="padding-bottom: 6px">
+          <div style="display: flex; align-items: center; gap: 7px">
+            <div style="width: 26px; height: 26px; border-radius: 7px; background: rgba(16, 185, 129, 0.15); color: #10B981; display: flex; align-items: center; justify-content: center">
+              <i data-lucide="sparkles" style="width: 14px; height: 14px"></i>
             </div>
-            <div>
-              <div class="sheet-title" style="margin: 0; font-size: 0.95rem">Phát hiện danh mục mới</div>
-              <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 1px">Tạo danh mục để lưu giao dịch chuẩn xác</div>
-            </div>
+            <div class="sheet-title" style="margin: 0; font-size: 0.88rem; font-weight: 800">Phát hiện danh mục mới</div>
           </div>
           <button type="button" class="btn-icon-subtle" onclick="closeSmartCategoryPromptModal()">
-            <i data-lucide="x" style="width: 18px; height: 18px"></i>
+            <i data-lucide="x" style="width: 16px; height: 16px"></i>
           </button>
         </div>
 
-        <div class="sheet-body" style="padding-bottom: 24px">
-          <!-- Thẻ tóm tắt giao dịch đang ghi -->
+        <div class="sheet-body" style="padding-bottom: 20px">
+          <!-- 1. Tóm tắt giao dịch đang ghi (Gọn gàng) -->
           <div class="smart-cat-tx-preview" id="smartCatTxPreview">
-            <div style="display: flex; align-items: center; justify-content: space-between">
-              <div>
-                <div style="font-size: 0.72rem; color: var(--text-secondary); font-weight: 600">GIAO DỊCH ĐANG GHI</div>
-                <div id="smartCatTxNote" style="font-size: 1.05rem; font-weight: 800; color: var(--text-primary); margin-top: 2px">Đổ xăng</div>
-                <div id="smartCatTxCategory" style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 3px">Đề xuất danh mục: <b id="smartCatTxCategoryName" style="color: var(--primary)">Đổ xăng</b></div>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+              <div style="min-width: 0; flex: 1">
+                <div id="smartCatTxNote" style="font-size: 0.88rem; font-weight: 800; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Đổ xăng</div>
+                <div id="smartCatTxCategory" style="font-size: 0.68rem; color: var(--text-secondary); margin-top: 1px">
+                  Đề xuất: <b id="smartCatTxCategoryName" style="color: var(--primary)">Đổ xăng</b>
+                </div>
               </div>
-              <div style="text-align: right">
-                <div id="smartCatTxAmount" style="font-size: 1.15rem; font-weight: 900; color: var(--expense)">-50.000 ₫</div>
-                <div id="smartCatTxBadges" style="display: flex; gap: 4px; justify-content: flex-end; margin-top: 4px"></div>
+              <div style="text-align: right; flex-shrink: 0">
+                <div id="smartCatTxAmount" style="font-size: 0.95rem; font-weight: 900; color: var(--expense)">-50.000 ₫</div>
+                <div id="smartCatTxBadges" style="display: flex; gap: 4px; justify-content: flex-end; margin-top: 2px"></div>
               </div>
             </div>
           </div>
 
-          <!-- NÚT 1-CHẠM: TỰ ĐỘNG TẠO DANH MỤC -->
-          <div style="margin-top: 14px">
+          <!-- 2. Nút tạo nhanh danh mục đề xuất -->
+          <div style="margin-top: 10px">
             <button type="button" class="smart-cat-auto-btn" id="smartCatAutoCreateBtn" onclick="executeAutoCreateCategoryAndSave()">
               <div class="auto-btn-icon-box" id="smartCatAutoIconBox">
-                <i data-lucide="fuel" id="smartCatAutoIcon" style="width: 18px; height: 18px"></i>
+                <i data-lucide="fuel" id="smartCatAutoIcon" style="width: 15px; height: 15px"></i>
               </div>
-              <div style="flex: 1; text-align: left">
-                <div style="font-weight: 800; font-size: 0.88rem; display: flex; align-items: center; gap: 5px">
-                  <span>⚡ Tự động tạo danh mục</span>
+              <div style="flex: 1; text-align: left; min-width: 0">
+                <div style="font-weight: 800; font-size: 0.8rem; display: flex; align-items: center; gap: 4px; flex-wrap: wrap">
+                  <span>Tạo danh mục</span>
                   <span id="smartCatAutoNameBadge" class="auto-name-highlight">"Đổ xăng"</span>
                 </div>
-                <div style="font-size: 0.7rem; opacity: 0.85; margin-top: 2px">Đoán icon & màu sắc chuẩn · Lưu giao dịch ngay lập tức</div>
               </div>
-              <i data-lucide="arrow-right" style="width: 16px; height: 16px; opacity: 0.9"></i>
+              <i data-lucide="arrow-right" style="width: 14px; height: 14px; opacity: 0.9"></i>
             </button>
           </div>
 
-          <!-- NÚT GỢI Ý GỘP VÀO DANH MỤC CÓ SẴN (NẾU CÓ) -->
-          <div id="smartCatSuggestWrap" style="margin-top: 10px; display: none">
+          <!-- 3. Nút gộp vào danh mục tương tự (nếu có) -->
+          <div id="smartCatSuggestWrap" style="margin-top: 7px; display: none">
             <button type="button" class="smart-cat-suggest-btn" id="smartCatSuggestBtn" onclick="executeAssignExistingCategoryAndSave()">
-              <div style="display: flex; align-items: center; gap: 8px">
-                <div id="smartCatSuggestIconBox" style="width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; background: rgba(59, 130, 246, 0.15); color: #3B82F6">
-                  <i data-lucide="car" id="smartCatSuggestIcon" style="width: 14px; height: 14px"></i>
+              <div style="display: flex; align-items: center; gap: 7px">
+                <div id="smartCatSuggestIconBox" style="width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: rgba(59, 130, 246, 0.15); color: #3B82F6">
+                  <i data-lucide="car" id="smartCatSuggestIcon" style="width: 13px; height: 13px"></i>
                 </div>
-                <div style="text-align: left">
-                  <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-primary)">
-                    Hoặc gộp vào <span id="smartCatSuggestName" style="color: var(--primary)">Di chuyển & Xăng</span>
-                  </div>
-                  <div style="font-size: 0.68rem; color: var(--text-secondary)">Không tạo danh mục mới, gán vào danh mục hiện có</div>
+                <div style="font-size: 0.74rem; font-weight: 700; color: var(--text-primary)">
+                  Gộp vào <span id="smartCatSuggestName" style="color: var(--primary)">Di chuyển & Xăng</span>
                 </div>
               </div>
-              <i data-lucide="chevron-right" style="width: 16px; height: 16px; color: var(--text-secondary)"></i>
+              <i data-lucide="chevron-right" style="width: 14px; height: 14px; color: var(--text-secondary)"></i>
             </button>
           </div>
 
-          <!-- TÙY CHỌN DANH MỤC THỦ CÔNG (FORM RÕ RÀNG) -->
-          <div class="smart-cat-custom-box" style="margin-top: 14px">
-            <div style="font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between">
-              <span>TỰ CHỈNH DANH MỤC THEO Ý BẠN</span>
+          <!-- 4. Tùy chỉnh danh mục thủ công (gọn gàng, font nhỏ) -->
+          <div class="smart-cat-custom-box" style="margin-top: 10px">
+            <div style="font-size: 0.68rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 5px">
+              TỰ CHỈNH DANH MỤC
             </div>
-            <div style="display: flex; gap: 8px; margin-bottom: 10px">
-              <input
-                type="text"
-                id="smartCatCustomNameInput"
-                class="form-input"
-                style="flex: 1; padding: 9px 12px; font-size: 0.85rem"
-                placeholder="Tên danh mục..."
-              />
-              <select id="smartCatCustomTypeSelect" class="form-input" style="width: 110px; padding: 9px 8px; font-size: 0.82rem">
+            <div style="display: flex; gap: 6px; margin-bottom: 7px">
+              <input type="text" id="smartCatCustomNameInput" class="form-input" style="flex: 1; padding: 6px 10px; font-size: 0.78rem; height: 32px" placeholder="Tên danh mục..." />
+              <select id="smartCatCustomTypeSelect" class="form-input" style="width: 95px; padding: 6px 6px; font-size: 0.74rem; height: 32px">
                 <option value="expense">Chi tiêu</option>
                 <option value="income">Thu nhập</option>
               </select>
             </div>
 
-            <div style="font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 5px">Chọn Icon:</div>
+            <div style="font-size: 0.64rem; color: var(--text-secondary); margin-bottom: 2px">Biểu tượng & Màu:</div>
             <div class="smart-cat-icon-row" id="smartCatIconRow"></div>
+            <div class="smart-cat-color-row" id="smartCatColorRow" style="margin-top: 4px"></div>
 
-            <div style="font-size: 0.7rem; color: var(--text-secondary); margin: 8px 0 5px">Chọn Màu:</div>
-            <div class="smart-cat-color-row" id="smartCatColorRow"></div>
-
-            <button type="button" class="btn-primary" style="width: 100%; margin-top: 12px; padding: 11px; font-size: 0.85rem; font-weight: 700; border-radius: 12px" onclick="executeCustomCreateCategoryAndSave()">
-              Tạo danh mục & Ghi giao dịch
+            <button type="button" class="btn-primary" style="width: 100%; margin-top: 9px; height: 32px; padding: 0; font-size: 0.76rem; font-weight: 700; border-radius: 9px" onclick="executeCustomCreateCategoryAndSave()">
+              Tạo danh mục & Ghi
             </button>
           </div>
 
-          <!-- CHỌN NHANH DANH MỤC CÓ SẴN KHÁC -->
-          <div style="margin-top: 16px">
-            <div style="font-size: 0.74rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px">HOẶC GÁN VÀO DANH MỤC CÓ SẴN:</div>
+          <!-- 5. Gán vào danh mục có sẵn -->
+          <div style="margin-top: 10px">
+            <div style="font-size: 0.68rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 5px">
+              HOẶC CHỌN DANH MỤC CÓ SẴN:
+            </div>
             <div class="smart-cat-existing-chips" id="smartCatExistingChips"></div>
           </div>
         </div>
@@ -10733,6 +10544,7 @@
     <script src="js/wizard.js"></script>
     <script src="js/categories.js"></script>
     <script src="js/map.js"></script>
+    <script src="js/motion.js"></script>
     <script src="js/events.js"></script>
     <script src="js/app.js"></script>
   </body>

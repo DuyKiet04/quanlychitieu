@@ -932,6 +932,102 @@
 let currentSmartCatSelectedIcon = null;
 let currentSmartCatSelectedColor = null;
 
+/* ==========================================================================
+   AUTO-LOCATION SERVICE FOR SMART QUICK ADD
+   ========================================================================== */
+let cachedCurrentLocation = null;
+
+function refreshCurrentLocationCache() {
+  if (!navigator.geolocation) return;
+  navigator.geolocation.getCurrentPosition(
+    async (pos) => {
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+      let locResult = null;
+      try {
+        if (typeof window.reverseGeocodeVietnamese === "function") {
+          locResult = await window.reverseGeocodeVietnamese(lat, lng);
+        } else if (typeof reverseGeocodeVietnamese === "function") {
+          locResult = await reverseGeocodeVietnamese(lat, lng);
+        }
+      } catch (e) {}
+
+      cachedCurrentLocation = {
+        lat,
+        lng,
+        address: locResult?.address || `Tọa độ: ${lat.toFixed(4)}, ${lng.toFixed(4)}`,
+        road: locResult?.road || "",
+        ward: locResult?.ward || "",
+        district: locResult?.district || "",
+        city: locResult?.city || "",
+        timestamp: Date.now()
+      };
+    },
+    (err) => {
+      console.warn("GPS cache error:", err);
+    },
+    { enableHighAccuracy: true, timeout: 8000, maximumAge: 300000 }
+  );
+}
+window.refreshCurrentLocationCache = refreshCurrentLocationCache;
+
+async function getAutoLocationForSmartExpense(timeoutMs = 2800) {
+  if (cachedCurrentLocation && (Date.now() - cachedCurrentLocation.timestamp < 300000)) {
+    return cachedCurrentLocation;
+  }
+
+  if (!navigator.geolocation) return null;
+
+  return new Promise((resolve) => {
+    let resolved = false;
+    const timer = setTimeout(() => {
+      if (!resolved) {
+        resolved = true;
+        resolve(cachedCurrentLocation || null);
+      }
+    }, timeoutMs);
+
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        if (resolved) return;
+        resolved = true;
+        clearTimeout(timer);
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+        let locResult = null;
+        try {
+          if (typeof window.reverseGeocodeVietnamese === "function") {
+            locResult = await window.reverseGeocodeVietnamese(lat, lng);
+          } else if (typeof reverseGeocodeVietnamese === "function") {
+            locResult = await reverseGeocodeVietnamese(lat, lng);
+          }
+        } catch (e) {}
+
+        const loc = {
+          lat,
+          lng,
+          address: locResult?.address || `Tọa độ: ${lat.toFixed(4)}, ${lng.toFixed(4)}`,
+          road: locResult?.road || "",
+          ward: locResult?.ward || "",
+          district: locResult?.district || "",
+          city: locResult?.city || "",
+          timestamp: Date.now()
+        };
+        cachedCurrentLocation = loc;
+        resolve(loc);
+      },
+      (err) => {
+        if (resolved) return;
+        resolved = true;
+        clearTimeout(timer);
+        resolve(cachedCurrentLocation || null);
+      },
+      { enableHighAccuracy: true, timeout: timeoutMs, maximumAge: 300000 }
+    );
+  });
+}
+window.getAutoLocationForSmartExpense = getAutoLocationForSmartExpense;
+
 async function handleSmartQuickAddSubmit(e) {
   if (e && e.preventDefault) e.preventDefault();
   const input = document.getElementById("smartQuickAddInput");
@@ -951,6 +1047,21 @@ async function handleSmartQuickAddSubmit(e) {
     return;
   }
 
+  // Tự động nhận diện vị trí GPS hiện tại
+  const autoLoc = await getAutoLocationForSmartExpense(2800);
+  if (autoLoc) {
+    parsed.location = {
+      address: autoLoc.address,
+      road: autoLoc.road || "",
+      ward: autoLoc.ward || "",
+      district: autoLoc.district || "",
+      city: autoLoc.city || "",
+      lat: autoLoc.lat,
+      lng: autoLoc.lng
+    };
+    parsed.locationName = autoLoc.address;
+  }
+
   // A. Trường hợp đã khớp danh mục có sẵn
   if (parsed.matchedCategory) {
     const newTx = {
@@ -962,6 +1073,8 @@ async function handleSmartQuickAddSubmit(e) {
       note: parsed.note,
       isWork: !!parsed.isWork,
       date: getTodayString(),
+      location: parsed.location || null,
+      locationName: parsed.locationName || null,
       createdAt: Date.now()
     };
 
@@ -978,7 +1091,10 @@ async function handleSmartQuickAddSubmit(e) {
 
       const sign = parsed.type === "income" ? "+" : "-";
       const workTag = parsed.isWork ? " · 💼 Đi làm" : "";
-      showToast(`✓ Đã ghi: ${parsed.note} (${sign}${formatVND(parsed.amount)}${workTag})`);
+      const locTag = parsed.location?.road
+        ? ` · 📍 ${parsed.location.road}`
+        : (parsed.location?.address ? ` · 📍 ${parsed.location.address.split(",")[0]}` : "");
+      showToast(`✓ Đã ghi: ${parsed.note} (${sign}${formatVND(parsed.amount)}${workTag}${locTag})`);
 
       input.value = "";
       input.blur();
@@ -1184,6 +1300,8 @@ async function executeAutoCreateCategoryAndSave() {
       note: p.note,
       isWork: !!p.isWork,
       date: getTodayString(),
+      location: p.location || null,
+      locationName: p.locationName || (p.location ? p.location.address : null),
       createdAt: Date.now()
     };
 
@@ -1233,7 +1351,9 @@ async function executeAssignExistingCategoryAndSave(specificCatId) {
     note: p.note,
     isWork: !!p.isWork,
     date: getTodayString(),
-    createdAt: Date.now()
+      location: p.location || null,
+      locationName: p.locationName || (p.location ? p.location.address : null),
+      createdAt: Date.now()
   };
 
   try {
@@ -1299,6 +1419,8 @@ async function executeCustomCreateCategoryAndSave() {
       note: p.note,
       isWork: !!p.isWork,
       date: getTodayString(),
+      location: p.location || null,
+      locationName: p.locationName || (p.location ? p.location.address : null),
       createdAt: Date.now()
     };
 

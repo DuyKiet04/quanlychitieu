@@ -709,44 +709,86 @@
         const y = calDate.getFullYear();
         const m = calDate.getMonth();
 
-        document.getElementById("calCurrentMonthTitle").textContent =
-          `Tháng ${m + 1} / ${y}`;
+        // 1. Tiêu đề tháng & năm
+        const monthTitleEl = document.getElementById("calCurrentMonthTitle");
+        if (monthTitleEl) {
+          monthTitleEl.textContent = `Tháng ${m + 1}, ${y}`;
+        }
 
+        // 2. Thống kê toàn diện dòng tiền tháng đang hiển thị
+        const monthPrefix = `${y}-${String(m + 1).padStart(2, "0")}`;
+        const monthTxs = State.transactions.filter(
+          (t) => t.date && t.date.startsWith(monthPrefix),
+        );
+
+        let monthIncome = 0;
+        let monthExpense = 0;
+        monthTxs.forEach((t) => {
+          if (t.type === "income") monthIncome += Number(t.amount) || 0;
+          else if (t.type === "expense") monthExpense += Number(t.amount) || 0;
+        });
+        const monthNet = monthIncome - monthExpense;
+
+        const mIncEl = document.getElementById("calMonthIncomeText");
+        if (mIncEl) mIncEl.textContent = "+" + formatVND(monthIncome);
+
+        const mExpEl = document.getElementById("calMonthExpenseText");
+        if (mExpEl) mExpEl.textContent = "-" + formatVND(monthExpense);
+
+        const mNetEl = document.getElementById("calMonthNetText");
+        if (mNetEl) {
+          mNetEl.textContent = (monthNet >= 0 ? "+" : "") + formatVND(monthNet);
+          mNetEl.className = `cal-metric-val ${monthNet >= 0 ? "income-text" : "expense-text"}`;
+        }
+
+        const mCountEl = document.getElementById("calCurrentMonthTxCount");
+        if (mCountEl) {
+          mCountEl.textContent = `${monthTxs.length} giao dịch`;
+        }
+
+        // 3. Xây dựng ô ngày trong lưới lịch
         const grid = document.getElementById("financialCalendarGrid");
+        if (!grid) return;
         grid.innerHTML = "";
 
         const firstDayOfMonth = new Date(y, m, 1);
         const lastDayOfMonth = new Date(y, m + 1, 0);
 
-        // Sunday is 0, convert so Monday is index 0
+        // Sunday is 0 -> Đổi để Thứ Hai là 0, Chủ Nhật là 6
         let startDayOfWeek = firstDayOfMonth.getDay() - 1;
         if (startDayOfWeek === -1) startDayOfWeek = 6;
 
         const totalDays = lastDayOfMonth.getDate();
         const prevMonthLastDay = new Date(y, m, 0).getDate();
 
-        // Prepend previous month trailing days
+        // Các ngày mờ của tháng trước
         for (let i = startDayOfWeek - 1; i >= 0; i--) {
           const prevDay = prevMonthLastDay - i;
           const cell = document.createElement("div");
           cell.className = "cal-day-cell other-month";
-          cell.textContent = prevDay;
+          cell.innerHTML = `<span class="cal-day-num">${prevDay}</span>`;
           grid.appendChild(cell);
         }
 
         const todayStr = getTodayString();
-        const selectedDayStr = State.selectedCalDay || todayStr;
+        let selectedDayStr = State.selectedCalDay;
+        if (!selectedDayStr || !selectedDayStr.startsWith(monthPrefix)) {
+          selectedDayStr = todayStr.startsWith(monthPrefix)
+            ? todayStr
+            : `${monthPrefix}-01`;
+          State.selectedCalDay = selectedDayStr;
+        }
 
-        // Render actual days of month
+        // Vẽ các ngày chính thức của tháng
         for (let d = 1; d <= totalDays; d++) {
-          const curDateStr = `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+          const curDateStr = `${monthPrefix}-${String(d).padStart(2, "0")}`;
           const cell = document.createElement("div");
           cell.className = "cal-day-cell";
           if (curDateStr === todayStr) cell.classList.add("is-today");
           if (curDateStr === selectedDayStr)
             cell.classList.add("active-selected");
 
-          // Check transactions on this date
+          // Thống kê thu chi ngày này
           const dayTxs = State.transactions.filter(
             (t) => t.date === curDateStr,
           );
@@ -756,30 +798,37 @@
 
           dayTxs.forEach((t) => {
             if (t.type === "income") dayInc += Number(t.amount) || 0;
-            if (t.type === "expense") dayExp += Number(t.amount) || 0;
+            else if (t.type === "expense") dayExp += Number(t.amount) || 0;
             if (t.receipt) hasPhoto = true;
           });
 
-          let photoBadgeHtml = hasPhoto
-            ? `<span class="cal-day-photo-badge" title="Có ảnh hóa đơn">📷</span>`
-            : "";
-          let badgesHtml = "";
-          if (dayInc > 0 && dayExp > 0) {
-            badgesHtml = `
-            <span class="cal-day-amt-badge income">+${formatShortK(dayInc)}</span>
-            <span class="cal-day-amt-badge expense">-${formatShortK(dayExp)}</span>
-          `;
-          } else if (dayInc > 0) {
-            badgesHtml = `<span class="cal-day-amt-badge income">+${formatShortK(dayInc)}</span>`;
-          } else if (dayExp > 0) {
-            badgesHtml = `<span class="cal-day-amt-badge expense">-${formatShortK(dayExp)}</span>`;
+          // Hiệu ứng nhiệt nếu chi tiêu nhiều (>= 500k)
+          if (dayExp >= 500000) {
+            cell.classList.add("high-spending");
+          }
+
+          let chipsHtml = "";
+          if (dayExp > 0) {
+            chipsHtml += `<span class="cal-amt-chip expense">-${formatShortK(dayExp)}</span>`;
+          }
+          if (dayInc > 0) {
+            chipsHtml += `<span class="cal-amt-chip income">+${formatShortK(dayInc)}</span>`;
+          }
+
+          let dotIconsHtml = "";
+          if (hasPhoto) {
+            dotIconsHtml += `<i data-lucide="paperclip" class="cal-chip-icon" style="width: 9px; height: 9px;"></i>`;
           }
 
           cell.innerHTML = `
-          <span>${d}</span>
-          ${photoBadgeHtml}
-          ${badgesHtml}
-        `;
+            <div class="cal-cell-top">
+              <span class="cal-day-num">${d}</span>
+              ${dotIconsHtml}
+            </div>
+            <div class="cal-cell-chips">
+              ${chipsHtml}
+            </div>
+          `;
 
           cell.onclick = () => {
             State.selectedCalDay = curDateStr;
@@ -787,18 +836,36 @@
               .querySelectorAll(".cal-day-cell")
               .forEach((c) => c.classList.remove("active-selected"));
             cell.classList.add("active-selected");
+            if (typeof triggerHaptic === "function") triggerHaptic("light");
             renderSelectedDayDetail(curDateStr);
           };
 
           grid.appendChild(cell);
         }
 
+        lucide.createIcons();
         renderSelectedDayDetail(selectedDayStr);
       }
 
       function renderSelectedDayDetail(dateStr) {
-        document.getElementById("calSelectedDayTitle").textContent =
-          `Chi tiết ngày ${formatDateDisplay(dateStr)}`;
+        if (!dateStr) dateStr = getTodayString();
+
+        // Format tiêu đề ngày thân thiện tiếng Việt
+        const parts = dateStr.split("-").map(Number);
+        const dObj = new Date(parts[0], parts[1] - 1, parts[2]);
+        const weekdays = [
+          "Chủ Nhật",
+          "Thứ Hai",
+          "Thứ Ba",
+          "Thứ Tư",
+          "Thứ Năm",
+          "Thứ Sáu",
+          "Thứ Bảy",
+        ];
+        const dayTitle = `${weekdays[dObj.getDay()]}, ${parts[2]} thg ${parts[1]}`;
+
+        const titleEl = document.getElementById("calSelectedDayTitle");
+        if (titleEl) titleEl.textContent = dayTitle;
 
         const dayTxs = State.transactions.filter((t) => t.date === dateStr);
         let dayInc = 0;
@@ -809,17 +876,46 @@
           else if (t.type === "expense") dayExp += Number(t.amount) || 0;
         });
 
-        document.getElementById("calDayIncomeText").textContent =
-          "+" + formatVND(dayInc);
-        document.getElementById("calDayExpenseText").textContent =
-          "-" + formatVND(dayExp);
+        const dayNet = dayInc - dayExp;
+
+        const daySubEl = document.getElementById("calSelectedDaySub");
+        if (daySubEl) {
+          daySubEl.textContent =
+            dayTxs.length > 0
+              ? `${dayTxs.length} giao dịch phát sinh`
+              : "Không có giao dịch";
+        }
+
+        const dIncEl = document.getElementById("calDayIncomeText");
+        if (dIncEl) dIncEl.textContent = "+" + formatVND(dayInc);
+
+        const dExpEl = document.getElementById("calDayExpenseText");
+        if (dExpEl) dExpEl.textContent = "-" + formatVND(dayExp);
+
+        const dNetEl = document.getElementById("calDayNetText");
+        if (dNetEl) {
+          dNetEl.textContent = (dayNet >= 0 ? "+" : "") + formatVND(dayNet);
+          dNetEl.className = `val ${dayNet >= 0 ? "income-text" : "expense-text"}`;
+        }
 
         const listContainer = document.getElementById("calDayTxList");
+        if (!listContainer) return;
         listContainer.innerHTML = "";
 
         if (dayTxs.length === 0) {
-          listContainer.innerHTML =
-            '<div style="font-size: 0.8rem; color: var(--text-secondary); text-align: center; padding: 16px 0;">Không có giao dịch nào trong ngày này.</div>';
+          listContainer.innerHTML = `
+            <div class="cal-empty-day-state">
+              <div class="cal-empty-icon-box">
+                <i data-lucide="coffee" style="width: 20px; height: 20px;"></i>
+              </div>
+              <div class="cal-empty-text">Ngày này không có chi tiêu nào</div>
+              <button class="cal-empty-add-btn" type="button" onclick="openTransactionWizard(null, false, { date: '${dateStr}' })">
+                <i data-lucide="plus" style="width: 14px; height: 14px;"></i>
+                <span>Ghi chép cho ngày này</span>
+              </button>
+            </div>
+          `;
+          lucide.createIcons();
           return;
         }
 
@@ -828,4 +924,3 @@
         });
         lucide.createIcons();
       }
-

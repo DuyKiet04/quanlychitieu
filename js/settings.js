@@ -14,6 +14,17 @@
         updateStorageStatus();
         applyUserProfileSettings();
 
+        // Đồng bộ hiển thị chất lượng ảnh đã lưu
+        const currentImgQuality =
+          State.settings.image_quality ||
+          (typeof localStorage !== "undefined"
+            ? localStorage.getItem("finmaster_image_quality")
+            : null) ||
+          "high";
+        if (typeof applyImageQualityUI === "function") {
+          applyImageQualityUI(currentImgQuality);
+        }
+
         const rawSlots = State.settings.bottom_nav_slots;
         const slots =
           Array.isArray(rawSlots) && rawSlots.length === 4

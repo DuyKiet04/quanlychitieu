@@ -1161,15 +1161,24 @@
           });
         });
 
-        // Transfer Modal Buttons
+                // Transfer Modal Buttons
         document
           .getElementById("cancelTransferBtn")
-          .addEventListener("click", () =>
-            document.getElementById("transferModal").classList.remove("active"),
+          ?.addEventListener("click", () =>
+            document.getElementById("transferModal")?.classList.remove("active"),
           );
         document
           .getElementById("saveTransferBtn")
-          .addEventListener("click", executeWalletTransfer);
+          ?.addEventListener("click", executeWalletTransfer);
+
+        attachSlideToConfirm("swipeSaveTransfer", {
+          text: "Trượt để chuyển ví",
+          confirmText: "Thả để chuyển ví...",
+          doneText: "Đang chuyển ví...",
+          onConfirm: () => {
+            if (typeof executeWalletTransfer === "function") executeWalletTransfer();
+          },
+        });
 
         // Category Budget Modal & Screen Navigation
         document
@@ -1585,18 +1594,55 @@
           .getElementById("mapFabGpsBtn")
           ?.addEventListener("click", locateUserOnMap);
 
-        // Circular FAB 5: Đổi giao diện Google Maps (Số <-> Vệ tinh <-> Địa hình)
+        // Map Layer Button (Số <-> Vệ tinh)
         document
           .getElementById("mapFabGoogleLayerBtn")
           ?.addEventListener("click", switchGoogleMapLayer);
 
-        // Map Period Tabs inside Sheet
+        // Heatmap Toggle Button
         document
-          .querySelectorAll("#mapPeriodTabs .pill-tab-btn")
+          .getElementById("mapHeatmapToggleBtn")
+          ?.addEventListener("click", toggleMapHeatmap);
+
+        // Area Summary Pill
+        document.getElementById("mapAreaSummaryPill")?.addEventListener("click", () => {
+          const sheet = document.getElementById("mapHotspotsSheetModal");
+          if (sheet) sheet.classList.add("active");
+        });
+
+        // Filter Sheet Button
+        document
+          .getElementById("mapFilterSheetBtn")
+          ?.addEventListener("click", () => {
+            const sheet = document.getElementById("mapHotspotsSheetModal");
+            if (sheet) sheet.classList.add("active");
+          });
+
+        // Time Filter Chips Bar (Image 3)
+        document
+          .querySelectorAll("#mapTimeChipsBar .map-chip-btn")
           .forEach((btn) => {
             btn.addEventListener("click", () => {
               document
-                .querySelectorAll("#mapPeriodTabs .pill-tab-btn")
+                .querySelectorAll("#mapTimeChipsBar .map-chip-btn")
+                .forEach((b) => b.classList.remove("active"));
+              btn.classList.add("active");
+              State.mapPeriod = btn.dataset.mperiod;
+              renderSpendingMapScreen();
+            });
+          });
+
+        // Map Period Tabs inside Sheet
+        document
+          .querySelectorAll(
+            "#mapPeriodTabs .sheet-segmented-btn, #mapPeriodTabs .pill-tab-btn"
+          )
+          .forEach((btn) => {
+            btn.addEventListener("click", () => {
+              document
+                .querySelectorAll(
+                  "#mapPeriodTabs .sheet-segmented-btn, #mapPeriodTabs .pill-tab-btn"
+                )
                 .forEach((b) => b.classList.remove("active"));
               btn.classList.add("active");
               State.mapPeriod = btn.dataset.mperiod;
@@ -1606,11 +1652,15 @@
 
         // Map Type Filter Tabs inside Sheet
         document
-          .querySelectorAll("#mapTypeFilter .pill-tab-btn")
+          .querySelectorAll(
+            "#mapTypeFilter .sheet-segmented-btn, #mapTypeFilter .pill-tab-btn"
+          )
           .forEach((btn) => {
             btn.addEventListener("click", () => {
               document
-                .querySelectorAll("#mapTypeFilter .pill-tab-btn")
+                .querySelectorAll(
+                  "#mapTypeFilter .sheet-segmented-btn, #mapTypeFilter .pill-tab-btn"
+                )
                 .forEach((b) => b.classList.remove("active"));
               btn.classList.add("active");
               State.mapType = btn.dataset.mtype;
@@ -1643,6 +1693,122 @@
         document
           .getElementById("mapAutoAssignCoordsBtn")
           ?.addEventListener("click", autoAssignSampleCoordinates);
+
+                // ==========================================
+        // SLIDE-TO-CONFIRM FORM & SETTINGS SLIDERS
+        // ==========================================
+        attachSlideToConfirm("swipeSaveBudgetCreate", {
+          text: "Trượt để lưu ngân sách",
+          confirmText: "Thả để lưu...",
+          doneText: "Đang lưu ngân sách...",
+          onConfirm: () => {
+            if (typeof saveBudgetFromModal === "function") saveBudgetFromModal();
+          },
+        });
+
+        attachSlideToConfirm("swipeSaveRecurring", {
+          text: "Trượt để lưu định kỳ",
+          confirmText: "Thả để lưu...",
+          doneText: "Đang lưu định kỳ...",
+          onConfirm: () => {
+            if (typeof saveRecurringFromForm === "function") saveRecurringFromForm();
+          },
+        });
+
+        attachSlideToConfirm("swipeSaveWallet", {
+          text: "Trượt để lưu ví",
+          confirmText: "Thả để lưu...",
+          doneText: "Đang lưu ví...",
+          onConfirm: () => {
+            if (typeof saveWalletFromForm === "function") saveWalletFromForm();
+          },
+        });
+
+        attachSlideToConfirm("swipeSaveCategory", {
+          text: "Trượt để lưu danh mục",
+          confirmText: "Thả để lưu...",
+          doneText: "Đang lưu danh mục...",
+          onConfirm: () => {
+            if (typeof saveNewCategory === "function") saveNewCategory();
+          },
+        });
+
+        attachSlideToConfirm("swipeSaveInitialBalance", {
+          text: "Trượt để lưu số dư",
+          confirmText: "Thả để lưu...",
+          doneText: "Đang lưu số dư...",
+          onConfirm: async () => {
+            const input = document.getElementById("initialBalanceInput");
+            if (!input) return;
+            const val = parseVNDInput(input.value);
+            await DB.put("settings", { key: "initial_balance", value: val });
+            State.settings.initial_balance = val;
+            document.getElementById("initialBalanceModal")?.classList.remove("active");
+            showToast("Đã lưu số dư ban đầu!");
+            renderAllScreens();
+          },
+        });
+
+        attachSlideToConfirm("swipeSaveBudget", {
+          text: "Trượt để lưu hạn mức",
+          confirmText: "Thả để lưu...",
+          doneText: "Đang lưu hạn mức...",
+          onConfirm: async () => {
+            const input = document.getElementById("budgetInput");
+            if (!input) return;
+            const val = parseVNDInput(input.value);
+            await DB.put("settings", { key: "monthly_budget", value: val });
+            State.settings.monthly_budget = val;
+            document.getElementById("budgetModal")?.classList.remove("active");
+            showToast("Đã lưu hạn mức ngân sách tháng!");
+            renderAllScreens();
+          },
+        });
+
+        attachSlideToConfirm("swipeResetAllData", {
+          text: "Trượt để xóa tất cả dữ liệu",
+          confirmText: "Thả để xóa sạch...",
+          doneText: "Đang xóa dữ liệu...",
+          onConfirm: () => {
+            if (typeof resetAllData === "function") resetAllData();
+          },
+        });
+
+        attachSlideToConfirm("swipeSaveUserProfile", {
+          text: "Trượt để lưu hồ sơ",
+          confirmText: "Thả để lưu...",
+          doneText: "Đang lưu hồ sơ...",
+          onConfirm: () => {
+            if (typeof saveUserProfile === "function") saveUserProfile();
+          },
+        });
+
+        attachSlideToConfirm("swipeSaveSavingsGoal", {
+          text: "Trượt để lưu mục tiêu",
+          confirmText: "Thả để lưu...",
+          doneText: "Đang lưu mục tiêu...",
+          onConfirm: () => {
+            if (typeof saveSavingsGoal === "function") saveSavingsGoal();
+          },
+        });
+
+        attachSlideToConfirm("swipeSaveDepositSavings", {
+          text: "Trượt để nạp tiền",
+          confirmText: "Thả để nạp...",
+          doneText: "Đang nạp tiền...",
+          onConfirm: () => {
+            if (typeof submitDepositSavings === "function") submitDepositSavings();
+          },
+        });
+
+        attachSlideToConfirm("swipeSaveJournalEntry", {
+          text: "Trượt để lưu nhật ký",
+          confirmText: "Thả để lưu...",
+          doneText: "Đang lưu nhật ký...",
+          onConfirm: () => {
+            if (typeof saveJournalEntry === "function") saveJournalEntry();
+          },
+        });
 
         // Header current date display
         const now = new Date();

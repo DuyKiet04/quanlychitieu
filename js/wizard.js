@@ -537,6 +537,7 @@
       }
 
       /* ĐỊNH VỊ VỊ TRÍ GIAO DỊCH: TỰ ĐỘNG NHẬN DIỆN TÊN ĐƯỜNG + TÊN PHƯỜNG */
+      window.reverseGeocodeVietnamese = reverseGeocodeVietnamese;
       async function reverseGeocodeVietnamese(lat, lng) {
         // 1. Dùng OpenStreetMap Nominatim tiếng Việt
         try {
@@ -1347,7 +1348,8 @@
           };
         }
 
-        document.getElementById("deleteTxBtn").onclick = () => {
+        const delBtn = document.getElementById("deleteTxBtn");
+        if (delBtn) delBtn.onclick = () => {
           showConfirmDialog(
             "Xóa giao dịch",
             "Bạn có chắc chắn muốn xóa vĩnh viễn giao dịch này không?",
