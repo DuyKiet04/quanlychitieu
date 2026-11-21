@@ -2634,21 +2634,32 @@
         justify-content: center;
       }
 
-      /* Floating Area Spending Pill (Bottom Left) */
-      .map-area-summary-pill {
+      /* ==========================================================================
+         BOTTOM DOCK CONTAINER (PREVENTS ANY CLASHING/OVERLAPPING)
+         ========================================================================== */
+      .map-bottom-dock {
         position: absolute;
         left: 12px;
-        bottom: calc(var(--safe-bottom) + 215px);
-        z-index: 450;
+        right: 12px;
+        bottom: calc(var(--safe-bottom) + 10px);
+        z-index: 500;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        pointer-events: none;
+      }
+
+      /* Floating Area Spending Pill */
+      .map-area-summary-pill {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        padding: 7px 14px;
+        gap: 5px;
+        padding: 5px 12px;
         border-radius: var(--radius-full);
         background: var(--bg-card);
         border: 1px solid var(--border-card);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        font-size: 0.72rem;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        font-size: 0.7rem;
         font-weight: 700;
         color: var(--text-primary);
         cursor: pointer;
@@ -2656,6 +2667,7 @@
         transition: transform 0.18s var(--ease-spring);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
+        align-self: flex-start;
       }
 
       .map-area-summary-pill:active {
@@ -2665,31 +2677,41 @@
       .area-label {
         color: var(--text-secondary);
         font-weight: 600;
-        font-size: 0.68rem;
+        font-size: 0.66rem;
       }
 
       .area-val {
         color: var(--expense);
         font-weight: 800;
-        font-size: 0.78rem;
+        font-size: 0.74rem;
       }
 
-      /* Modern Selected Transaction Bottom Card / Sheet */
+      /* Modern Selected Transaction Bottom Card / Sheet (Compact & Clean) */
       .map-bottom-sheet-card {
-        position: absolute;
-        left: 12px;
-        right: 12px;
-        bottom: calc(var(--safe-bottom) + 12px);
-        z-index: 500;
         background: var(--bg-card);
         border: 1px solid var(--border-card);
-        border-radius: 24px;
-        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.16);
-        padding: 10px 16px 14px;
+        border-radius: 20px;
+        box-shadow: 0 10px 32px rgba(0, 0, 0, 0.14);
+        padding: 8px 12px 10px;
         pointer-events: auto;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         transition: transform 0.35s var(--ease-sheet-spring), opacity 0.25s ease;
+        max-height: 52vh;
+        overflow-y: auto;
+      }
+
+      .map-bottom-sheet-card.is-dragging {
+        transition: none !important;
+      }
+
+      .map-bottom-sheet-card.is-dragging .map-card-handle {
+        width: 44px;
+        background: var(--primary);
+      }
+
+      .map-bottom-sheet-card.hidden {
+        display: none !important;
       }
 
       .map-card-handle {
@@ -2697,28 +2719,30 @@
         height: 4px;
         border-radius: 99px;
         background: var(--border-card);
-        margin: 0 auto 10px;
+        margin: 0 auto 8px;
+        cursor: grab;
+        transition: width 0.2s ease, background 0.2s ease;
       }
 
       .map-card-header {
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 8px;
+        align-items: center;
+        margin-bottom: 6px;
       }
 
       .map-card-cat-wrap {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         min-width: 0;
         flex: 1;
       }
 
       .map-card-cat-icon {
-        width: 42px;
-        height: 42px;
-        border-radius: 14px;
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2727,34 +2751,39 @@
 
       .map-card-title-box {
         min-width: 0;
+        flex: 1;
       }
 
       .map-card-cat-name {
         font-size: 0.8rem;
         font-weight: 800;
         color: var(--text-primary);
-        margin-bottom: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
-      .map-card-tx-note {
-        font-size: 0.82rem;
+      .map-card-tx-meta {
+        font-size: 0.65rem;
         font-weight: 600;
         color: var(--text-secondary);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 175px;
+        margin-top: 1px;
       }
 
       .map-card-amount-box {
-        text-align: right;
+        display: flex;
+        align-items: center;
+        gap: 6px;
         flex-shrink: 0;
+        text-align: right;
       }
 
       .map-card-amt {
-        font-size: 1.15rem;
-        font-weight: 800;
-        margin-bottom: 2px;
+        font-size: 0.98rem;
+        font-weight: 900;
       }
 
       .map-card-amt.expense {
@@ -2765,55 +2794,31 @@
         color: var(--income);
       }
 
-      .map-card-tag {
-        display: inline-block;
-        font-size: 0.64rem;
-        font-weight: 700;
-        padding: 2px 8px;
-        border-radius: 99px;
-      }
-
-      .map-card-meta-row {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        margin-bottom: 12px;
-        padding-top: 6px;
-        border-top: 1px solid var(--border-subtle);
-      }
-
-      .map-card-address {
-        font-size: 0.72rem;
+      .map-card-address-row {
+        font-size: 0.67rem;
         color: var(--text-secondary);
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 4px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-      }
-
-      .map-card-time {
-        font-size: 0.68rem;
-        color: var(--text-muted);
-        display: flex;
-        align-items: center;
-        gap: 5px;
+        margin-bottom: 8px;
       }
 
       .map-card-actions {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
       }
 
       .map-card-subtle-btn {
-        height: 38px;
+        height: 30px;
         padding: 0 10px;
         border-radius: var(--radius-full);
         background: var(--bg-card-subtle);
         border: 1px solid var(--border-card);
-        font-size: 0.72rem;
+        font-size: 0.7rem;
         font-weight: 700;
         color: var(--text-secondary);
         display: flex;
@@ -2821,7 +2826,7 @@
         justify-content: center;
         gap: 4px;
         cursor: pointer;
-        transition: transform 0.15s ease, background 0.15s ease;
+        transition: transform 0.15s ease;
         flex: 1;
         text-decoration: none;
         box-sizing: border-box;
@@ -2829,30 +2834,331 @@
 
       .map-card-subtle-btn:active {
         transform: scale(0.95);
-        background: var(--border-card);
       }
 
       .map-card-primary-btn {
-        height: 38px;
-        padding: 0 14px;
+        height: 30px;
+        padding: 0 12px;
         border-radius: var(--radius-full);
         background: linear-gradient(135deg, #0e3834, #10b981);
         color: #ffffff;
         border: none;
-        font-size: 0.74rem;
+        font-size: 0.72rem;
         font-weight: 800;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 5px;
+        gap: 4px;
         cursor: pointer;
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
-        box-shadow: 0 4px 14px rgba(14, 56, 52, 0.28);
-        flex: 1.6;
+        transition: transform 0.15s ease;
+        flex: 1.2;
       }
 
       .map-card-primary-btn:active {
         transform: scale(0.95);
+      }
+
+      /* Clean Photo Preview (No Text) */
+      .map-slide-photo-wrap {
+        width: 100%;
+        height: 68px;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        border: 1px solid var(--border-card);
+        background: rgba(0, 0, 0, 0.04);
+        margin: 2px 0 6px;
+      }
+
+      .map-slide-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.2s ease;
+      }
+
+      .map-slide-photo-wrap:active .map-slide-photo {
+        transform: scale(1.02);
+      }
+
+      /* Minimal Carousel Subbar */
+      .map-carousel-subbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2px 2px 6px;
+      }
+
+      .map-carousel-dots {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .map-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 99px;
+        background: var(--border-card);
+        transition: all 0.22s var(--ease-spring);
+      }
+
+      .map-dot.active {
+        width: 15px;
+        background: var(--primary);
+      }
+
+      .map-carousel-nav-btns {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .map-carousel-arrow-btn {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--bg-card-subtle);
+        border: 1px solid var(--border-card);
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        padding: 0;
+      }
+
+      .map-carousel-arrow-btn:active {
+        transform: scale(0.88);
+      }
+
+      .map-view-toggle-btn {
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: var(--primary);
+        background: var(--bg-card-subtle);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-full);
+        cursor: pointer;
+        padding: 3px 8px;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        height: 24px;
+        margin-left: 2px;
+      }
+
+      /* Carousel Container & Slides */
+      .map-tx-carousel-wrap {
+        position: relative;
+        width: 100%;
+      }
+
+      .map-tx-carousel {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 2px 2px 4px;
+        scrollbar-width: none;
+      }
+      .map-tx-carousel::-webkit-scrollbar {
+        display: none;
+      }
+
+      .map-tx-slide {
+        flex: 0 0 94%;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        background: var(--bg-card-subtle);
+        border: 1px solid var(--border-card);
+        border-radius: 14px;
+        padding: 8px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        box-sizing: border-box;
+      }
+
+      .map-tx-slide-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .map-tx-slide-cat {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        min-width: 0;
+        flex: 1;
+      }
+
+      .map-tx-slide-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .map-tx-slide-title-wrap {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .map-tx-slide-note {
+        font-size: 0.78rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .map-tx-slide-meta {
+        font-size: 0.63rem;
+        color: var(--text-secondary);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 1px;
+      }
+
+      .map-tx-slide-amt {
+        font-size: 0.92rem;
+        font-weight: 900;
+        text-align: right;
+        flex-shrink: 0;
+      }
+
+      .map-tx-slide-amt.expense {
+        color: var(--expense);
+      }
+
+      .map-tx-slide-amt.income {
+        color: var(--income);
+      }
+
+      .map-slide-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .map-slide-btn {
+        flex: 1;
+        height: 28px;
+        border-radius: var(--radius-full);
+        background: var(--primary);
+        color: #ffffff;
+        border: none;
+        font-size: 0.68rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.15s ease;
+      }
+
+      .map-slide-btn:active {
+        transform: scale(0.95);
+      }
+
+      .map-slide-dir-btn {
+        height: 28px;
+        padding: 0 10px;
+        border-radius: var(--radius-full);
+        background: var(--bg-card);
+        border: 1px solid var(--border-card);
+        color: #2563eb;
+        font-size: 0.68rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        text-decoration: none;
+      }
+
+      /* Full List View (Clean & Compact) */
+      .map-tx-full-list {
+        max-height: 180px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 2px;
+      }
+
+      .map-tx-list-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 6px 8px;
+        border-radius: 10px;
+        background: var(--bg-card-subtle);
+        border: 1px solid var(--border-card);
+        cursor: pointer;
+        transition: transform 0.15s ease;
+      }
+
+      .map-tx-list-item:active {
+        transform: scale(0.98);
+      }
+
+      .map-tx-list-thumb {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        object-fit: cover;
+        border: 1px solid var(--border-card);
+        flex-shrink: 0;
+      }
+
+      /* Lightbox Card */
+      .map-lightbox-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-card);
+        border-radius: 18px;
+        max-width: 92vw;
+        max-height: 85vh;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28);
+        animation: modalScaleIn 0.25s var(--ease-spring);
+      }
+      .map-lightbox-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .map-lightbox-body {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.04);
+        overflow: auto;
+      }
+      .map-lightbox-body img {
+        max-width: 100%;
+        max-height: 60vh;
+        object-fit: contain;
+        border-radius: 10px;
       }
 
       /* Mathematical Precision Luxury Pin Marker */

@@ -520,12 +520,11 @@ function renderSpendingMapScreen() {
       `;
     }
 
-    marker.bindPopup(popupContent, {
-      maxWidth: 260,
-      className: "quiet-luxury-popup",
-    });
-
-    marker.on("click", () => {
+    // Clean click: highlight pin and open bottom card without redundant overlapping popup balloon!
+    marker.on("click", (e) => {
+      if (e && e.originalEvent) {
+        e.originalEvent.stopPropagation();
+      }
       selectClusterOnMap(cluster);
     });
 
@@ -602,16 +601,21 @@ function selectClusterOnMap(cluster) {
   const firstTx = cluster.txs[0];
   State.mapSelectedTxId = firstTx.id;
 
-  // Highlight marker
+  // Highlight pin
   document.querySelectorAll(".luxury-map-pin").forEach((p) => p.classList.remove("active"));
   const pinEl = document.getElementById(
     cluster.txs.length > 1 ? `mapPinCluster_${firstTx.id}` : `mapPin_${firstTx.id}`
   );
   if (pinEl) pinEl.classList.add("active");
 
-  // Pan smoothly with offset to keep pin visible above bottom card
+  // Pan smoothly with vertical offset so pin is placed comfortably in upper map area above bottom card
   if (spendingMap) {
-    spendingMap.panTo([cluster.lat, cluster.lng], { animate: true, duration: 0.4 });
+    const curZoom = spendingMap.getZoom();
+    const targetZoom = Math.max(curZoom, 15);
+    const bounds = spendingMap.getBounds();
+    const latSpan = bounds ? (bounds.getNorth() - bounds.getSouth()) : 0.01;
+    const offsetLat = cluster.lat - (latSpan * 0.12);
+    spendingMap.flyTo([offsetLat, cluster.lng], targetZoom, { duration: 0.5 });
   }
 
   renderSelectedTxCard(cluster);
@@ -634,78 +638,80 @@ function renderSelectedTxCard(cluster) {
   if (!card || !content) return;
 
   if (!cluster || !cluster.txs || cluster.txs.length === 0) {
-    content.innerHTML = `
-      <div style="text-align: center; color: var(--text-secondary); font-size: 0.78rem; padding: 10px 0;">
-        Chạm vào bất kỳ điểm nào trên bản đồ để xem giao dịch...
-      </div>
-    `;
+    card.classList.add("hidden");
+    card.style.display = "none";
+    card.style.transform = "";
+    card.style.opacity = "";
     return;
   }
 
+  card.classList.remove("hidden");
+  card.style.display = "block";
+  card.style.transform = "";
+  card.style.opacity = "";
+
   const isCluster = cluster.txs.length > 1;
   const firstTx = cluster.txs[0];
-  const cat = State.categories.find((c) => c.id === firstTx.categoryId) || {
-    name: "Khác",
-    icon: "tag",
-    color: "#10B981",
-  };
-  const isInc = firstTx.type === "income";
-  const catColor = cat.color || (isInc ? "#10B981" : "#EF4444");
 
   if (!isCluster) {
+    // -------------------------------------------------------------------------
+    // SINGLE TRANSACTION CARD (GỌN GÀNG, KHÔNG DÙNG NÚT X, KÉO VUỐT ĐỂ ĐÓNG)
+    // -------------------------------------------------------------------------
+    const cat = State.categories.find((c) => c.id === firstTx.categoryId) || {
+      name: "Khác",
+      icon: "tag",
+      color: "#10B981",
+    };
+    const isInc = firstTx.type === "income";
+    const catColor = cat.color || (isInc ? "#10B981" : "#EF4444");
+    const wallet = State.wallets.find((w) => w.id === firstTx.walletId) || { name: "Tiền mặt" };
+
+    const receiptHtml = firstTx.receipt ? `
+      <div class="map-slide-photo-wrap" onclick="openMapReceiptLightbox('${firstTx.id}')">
+        <img src="${firstTx.receipt}" class="map-slide-photo" alt="Hóa đơn" />
+      </div>
+    ` : "";
+
     content.innerHTML = `
       <div class="map-card-header">
         <div class="map-card-cat-wrap">
           <div class="map-card-cat-icon" style="background-color: ${catColor}18; color: ${catColor};">
-            <i data-lucide="${cat.icon || "tag"}" style="width: 22px; height: 22px;"></i>
+            <i data-lucide="${cat.icon || "tag"}" style="width: 17px; height: 17px;"></i>
           </div>
           <div class="map-card-title-box">
-            <div class="map-card-cat-name">${cat.name}</div>
-            <div class="map-card-tx-note">${firstTx.note || cat.name}</div>
+            <div class="map-card-cat-name">${firstTx.note || cat.name}</div>
+            <div class="map-card-tx-meta">${cat.name} · ${formatDateDisplay(firstTx.date)} · ${wallet.name}</div>
           </div>
         </div>
         <div class="map-card-amount-box">
           <div class="map-card-amt ${isInc ? "income" : "expense"}">
             ${isInc ? "+" : "-"}${formatVND(firstTx.amount)}
           </div>
-          <span class="map-card-tag" style="background-color: ${isInc ? "rgba(16, 185, 129, 0.12)" : "rgba(239, 68, 68, 0.12)"}; color: ${isInc ? "var(--income)" : "var(--expense)"};">
-            ● ${isInc ? "Thu nhập" : "Chi tiêu"}
-          </span>
         </div>
       </div>
 
-      <div class="map-card-meta-row">
-        <div class="map-card-address">
-          <i data-lucide="map-pin" style="width: 12px; height: 12px; color: var(--mint); flex-shrink: 0;"></i>
-          <span>${cluster.address || "Vị trí giao dịch"}</span>
-        </div>
-        <div class="map-card-time">
-          <i data-lucide="clock" style="width: 11px; height: 11px; flex-shrink: 0;"></i>
-          <span>${formatDateDisplay(firstTx.date)} ${firstTx.createdAt ? "• " + new Date(firstTx.createdAt).toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }) : ""}</span>
-        </div>
+      ${receiptHtml}
+
+      <div class="map-card-address-row">
+        <i data-lucide="map-pin" style="width: 11px; height: 11px; color: var(--mint); flex-shrink: 0;"></i>
+        <span>${cluster.address || "Vị trí giao dịch"}</span>
       </div>
 
       <div class="map-card-actions">
-        <button class="map-card-subtle-btn" onclick="openTxDetailModal(State.transactions.find(t => t.id === '${firstTx.id}'))" title="Lưu">
-          <i data-lucide="bookmark" style="width: 14px; height: 14px;"></i>
-          <span></span>
-        </button>
         <a class="map-card-subtle-btn" href="https://www.google.com/maps/dir/?api=1&destination=${cluster.lat},${cluster.lng}" target="_blank" rel="noopener noreferrer">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          <span></span>
+          <i data-lucide="navigation" style="width: 12px; height: 12px;"></i>
+          <span>Chỉ đường</span>
         </a>
-        <button class="map-card-subtle-btn" onclick="shareMapTx('${firstTx.id}', ${cluster.lat}, ${cluster.lng})" title="Chia sẻ">
-          <i data-lucide="share-2" style="width: 14px; height: 14px;"></i>
-          <span></span>
-        </button>
         <button class="map-card-primary-btn" onclick="openTxDetailModal(State.transactions.find(t => t.id === '${firstTx.id}'))">
-          <i data-lucide="bar-chart-2" style="width: 15px; height: 15px;"></i>
-          <span>Xem &rarr;</span>
+          <span>Chi tiết</span>
+          <i data-lucide="arrow-right" style="width: 12px; height: 12px;"></i>
         </button>
       </div>
     `;
   } else {
-    // Cluster View with multiple transactions
+    // -------------------------------------------------------------------------
+    // MULTI-TRANSACTION CLUSTER (GỌN GÀNG, KHÔNG CÓ NÚT X, KÉO VUỐT ĐỂ ĐÓNG)
+    // -------------------------------------------------------------------------
     let totalExp = 0;
     let totalInc = 0;
     cluster.txs.forEach((t) => {
@@ -713,59 +719,170 @@ function renderSelectedTxCard(cluster) {
       else if (t.type === "expense") totalExp += Number(t.amount) || 0;
     });
 
-    let txItemsHtml = "";
-    cluster.txs.slice(0, 3).forEach((t) => {
-      const tCat = State.categories.find((c) => c.id === t.categoryId) || { name: "Khác", color: "#10B981" };
-      const tIsInc = t.type === "income";
-      txItemsHtml += `
-        <div onclick="openTxDetailModal(State.transactions.find(x => x.id === '${t.id}'))" style="display: flex; align-items: center; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--border-subtle); cursor: pointer;">
-          <div style="font-size: 0.74rem; font-weight: 700; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px;">
-            ${t.note || tCat.name}
+    // Generate Carousel Slides for ALL transactions
+    let slidesHtml = "";
+    cluster.txs.forEach((t, idx) => {
+      const cat = State.categories.find((c) => c.id === t.categoryId) || {
+        name: "Khác",
+        icon: "tag",
+        color: "#10B981",
+      };
+      const isInc = t.type === "income";
+      const catColor = cat.color || (isInc ? "#10B981" : "#EF4444");
+      const wallet = State.wallets.find((w) => w.id === t.walletId) || { name: "Tiền mặt" };
+
+      const slideReceiptHtml = t.receipt ? `
+        <div class="map-slide-photo-wrap" onclick="openMapReceiptLightbox('${t.id}')">
+          <img src="${t.receipt}" class="map-slide-photo" alt="Hóa đơn" />
+        </div>
+      ` : "";
+
+      slidesHtml += `
+        <div class="map-tx-slide" data-idx="${idx + 1}">
+          <div class="map-tx-slide-header">
+            <div class="map-tx-slide-cat">
+              <div class="map-tx-slide-icon" style="background-color: ${catColor}18; color: ${catColor};">
+                <i data-lucide="${cat.icon || "tag"}" style="width: 16px; height: 16px;"></i>
+              </div>
+              <div class="map-tx-slide-title-wrap">
+                <div class="map-tx-slide-note">${t.note || cat.name}</div>
+                <div class="map-tx-slide-meta">${cat.name} · ${formatDateDisplay(t.date)} · ${wallet.name}</div>
+              </div>
+            </div>
+            <div class="map-tx-slide-amt ${isInc ? "income" : "expense"}">
+              ${isInc ? "+" : "-"}${formatVND(t.amount)}
+            </div>
           </div>
-          <div style="font-size: 0.76rem; font-weight: 800; color: ${tIsInc ? "var(--income)" : "var(--expense)"};">
-            ${tIsInc ? "+" : "-"}${formatVND(t.amount)}
+
+          ${slideReceiptHtml}
+
+          <div class="map-slide-actions">
+            <button class="map-slide-btn" onclick="openTxDetailModal(State.transactions.find(x => x.id === '${t.id}'))">
+              <span>Chi tiết</span>
+            </button>
+            <a class="map-slide-dir-btn" href="https://www.google.com/maps/dir/?api=1&destination=${cluster.lat},${cluster.lng}" target="_blank" rel="noopener noreferrer">
+              <i data-lucide="navigation" style="width: 11px; height: 11px;"></i>
+              <span>Chỉ đường</span>
+            </a>
           </div>
         </div>
       `;
     });
 
+    // Generate Full List View items for ALL transactions
+    let listItemsHtml = "";
+    cluster.txs.forEach((t) => {
+      const cat = State.categories.find((c) => c.id === t.categoryId) || {
+        name: "Khác",
+        icon: "tag",
+        color: "#10B981",
+      };
+      const isInc = t.type === "income";
+      const catColor = cat.color || (isInc ? "#10B981" : "#EF4444");
+
+      const thumbImg = t.receipt ? `
+        <img src="${t.receipt}" class="map-tx-list-thumb" onclick="event.stopPropagation(); openMapReceiptLightbox('${t.id}')" alt="Ảnh" />
+      ` : `
+        <div style="width: 32px; height: 32px; border-radius: 8px; background: ${catColor}18; color: ${catColor}; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <i data-lucide="${cat.icon || "tag"}" style="width: 15px; height: 15px;"></i>
+        </div>
+      `;
+
+      listItemsHtml += `
+        <div class="map-tx-list-item" onclick="openTxDetailModal(State.transactions.find(x => x.id === '${t.id}'))">
+          <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
+            ${thumbImg}
+            <div style="min-width: 0; flex: 1;">
+              <div style="font-size: 0.78rem; font-weight: 800; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                ${t.note || cat.name}
+              </div>
+              <div style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 1px;">
+                ${cat.name} · ${formatDateDisplay(t.date)}
+              </div>
+            </div>
+          </div>
+          <div style="text-align: right; flex-shrink: 0;">
+            <div style="font-size: 0.82rem; font-weight: 800; color: ${isInc ? "var(--income)" : "var(--expense)"};">
+              ${isInc ? "+" : "-"}${formatVND(t.amount)}
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    const dotsHtml = cluster.txs.map((_, i) => `<span class="map-dot ${i === 0 ? "active" : ""}"></span>`).join("");
+
     content.innerHTML = `
+      <!-- Cluster Header: clean, minimal, NO X BUTTON -->
       <div class="map-card-header">
         <div class="map-card-cat-wrap">
           <div class="map-card-cat-icon" style="background-color: var(--primary-light); color: var(--primary);">
-            <i data-lucide="layers" style="width: 20px; height: 20px;"></i>
+            <i data-lucide="layers" style="width: 16px; height: 16px;"></i>
           </div>
           <div class="map-card-title-box">
-            <div class="map-card-cat-name">${cluster.txs.length} Giao dịch tại đây</div>
-            <div class="map-card-tx-note">📍 ${cluster.address}</div>
+            <div class="map-card-cat-name">${cluster.txs.length} giao dịch tại đây</div>
+            <div class="map-card-tx-meta">📍 ${cluster.address}</div>
           </div>
         </div>
         <div class="map-card-amount-box">
           <div class="map-card-amt expense">-${formatVND(totalExp)}</div>
-          <span class="map-card-tag" style="background-color: var(--primary-light); color: var(--primary);">
-            ${cluster.txs.length} giao dịch
-          </span>
         </div>
       </div>
 
-      <div style="margin-bottom: 10px; max-height: 85px; overflow-y: auto;">
-        ${txItemsHtml}
+      <!-- Minimal Controls Row: Dots + Nav + List Toggle -->
+      <div class="map-carousel-subbar">
+        <div class="map-carousel-dots" id="mapCarouselDots">
+          ${dotsHtml}
+        </div>
+        <div class="map-carousel-nav-btns">
+          <button type="button" class="map-carousel-arrow-btn" onclick="scrollMapCarousel(-1)" title="Trước">
+            <i data-lucide="chevron-left" style="width: 13px; height: 13px;"></i>
+          </button>
+          <button type="button" class="map-carousel-arrow-btn" onclick="scrollMapCarousel(1)" title="Tiếp">
+            <i data-lucide="chevron-right" style="width: 13px; height: 13px;"></i>
+          </button>
+          <button type="button" class="map-view-toggle-btn" id="mapViewToggleBtn" onclick="toggleMapClusterView()">
+            <i data-lucide="list" style="width: 12px; height: 12px;"></i>
+            <span>Danh sách</span>
+          </button>
+        </div>
       </div>
 
-      <div class="map-card-actions">
-        <a class="map-card-subtle-btn" href="https://www.google.com/maps/dir/?api=1&destination=${cluster.lat},${cluster.lng}" target="_blank" rel="noopener noreferrer">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          <span>Chỉ đường</span>
-        </a>
-        <button class="map-card-primary-btn" onclick="openTxDetailModal(State.transactions.find(t => t.id === '${firstTx.id}'))">
-          <i data-lucide="bar-chart-2" style="width: 15px; height: 15px;"></i>
-          <span>Xem chi tiết &rarr;</span>
-        </button>
+      <!-- Swipeable Cards Carousel ("Lướt ngang") -->
+      <div class="map-tx-carousel-wrap" id="mapCarouselWrap">
+        <div class="map-tx-carousel" id="mapTxCarousel">
+          ${slidesHtml}
+        </div>
+      </div>
+
+      <!-- Full Scrollable List (Initially hidden) -->
+      <div class="map-tx-full-list" id="mapListWrap" style="display: none;">
+        ${listItemsHtml}
       </div>
     `;
   }
 
   if (window.lucide?.createIcons) window.lucide.createIcons();
+
+  // Attach drag-to-dismiss gesture engine (Drag down to dismiss, drag up with rubber band)
+  attachMapCardDragEngine();
+
+  // Attach carousel swipe tracker to update dots
+  setTimeout(() => {
+    const carousel = document.getElementById("mapTxCarousel");
+    if (carousel) {
+      carousel.addEventListener("scroll", () => {
+        const slide = carousel.firstElementChild;
+        if (!slide) return;
+        const slideWidth = slide.offsetWidth + 8;
+        const curIdx = Math.min(cluster.txs.length - 1, Math.max(0, Math.round(carousel.scrollLeft / slideWidth)));
+        const dots = document.querySelectorAll("#mapCarouselDots .map-dot");
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("active", i === curIdx);
+        });
+      }, { passive: true });
+    }
+  }, 50);
 }
 
 /**
@@ -1081,3 +1198,201 @@ window.locateUserOnMap = locateUserOnMap;
 window.switchGoogleMapLayer = switchGoogleMapLayer;
 window.toggleMapHeatmap = toggleMapHeatmap;
 window.renderSpendingMapScreen = renderSpendingMapScreen;
+
+// =========================================================================
+// CAROUSEL & LIGHTBOX CONTROLLERS
+// =========================================================================
+function closeMapSelectedTxCard() {
+  const card = document.getElementById("mapSelectedTxCard");
+  if (card) {
+    card.classList.add("hidden");
+    card.style.display = "none";
+    card.style.transform = "";
+    card.style.opacity = "";
+  }
+  State.mapSelectedTxId = null;
+  document.querySelectorAll(".luxury-map-pin").forEach((p) => p.classList.remove("active"));
+}
+window.closeMapSelectedTxCard = closeMapSelectedTxCard;
+
+function scrollMapCarousel(direction) {
+  const carousel = document.getElementById("mapTxCarousel");
+  if (!carousel || !carousel.firstElementChild) return;
+  const slide = carousel.firstElementChild;
+  const slideWidth = slide.offsetWidth + 8;
+  carousel.scrollBy({ left: direction * slideWidth, behavior: "smooth" });
+}
+window.scrollMapCarousel = scrollMapCarousel;
+
+function toggleMapClusterView() {
+  const carouselWrap = document.getElementById("mapCarouselWrap");
+  const listWrap = document.getElementById("mapListWrap");
+  const toggleBtn = document.getElementById("mapViewToggleBtn");
+  if (!carouselWrap || !listWrap || !toggleBtn) return;
+
+  const isList = listWrap.style.display !== "none";
+  if (isList) {
+    listWrap.style.display = "none";
+    carouselWrap.style.display = "block";
+    toggleBtn.innerHTML = '<i data-lucide="list" style="width: 12px; height: 12px;"></i> <span>Danh sách</span>';
+  } else {
+    carouselWrap.style.display = "none";
+    listWrap.style.display = "flex";
+    toggleBtn.innerHTML = '<i data-lucide="layout-grid" style="width: 12px; height: 12px;"></i> <span>Thẻ lướt</span>';
+  }
+  if (window.lucide?.createIcons) window.lucide.createIcons();
+}
+window.toggleMapClusterView = toggleMapClusterView;
+
+function openMapReceiptLightbox(txId) {
+  const tx = State.transactions.find((t) => t.id === txId);
+  if (!tx || !tx.receipt) return;
+  const modal = document.getElementById("mapReceiptLightboxModal");
+  if (!modal) return;
+
+  const imgEl = document.getElementById("mapLightboxImg");
+  const noteEl = document.getElementById("mapLightboxNote");
+  const amtEl = document.getElementById("mapLightboxAmt");
+  const dateEl = document.getElementById("mapLightboxDate");
+
+  if (imgEl) imgEl.src = tx.receipt;
+  if (noteEl) noteEl.textContent = tx.note || "Hóa đơn";
+  if (amtEl) amtEl.textContent = `${tx.type === "income" ? "+" : "-"}${formatVND(tx.amount)}`;
+  if (dateEl) dateEl.textContent = formatDateDisplay(tx.date);
+
+  modal.classList.add("active");
+  if (window.lucide?.createIcons) window.lucide.createIcons();
+}
+window.openMapReceiptLightbox = openMapReceiptLightbox;
+
+function closeMapReceiptLightbox() {
+  const modal = document.getElementById("mapReceiptLightboxModal");
+  if (modal) modal.classList.remove("active");
+}
+window.closeMapReceiptLightbox = closeMapReceiptLightbox;
+
+
+/**
+ * Attach Native Drag to Dismiss Engine to the Map Bottom Card
+ * Pull down smoothly to dismiss with physics, pull up with rubber-band
+ */
+function attachMapCardDragEngine() {
+  const card = document.getElementById("mapSelectedTxCard");
+  if (!card || card._hasMapCardDrag) return;
+  card._hasMapCardDrag = true;
+
+  let startY = 0;
+  let startX = 0;
+  let currentY = 0;
+  let lastY = 0;
+  let lastTime = 0;
+  let velocityY = 0;
+  let isDragging = false;
+  let dragDirectionDecided = false;
+  let isHorizontalGesture = false;
+
+  function onTouchStart(e) {
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    startY = touch.clientY;
+    startX = touch.clientX;
+    currentY = startY;
+    lastY = startY;
+    lastTime = Date.now();
+    velocityY = 0;
+    isDragging = false;
+    dragDirectionDecided = false;
+    isHorizontalGesture = false;
+  }
+
+  function onTouchMove(e) {
+    if (e.touches.length !== 1) return;
+    const touch = e.touches[0];
+    currentY = touch.clientY;
+    const deltaY = currentY - startY;
+    const deltaX = touch.clientX - startX;
+
+    const now = Date.now();
+    const dt = now - lastTime;
+    if (dt > 10) {
+      velocityY = (currentY - lastY) / dt;
+      lastY = currentY;
+      lastTime = now;
+    }
+
+    if (!dragDirectionDecided) {
+      if (Math.abs(deltaX) > 8 || Math.abs(deltaY) > 8) {
+        dragDirectionDecided = true;
+        // If swiping horizontally inside the carousel, do NOT initiate vertical drag
+        if (Math.abs(deltaX) > Math.abs(deltaY) && e.target.closest(".map-tx-carousel")) {
+          isHorizontalGesture = true;
+          return;
+        }
+      } else {
+        return;
+      }
+    }
+
+    if (isHorizontalGesture) return;
+
+    if (deltaY > 5 || deltaY < -5) {
+      if (!isDragging) {
+        isDragging = true;
+        card.classList.add("is-dragging");
+        card.style.transition = "none";
+      }
+
+      if (deltaY > 0) {
+        // Drag down: 1:1 finger tracking
+        card.style.transform = `translateY(${deltaY}px)`;
+      } else {
+        // Drag up: rubber-band elastic resistance
+        const resisted = deltaY * 0.22;
+        card.style.transform = `translateY(${resisted}px)`;
+      }
+
+      if (e.cancelable) e.preventDefault();
+    }
+  }
+
+  function onTouchEnd() {
+    if (!isDragging) {
+      return;
+    }
+
+    card.classList.remove("is-dragging");
+    const deltaY = currentY - startY;
+    const isFlickDown = velocityY > 0.38 && deltaY > 30;
+    const isOverThreshold = deltaY > 75;
+
+    if (isFlickDown || isOverThreshold) {
+      card.style.transition = "transform 0.24s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.2s ease";
+      card.style.transform = "translateY(110%)";
+      card.style.opacity = "0";
+
+      try {
+        if (navigator.vibrate) navigator.vibrate(8);
+      } catch (_) {}
+
+      setTimeout(() => {
+        closeMapSelectedTxCard();
+      }, 240);
+    } else {
+      card.style.transition = "transform 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.2)";
+      card.style.transform = "translateY(0)";
+
+      setTimeout(() => {
+        card.style.transform = "";
+        card.style.transition = "";
+      }, 340);
+    }
+
+    isDragging = false;
+  }
+
+  card.addEventListener("touchstart", onTouchStart, { passive: true });
+  card.addEventListener("touchmove", onTouchMove, { passive: false });
+  card.addEventListener("touchend", onTouchEnd, { passive: true });
+  card.addEventListener("touchcancel", onTouchEnd, { passive: true });
+}
+window.attachMapCardDragEngine = attachMapCardDragEngine;

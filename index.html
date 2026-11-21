@@ -4607,22 +4607,47 @@
             </button>
           </div>
 
-          <!-- Floating Area Spending Pill (Bottom Left) -->
-          <div class="map-area-summary-pill" id="mapAreaSummaryPill" title="Nhấn để xem top điểm nóng">
-            <i data-lucide="bar-chart-3" style="width: 13px; height: 13px; color: var(--mint);"></i>
-            <span class="area-label">Chi tiêu khu vực:</span>
-            <span class="area-val" id="mapAreaSummaryTotal">0 ₫</span>
-            <i data-lucide="chevron-right" style="width: 12px; height: 12px; color: var(--text-muted);"></i>
-          </div>
+          <!-- Bottom Dock Container (Auto Stacks Pill & Card Without Overlapping) -->
+          <div class="map-bottom-dock" id="mapBottomDock">
+            <!-- Floating Area Spending Pill -->
+            <div class="map-area-summary-pill" id="mapAreaSummaryPill" title="Nhấn để xem top điểm nóng">
+              <i data-lucide="bar-chart-3" style="width: 13px; height: 13px; color: var(--mint);"></i>
+              <span class="area-label">Chi tiêu khu vực:</span>
+              <span class="area-val" id="mapAreaSummaryTotal">0 ₫</span>
+              <i data-lucide="chevron-right" style="width: 12px; height: 12px; color: var(--text-muted);"></i>
+            </div>
 
-          <!-- Selected Transaction Modern Bottom Card / Sheet (Image 3) -->
-          <div class="map-bottom-sheet-card" id="mapSelectedTxCard">
-            <div class="map-card-handle"></div>
-            <div id="mapSelectedTxCardContent">
-              <!-- Rendered dynamically by js/map.js -->
+            <!-- Selected Transaction Modern Bottom Card / Sheet -->
+            <div class="map-bottom-sheet-card bottom-sheet" id="mapSelectedTxCard">
+              <div class="sheet-handle-bar map-card-handle" id="mapCardHandle"></div>
+              <div id="mapSelectedTxCardContent">
+                <!-- Rendered dynamically by js/map.js -->
+              </div>
             </div>
           </div>
         </section>
+
+        <!-- LIGHTBOX: XEM ẢNH HÓA ĐƠN TRÊN BẢN ĐỒ -->
+        <div class="modal-overlay" id="mapReceiptLightboxModal" onclick="if(event.target === this) closeMapReceiptLightbox()">
+          <div class="map-lightbox-card">
+            <div class="map-lightbox-header">
+              <div style="min-width: 0; flex: 1;">
+                <div id="mapLightboxNote" style="font-size: 0.88rem; font-weight: 800; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Ảnh hóa đơn</div>
+                <div style="display: flex; align-items: center; gap: 8px; margin-top: 2px;">
+                  <span id="mapLightboxAmt" style="font-size: 0.85rem; font-weight: 800; color: var(--expense);">-0 ₫</span>
+                  <span style="color: var(--text-muted); font-size: 0.7rem;">•</span>
+                  <span id="mapLightboxDate" style="font-size: 0.72rem; color: var(--text-secondary);">21/11/2026</span>
+                </div>
+              </div>
+              <button type="button" class="btn-icon-subtle" onclick="closeMapReceiptLightbox()" title="Đóng">
+                <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+              </button>
+            </div>
+            <div class="map-lightbox-body">
+              <img id="mapLightboxImg" src="" alt="Hóa đơn giao dịch" />
+            </div>
+          </div>
+        </div>
 
         <!-- Floating Bottom Sheet: Điểm Nóng Chi Tiêu & Bộ Lọc Nâng Cao -->
         <div id="mapHotspotsSheetModal" class="modal-overlay">

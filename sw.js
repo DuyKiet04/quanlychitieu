@@ -1,5 +1,5 @@
 // FinMaster Service Worker - 100% Offline PWA
-const CACHE_NAME = 'finmaster-v22';
+const CACHE_NAME = 'finmaster-v25';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
